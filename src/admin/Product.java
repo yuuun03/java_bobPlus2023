@@ -65,6 +65,10 @@ public class Product {
 	public void setPrice(int price) {this.price = price;}
 	public void setOnePersonPrice(double onePersonPrice) {this.onePersonPrice = onePersonPrice;}
 	public void setProductDisRate(double productDisRate) {this.productDisRate = productDisRate;}
-			
+	
+	/*@Override
+	public String toString() {
+		return;
+	}*/
 	
 }
