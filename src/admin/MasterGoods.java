@@ -53,6 +53,7 @@ public class MasterGoods {
 		}
 	}
 	
+	//할인율 조정
 	private void disRate(String name, double disRate) {
 		if (pList.isEmpty()) {System.out.println("등록되어 있는 상품이 없습니다.");} 
 		for(Product i : pList) {
@@ -65,6 +66,7 @@ public class MasterGoods {
 		System.out.println("찾으시는 상품이 없습니다.");
 	}
 	
+	//재고 수량 변경
 	private void stackChange(String name, int productCount) {
 		if (pList.isEmpty()) {System.out.println("등록되어 있는 상품이 없습니다.");} 
 		for(Product i : pList) {
@@ -76,5 +78,12 @@ public class MasterGoods {
 		}
 		System.out.println("찾으시는 상품이 없습니다.");
 	}
+	
+	public String productPopular() {
+		return "추후 구현 예정";
+	}
+	
+	//scrollPage 어떻게 구상한거지?? 봐야 알 듯.
+	public void scrollPage() {}
 
 }

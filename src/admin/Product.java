@@ -68,7 +68,7 @@ public class Product {
 	
 	/*@Override
 	public String toString() {
-		return 0;
+		return;
 	}*/
 	
 }
