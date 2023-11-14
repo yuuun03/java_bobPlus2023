@@ -64,5 +64,17 @@ public class MasterGoods {
 		}
 		System.out.println("찾으시는 상품이 없습니다.");
 	}
+	
+	private void stackChange(String name, int productCount) {
+		if (pList.isEmpty()) {System.out.println("등록되어 있는 상품이 없습니다.");} 
+		for(Product i : pList) {
+			//pList의 현재 인덱스에 있는 객체의 이름이 받아온 이름과 같을 경우
+			if (i.getName().equals(name)) {
+				i.setProductCount(productCount);;
+				return;
+			};
+		}
+		System.out.println("찾으시는 상품이 없습니다.");
+	}
 
 }
