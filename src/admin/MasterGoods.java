@@ -10,14 +10,16 @@ public class MasterGoods {
 	//생성자
 	public MasterGoods() {}
 	
-	//상품 추가
+	//상품 추가(생성자 아님 주의!!!)
 	private void productAdd(String name, String image, double productStar,
 			int serving, int productCount, int price,
-			double productDisRate) {
+			double productDisRate, Vector<String> cookingUtensils,
+			Vector<String> containAllergy) {
 		
 		//새 상품 객체 생성.
 		Product p = new Product(name, image, productStar,
-				serving, productCount, price, productDisRate);
+				serving, productCount, price, productDisRate,
+				cookingUtensils,containAllergy);
 		
 		//기존 상품 리스트에 추가
 		pList.add(p);
@@ -75,7 +77,7 @@ public class MasterGoods {
 		return "추후 구현 예정";
 	}
 	
-	//scrollPage
+	//scrollPage - 메인 UI/UX에서 실행 예정
 	//public void scrollPage() {}
 
 }
