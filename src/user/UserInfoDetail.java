@@ -4,7 +4,6 @@ import java.util.Vector;
 
 public class UserInfoDetail {
 	//---멤버 변수
-	
 	//---회원 이름
 	private String name = "";
 	
@@ -72,6 +71,24 @@ public class UserInfoDetail {
 	}
 	
 	// 접근자
+	public String getName() {return this.name;}
+	
+	public String getId() {return this.id;}
+	public String getPassword() {return this.password;}
+	
+	public String getEmail() {return this.email;}
+	public long getPhoneNum() {return this.phoneNum;}
+	public int getBirth() {return this.birth;}
+	
+	public Vector<String> getAllergy() {return this.allergy;}
+	
+	public String getAddress() {return this.address;}
+	
+	public boolean getIdVerification() {return this.idVerification;}
+	
+	public Vector<String> getCartList() {return this.cartList;}
+	public Vector<String> getLiketList() {return this.likeList;}
+	public Vector<String> getBuytList() {return this.buytList;}
 	
 	// 설정자
 	
