@@ -1,3 +1,3 @@
 package admin;
 
-public class MasterOrder{}
+public class Coupon{}
