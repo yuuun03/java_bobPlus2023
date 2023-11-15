@@ -41,15 +41,7 @@ public class MasterGoods {
 	private void checkProduct() {
 		if (pList.isEmpty()) {System.out.println("등록되어 있는 상품이 없습니다.");} 
 		else {
-			for(Product i : pList) {
-				/*
-				 * 출력할 때 화면상에 출력 예정.
-				 * 단순 출력이면 Product 클래스에 toString 오버라이딩 하여 사용.
-				 * 아닐 경우 양식보고 지정
-				 * (현재 오버라이딩 되지 않은 상태임.)
-				 * */
-				System.out.println(i.toString());
-			}
+			for(Product i : pList) { /* 메모장 형식 */ System.out.println(i.toString());}
 		}
 	}
 	
@@ -83,7 +75,7 @@ public class MasterGoods {
 		return "추후 구현 예정";
 	}
 	
-	//scrollPage 어떻게 구상한거지?? 봐야 알 듯.
-	public void scrollPage() {}
+	//scrollPage
+	//public void scrollPage() {}
 
 }

@@ -55,20 +55,29 @@ public class Product {
 			
 	
 	//설정자
-	public void setName(String name) {this.name = name;}
-	public void setImage(String image) {this.image = image;}
-	public void setProductStar(double productStar) {this.productStar = productStar;}
+	protected void setName(String name) {this.name = name;}
+	protected void setImage(String image) {this.image = image;}
+	protected void setProductStar(double productStar) {this.productStar = productStar;}
 	
-	public void setServing(int serving) {this.serving = serving;}
-	public void setProductCount(int productCount) {this.productCount = productCount;}
+	protected void setServing(int serving) {this.serving = serving;}
+	protected void setProductCount(int productCount) {this.productCount = productCount;}
 	
-	public void setPrice(int price) {this.price = price;}
-	public void setOnePersonPrice(double onePersonPrice) {this.onePersonPrice = onePersonPrice;}
-	public void setProductDisRate(double productDisRate) {this.productDisRate = productDisRate;}
+	protected void setPrice(int price) {this.price = price;}
+	protected void setOnePersonPrice(double onePersonPrice) {this.onePersonPrice = onePersonPrice;}
+	protected void setProductDisRate(double productDisRate) {this.productDisRate = productDisRate;}
 	
-	/*@Override
-	public String toString() {
-		return;
-	}*/
+	@Override
+	public String toString() { //이미지는 출력 안함.
+		return "======================================"+ "\n" +
+	"제품명 : " + this.getName() + "\n" +
+	"사진(Link) : " + this.getImage() + "\n" +
+	"별점 : " + this.getProductStar() + "점\n" +
+	"현재 수량 : " + this.getProductCount() + "개\n" +
+	"가격 : " + this.getPrice() + "원\n" +
+	"1인분 당 가격 : " + this.getOnePersonPrice() + "원\n" +
+	"현재 밀키트에서 설정된 인분(N인분) : " + this.getServing() + "인분\n" +
+	"할인율 : " + this.getProductDisRate() + "%\n" +
+	"======================================"+ "\n";
+	}
 	
 }
