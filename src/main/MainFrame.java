@@ -11,15 +11,23 @@ public class MainFrame extends JFrame{
 		
 		//화면 버튼 설정
 		Container mainPane = getContentPane(); //컨텐트 팬 얻어오기. 여기서 awt 사용.
-		mainPane.setLayout(new FlowLayout()); //플로우로 컴포넌트 배치관리
+		mainPane.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		
-		mainPane.add(new JButton("지금 뜨는 상품"));
-		mainPane.add(new JButton("금주의 TOP 10"));
-		mainPane.add(new JButton("출석 체크"));
-		mainPane.add(new JButton("쿠폰/포인트"));
-		mainPane.add(new JButton("커뮤니티"));
-		mainPane.add(new JButton("이달의 신상품"));
+		JButton newHotGoods = new JButton("지금 뜨는 상품");
+		JButton weekTop10Goods = new JButton("금주의 TOP 10");
+		JButton checkAttendance = new JButton("출석 체크");
+		JButton couponPoint = new JButton("쿠폰/포인트");
+		JButton community = new JButton("커뮤니티");
+		JButton newMonthGoods = new JButton("이달의 신상품");
 		
+		JButton[] upLabel = {newHotGoods, weekTop10Goods, checkAttendance,
+				couponPoint, community, newMonthGoods};
+
+		for(int i = 0; i < 6 ; i++) {
+			upLabel[i].setSize(190,43);
+			upLabel[i].setLocation(58 + 245 * i, 160);
+			mainPane.add(upLabel[i]);
+		}
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
