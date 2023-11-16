@@ -103,7 +103,7 @@ public class Product {
 	"현재 밀키트에서 설정된 인분(N인분) : " + this.getServing() + "인분\n" +
 	"할인율 : " + this.getProductDisRate() + "%\n" +
 	"--------------------------------------"+ "\n" +
-	"조리도구 정보 : " + this.getCookingUtensils() + "\n" +
+	"조리도구 정보 : " + this.getCookingUtensils() + "\n" + // 조리도구 기능 삭제할 수도
 	"알러지 정보 : " + this.getContainAllergy() + "\n" +
 	"======================================"+ "\n";
 	}
