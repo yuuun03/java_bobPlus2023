@@ -14,7 +14,7 @@ public class UserInfoDetail {
 	//---이메일, 전화번호, 생일, 회원 등급
 	private String email = "";
 	private long phoneNum = 0;
-	private int birth = 0;
+	private int birth = [0,0,0];
 	private int userRank = 5;
 	
 	//---알러지
@@ -104,6 +104,15 @@ public class UserInfoDetail {
 	protected void setBirth(int birth) {this.birth = birth;}
 	protected void setUserRank(int userRank) {this.userRank = userRank;}
 	
+	protected void setAllergy(Vector<String> allergy) {this.allergy = allergy;}
+	
+	protected void setAddress(String address) {this.address = address;}
+	
+	protected void setIdVerification(boolean idVerification) {this.idVerification = idVerification;}
+	
+	protected void setCartList(Vector<String> cartList) {this.cartList = cartList;}
+	protected void setLikeList(Vector<String> likeList) {this.likeList = likeList;}
+	protected void setBuyList(Vector<String> buyList) {this.buyList = buyList;}
 }
 	
 	
