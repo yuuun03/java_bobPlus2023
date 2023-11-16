@@ -17,7 +17,7 @@ public class UserInfo {
 	public void setPw(String password) {}
 	public void setName(String name) {}
 	public void setEmail(String email) {}
-	static void setBirth(int birth) {}
+	public static void setBirth(int birth) {}
 	void showUserInfo() {}
 	public String showDeliveryInfo() {}
 }
