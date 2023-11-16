@@ -14,7 +14,7 @@ public class UserInfoDetail {
 	//---이메일, 전화번호, 생일
 	private String email = "";
 	private long phoneNum = 0;
-	private int birth = 0;
+	private static int birth = 0;
 	
 	//---알러지
 	public Vector<String> allergy = new Vector<String> ();
