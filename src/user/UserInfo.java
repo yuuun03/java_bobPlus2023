@@ -11,14 +11,13 @@ public class UserInfo {
 	public UserInfo() {}
 	
 	//신규 회원(생성자 아님 주의!!!)
-	private void newUser(String name, String id, String email, String password, 
-			long phoneNum, int birth, int userRank, Vector<String> allergy, String address, 
-			boolean idVerification, Vector<String> cartList, Vector<String> liketList,
+	private void newUser(String name, String id, String email, String password, long phoneNum, int birth, 
+			int userRank, Vector<String> allergy, String address, Vector<String> cartList, Vector<String> liketList,
 			Vector<String> buytList, int birthCoupon) {
 		
 		//새 회원 정보 객체 생성.
 		UserInfoDetail user = new UserInfoDetail(name, id, email, password, phoneNum, birth, 
-				userRank, allergy, address, idVerification, cartList, liketList, buytList, birthCoupon);
+				userRank, allergy, address, cartList, liketList, buytList, birthCoupon);
 
 		//기존 회원 정보 리스트에 추가
 		userList.add(user);
