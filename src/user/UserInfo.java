@@ -59,8 +59,13 @@ public class UserInfo {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
 		if (checkUser(id, password)) {
-			userList.setName(newName);
-			return;
+			// id
+			for (UserInfoDetail i : userList) {
+				if (i.getId().equals(id)) {
+					i.setName(newName);
+					return;
+				}
+			}
 		}else {
 			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
 		}
@@ -71,10 +76,14 @@ public class UserInfo {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
 		if (checkUser(id, password)) {
-			// 아이디 중복 확인
-			if (availableId(newId)) {System.out.println("사용할 수 없는 아이디입니다.");}
-			else{userList.setId(newId);}
-			return;
+			for (UserInfoDetail i : userList) {
+				if (i.getId().equals(id)) {
+					// 아이디 중복 확인
+					if (availableId(newId)) {System.out.println("사용할 수 없는 아이디입니다.");}
+					else{i.setId(newId);}
+					return;
+				}
+			}
 		}else {
 			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
 		}
@@ -85,8 +94,12 @@ public class UserInfo {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
 		if (checkUser(id, password)) {
-			userList.setPassword(newPassword);
-			return;
+			for (UserInfoDetail i : userList) {
+				if (i.getId().equals(id)) {
+					i.setPassword(newPassword);
+					return;
+				}
+			}
 		}else {
 			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
 		}
@@ -97,8 +110,12 @@ public class UserInfo {
 			if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 			// 회원 인증
 			if (checkUser(id, password)) {
-				userList.setPhoneNum(newEmail);
-				return;
+				for (UserInfoDetail i : userList) {
+					if (i.getId().equals(id)) {
+						i.setEmail(newEmail);
+						return;
+					}
+				}
 			}else {
 				System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
 			}
@@ -109,8 +126,12 @@ public class UserInfo {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
 		if (checkUser(id, password)) {
-			userList.setPhoneNum(newPhoneNum);
-			return;
+			for (UserInfoDetail i : userList) {
+				if (i.getId().equals(id)) {
+					i.setPhoneNum(newPhoneNum);
+					return;
+				}
+			}
 		}else {
 			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
 		}
@@ -126,8 +147,12 @@ public class UserInfo {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
 		if (checkUser(id, password)) {
-			userList.setAllergy(newAllergy);
-			return;
+			for (UserInfoDetail i : userList) {
+				if (i.getId().equals(id)) {
+					i.setAllergy(newAllergy);
+					return;
+				}
+			}
 		}else {
 			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
 		}
