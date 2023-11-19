@@ -36,7 +36,7 @@ public class UserInfo {
 		}
 		System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
 	}
-	// 회원 인증
+	// 회원 인증(isThatYou를 checkUser로 이름 변경!!! void를 boolean으로 변경!!!)
 	private boolean checkUser (String id, String password) {
 		for (int i = 0; i < userList.size(); i++) {
 			// userList의 현재 인덱스에 있는 객체의 아이디와 비밀번호가 받아온 아이디와 비밀번호와 같을 경우
@@ -91,13 +91,42 @@ public class UserInfo {
 			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
 		}
 	}
-		
+	
+	// 회원 이메일 변경
+		private void changePhoneNum(String id, String password, String newEmail) {
+			if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
+			// 회원 인증
+			if checkUser(id, password) {
+				userList.setPhoneNum(newEmail);
+				return;
+			}else {
+				System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
+			}
+		}
+	
 	// 회원 휴대폰 번호 변경
 	private void changePhoneNum(String id, String password, long newPhoneNum) {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
 		if checkUser(id, password) {
 			userList.setPhoneNum(newPhoneNum);
+			return;
+		}else {
+			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
+		}
+	}
+	
+	// 회원 등급 변경
+	private void changePhoneNum(String id, String password, int userRank) {
+		// 추후 구현
+	}
+	
+	// 회원 알러지 정보 변경
+	private void changeAllergy(String id, String password, Vector<String> newAllergy) {
+		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
+		// 회원 인증
+		if checkUser(id, password) {
+			userList.setAllergy(newAllergy);
 			return;
 		}else {
 			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
