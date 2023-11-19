@@ -133,6 +133,6 @@ public class UserInfo {
 		}
 	}
 	
-	// void showUserInfo() {} -- 메인 UX/UI에서 실행 예정
+	// void showUserInfo() {} -- user에서 UX/UI로 따로 실행 예정
 	// public String showDeliveryInfo() {} -- 추후 구현함
 }
