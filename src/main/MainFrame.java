@@ -5,7 +5,13 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MainFrame extends JFrame{
-	public MainFrame() { //메인페이지 프레임
+	// !!! 실행되는 부분 !!!
+	public static void main(String[] args) {
+		MainFrame mainPage = new MainFrame(); //스윙 프레임 생성
+	}
+	
+	//메인 페이지 프레임 구현 내용
+	public MainFrame() {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,9 +32,12 @@ public class MainFrame extends JFrame{
 				couponPoint, community, newMonthGoods};
 
 		for(int i = 0; i < 6 ; i++) {
-			upLabel[i].setSize(190,43);
-			upLabel[i].setLocation(58 + 245 * i, 160);
-			mainPane.add(upLabel[i]);
+			upLabel[i].setSize(190,43); //사이즈 설정
+			upLabel[i].setLocation(58 + 245 * i, 160); //위치 설정
+			mainPane.add(upLabel[i]); // 메인 페이지에 버튼 추가
+			
+			//버튼마다 액션 리스터 달아줌.
+			upLabel[i].addActionListener(new MainActionListner());
 		}
 		
 		//---아래쪽 레이블 : 설정 중 . . .
@@ -37,11 +46,6 @@ public class MainFrame extends JFrame{
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
 		setVisible(true); // 프레임 출력
 	}
-	
-	// !!! 실행되는 부분 !!!
-	public static void main(String[] args) {
-		MainFrame mainPage = new MainFrame(); //스윙 프레임 생성
-	}
 }
 
 //
@@ -49,7 +53,9 @@ public class MainFrame extends JFrame{
 //이벤트 처리 클래스들
 
 class MainActionListner implements ActionListener{
+	//Action : 버튼 클릭 
 	public void actionPerformed(ActionEvent e) {
-		JButton bRefer = (JButton)e.getSource();
+		JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
+		
 	}
 }
