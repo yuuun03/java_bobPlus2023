@@ -37,7 +37,7 @@ public class MainFrame extends JFrame{
 			/*위쪽 라벨 폰트 설정
 			 * G마켓 산스 TTF Medium체, 사이즈 17
 			*/
-			upLabel[i].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17));
+			//upLabel[i].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17));
 			mainPane.add(upLabel[i]); // 메인 페이지에 버튼 추가
 			
 			//버튼마다 액션 리스터 달아줌.
