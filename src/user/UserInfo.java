@@ -117,7 +117,7 @@ public class UserInfo {
 	}
 	
 	// 회원 등급 변경
-	private void changePhoneNum(String id, String password, int userRank) {
+	private void changeUserRank(String id, String password, int userRank) {
 		// 추후 구현
 	}
 	
