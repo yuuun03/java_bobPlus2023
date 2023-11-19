@@ -114,6 +114,3 @@ public class UserInfoDetail {
 	protected void setLikeList(Vector<String> likeList) {this.likeList = likeList;}
 	protected void setBuyList(Vector<String> buyList) {this.buyList = buyList;}
 }
-	
-	
-}

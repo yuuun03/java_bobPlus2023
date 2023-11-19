@@ -4,36 +4,106 @@ import java.util.Vector;
 
 public class UserInfo {
 	//---멤버 변수
-	// > userList : 사용자 정보 저장 배열
+	// > userList : 회원 정보 저장 배열
 	private Vector<UserInfoDetail> userList = new Vector<UserInfoDetail>();//스택 사용
 	
 	// 생성자
 	public UserInfo() {}
 	
-	// 사용자 정보 추가(생성자 아님 주의!!!)
-	private void userInfoAdd(String name, String id, String email, String password, 
+	//신규 회원(생성자 아님 주의!!!)
+	private void newUser(String name, String id, String email, String password, 
 			long phoneNum, int birth, int userRank, Vector<String> allergy, String address, 
 			boolean idVerification, Vector<String> cartList, Vector<String> liketList,
 			Vector<String> buytList, int birthCoupon) {
 		
-		//새 사용자 정보 객체 생성.
+		//새 회원 정보 객체 생성.
 		UserInfoDetail user = new UserInfoDetail(name, id, email, password, phoneNum, birth, 
 				userRank, allergy, address, idVerification, cartList, liketList, buytList, birthCoupon);
-		
-		//기존 사용자 정보 리스트에 추가
+
+		//기존 회원 정보 리스트에 추가
 		userList.add(user);
 	}
 	
+	// 회원 탈퇴
+	private void userDelete(String id, String password) {
+		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
+		for(int i = 0; i < userList.size(); i++) {
+			// userList의 현재 인덱스에 있는 객체의 아이디와 비밀번호가 받아온 아이디와 비밀번호와 같을 경우
+			if(userList.get(i).getId().equals(id) && userList.get(i).getPassword().equals(password)) {
+				userList.remove(i);
+				return;
+			}
+		}
+		System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
+	}
+	// 회원 인증
+	private boolean checkUser (String id, String password) {
+		for (int i = 0; i < userList.size(); i++) {
+			// userList의 현재 인덱스에 있는 객체의 아이디와 비밀번호가 받아온 아이디와 비밀번호와 같을 경우
+			if(userList.get(i).getId().equals(id) && userList.get(i).getPassword().equals(password)) {
+				return True
+			}
+		}
+		return False
+	}
 	
-	public String getName() {}
-	public long getPhoneNum() {}
-	private void isThatYou(String password) {}
-	private void addAllergy(String allergy) {}
-	private void delAllergy(String allergy) {}
-	public void setPw(String password) {}
-	public void setName(String name) {}
-	public void setEmail(String email) {}
-	public void setBirth(int birth) {}
-	void showUserInfo() {}
-	public String showDeliveryInfo() {}
+	// 아이디 중복 인증
+		private boolean availableId(String newId) {
+			for (int i = 0; i < userList.size(); i++) {
+				if (userList.get(i).getId().equals(newId)) {return True;}
+			}
+			return False
+		}
+	
+	// 회원 이름 변경
+	private void changeName(String id, String password, String newName) {
+		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
+		// 회원 인증
+		if checkUser(id, password) {
+			userList.setName(newName);
+			return;
+		}else {
+			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
+		}
+	
+	// 회원 아이디 변경
+	private void changeName(String id, String password, String newId) {
+		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
+		// 회원 인증
+		if checkUser(id, password) {
+			// 아이디 중복 확인
+			if availableId(newId) {System.out.println("사용할 수 없는 아이디입니다.");}
+			else{userList.setId(newId);}
+			return;
+		}else {
+			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
+		}
+	}
+	
+	// 회원 비밀번호 변경
+	private void changeName(String id, String password, String newPassword) {
+		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
+		// 회원 인증
+		if checkUser(id, password) {
+			userList.setPassword(newPassword);
+			return;
+		}else {
+			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
+		}
+	}
+		
+	// 회원 휴대폰 번호 변경
+	private void changePhoneNum(String id, String password, long newPhoneNum) {
+		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
+		// 회원 인증
+		if checkUser(id, password) {
+			userList.setPhoneNum(newPhoneNum);
+			return;
+		}else {
+			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
+		}
+	}
+	
+	// void showUserInfo() {} -- 메인 UX/UI에서 실행 예정
+	// public String showDeliveryInfo() {} -- 추후 구현함
 }
