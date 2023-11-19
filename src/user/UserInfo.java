@@ -66,7 +66,7 @@ public class UserInfo {
 		}
 	
 	// 회원 아이디 변경
-	private void changeName(String id, String password, String newId) {
+	private void changeId(String id, String password, String newId) {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
 		if checkUser(id, password) {
@@ -80,7 +80,7 @@ public class UserInfo {
 	}
 	
 	// 회원 비밀번호 변경
-	private void changeName(String id, String password, String newPassword) {
+	private void changePassword(String id, String password, String newPassword) {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
 		if checkUser(id, password) {
@@ -92,7 +92,7 @@ public class UserInfo {
 	}
 	
 	// 회원 이메일 변경
-		private void changePhoneNum(String id, String password, String newEmail) {
+		private void changeEmail(String id, String password, String newEmail) {
 			if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 			// 회원 인증
 			if checkUser(id, password) {
