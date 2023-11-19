@@ -34,6 +34,10 @@ public class MainFrame extends JFrame{
 		for(int i = 0; i < 6 ; i++) {
 			upLabel[i].setSize(190,43); //사이즈 설정
 			upLabel[i].setLocation(58 + 245 * i, 160); //위치 설정
+			/*위쪽 라벨 폰트 설정
+			 * G마켓 산스 TTF Medium체, 사이즈 17
+			*/
+			upLabel[i].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17));
 			mainPane.add(upLabel[i]); // 메인 페이지에 버튼 추가
 			
 			//버튼마다 액션 리스터 달아줌.
@@ -41,7 +45,7 @@ public class MainFrame extends JFrame{
 		}
 		
 		//---아래쪽 레이블 : 설정 중 . . .
-		
+		//JButton popularGoods = new
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
 		setVisible(true); // 프레임 출력
