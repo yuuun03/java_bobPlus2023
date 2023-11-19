@@ -66,7 +66,7 @@ public class MasterGoods {
 		for(Product i : pList) {
 			//pList의 현재 인덱스에 있는 객체의 이름이 받아온 이름과 같을 경우
 			if (i.getName().equals(name)) {
-				i.setProductCount(productCount);;
+				i.setProductCount(productCount);
 				return;
 			};
 		}
