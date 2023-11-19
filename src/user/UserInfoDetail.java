@@ -14,7 +14,7 @@ public class UserInfoDetail {
 	//---이메일, 전화번호, 생일, 회원 등급
 	private String email = "";
 	private long phoneNum = 0;
-	private int birth = [0,0,0];
+	private int birth;
 	private int userRank = 5;
 	
 	//---알러지
