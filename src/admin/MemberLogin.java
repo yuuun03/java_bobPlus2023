@@ -1,5 +1,8 @@
 package admin;
 
+import java.awt.*;
+import javax.swing.*;
+
 public class MemberLogin extends JFrame{
 	public MemberLogin() {
 		JPanel panel = new JPanel();
@@ -15,7 +18,7 @@ public class MemberLogin extends JFrame{
 		panel.add(pw);
 		panel.add(loginBtn);
 		
-		loginBtn.addActionListener(new ActionListener() {
+		loginBtn.addActionListener(new ActionListener()) {
 			public void actionPerformed(ActionEvent e) {
 				String tID = id; // 아이디어케찾지
 				String tPW = pw; // pw는id랑세트로찾으면됨
