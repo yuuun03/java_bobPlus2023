@@ -40,10 +40,10 @@ public class UserInfo {
 		for (int i = 0; i < userList.size(); i++) {
 			// userList의 현재 인덱스에 있는 객체의 아이디와 비밀번호가 받아온 아이디와 비밀번호와 같을 경우
 			if(userList.get(i).getId().equals(id) && userList.get(i).getPassword().equals(password)) {
-				return True
+				return true;
 			}
 		}
-		return False
+		return false;
 	}
 	
 	// 아이디 중복 인증
@@ -51,7 +51,7 @@ public class UserInfo {
 			for (int i = 0; i < userList.size(); i++) {
 				if (userList.get(i).getId().equals(newId)) {return True;}
 			}
-			return False
+			return false;
 		}
 	
 	// 회원 이름 변경
