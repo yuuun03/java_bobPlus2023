@@ -49,7 +49,7 @@ public class UserInfo {
 	// 아이디 중복 인증
 		private boolean availableId(String newId) {
 			for (int i = 0; i < userList.size(); i++) {
-				if (userList.get(i).getId().equals(newId)) {return True;}
+				if (userList.get(i).getId().equals(newId)) {return true;}
 			}
 			return false;
 		}
@@ -58,20 +58,21 @@ public class UserInfo {
 	private void changeName(String id, String password, String newName) {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
-		if checkUser(id, password) {
+		if (checkUser(id, password)) {
 			userList.setName(newName);
 			return;
 		}else {
 			System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
 		}
+	}
 	
 	// 회원 아이디 변경
 	private void changeId(String id, String password, String newId) {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
-		if checkUser(id, password) {
+		if (checkUser(id, password)) {
 			// 아이디 중복 확인
-			if availableId(newId) {System.out.println("사용할 수 없는 아이디입니다.");}
+			if (availableId(newId)) {System.out.println("사용할 수 없는 아이디입니다.");}
 			else{userList.setId(newId);}
 			return;
 		}else {
@@ -83,7 +84,7 @@ public class UserInfo {
 	private void changePassword(String id, String password, String newPassword) {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
-		if checkUser(id, password) {
+		if (checkUser(id, password)) {
 			userList.setPassword(newPassword);
 			return;
 		}else {
@@ -95,7 +96,7 @@ public class UserInfo {
 		private void changeEmail(String id, String password, String newEmail) {
 			if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 			// 회원 인증
-			if checkUser(id, password) {
+			if (checkUser(id, password)) {
 				userList.setPhoneNum(newEmail);
 				return;
 			}else {
@@ -107,7 +108,7 @@ public class UserInfo {
 	private void changePhoneNum(String id, String password, long newPhoneNum) {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
-		if checkUser(id, password) {
+		if (checkUser(id, password)) {
 			userList.setPhoneNum(newPhoneNum);
 			return;
 		}else {
@@ -124,7 +125,7 @@ public class UserInfo {
 	private void changeAllergy(String id, String password, Vector<String> newAllergy) {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
 		// 회원 인증
-		if checkUser(id, password) {
+		if (checkUser(id, password)) {
 			userList.setAllergy(newAllergy);
 			return;
 		}else {
