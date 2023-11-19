@@ -82,7 +82,7 @@ public class UserInfoDetail {
 	
 	public Vector<String> getCartList() {return this.cartList;}
 	public Vector<String> getLiketList() {return this.likeList;}
-	public Vector<String> getBuytList() {return this.buytList;}
+	public Vector<String> getBuytList() {return this.buyList;}
 
 	// 설정자
 	protected void setName(String name) {this.name = name;}
