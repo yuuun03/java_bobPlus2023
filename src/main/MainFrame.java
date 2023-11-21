@@ -65,7 +65,7 @@ public class MainFrame extends JFrame{
 		
 		for(int i = 0; i < userB.length; i++) {
 			userB[i].setSize(75, 70);
-			userB[i].setLocation(1350 + 85 * i, 40);
+			userB[i].setLocation(1340 + 95 * i, 40);
 			mainPanel.add(userB[i]); //추가
 		}
 		
