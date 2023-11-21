@@ -5,20 +5,27 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MainFrame extends JFrame{
+	//기초 설정
+	JFrame mainPage = new JFrame(); //프레임 생성
+	JPanel mainPanel = new JPanel();
+	
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
-		MainFrame mainPage = new MainFrame(); //스윙 프레임 생성
+		MainFrame m = new MainFrame();
+		
+		//JScrollPane scroll = new JScrollPane(); //스크롤 페인 생성
+		//mainPanel.add(scroll);
 	}
 	
 	//메인 페이지 프레임 구현 내용
 	public MainFrame() {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		
 		//화면 버튼 설정
-		Container mainPane = getContentPane(); //컨텐트 팬 얻어오기. 여기서 awt 사용.
-		mainPane.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
+		//Container mainPane = getContentPane(); //컨텐트 팬 얻어오기. 여기서 awt 사용.
+		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		
 		//---위쪽 레이블 표기
 		JButton newHotGoods = new JButton("지금 뜨는 상품");
@@ -34,12 +41,14 @@ public class MainFrame extends JFrame{
 		for(int i = 0; i < 6 ; i++) {
 			upLabel[i].setSize(190,43); //사이즈 설정
 			upLabel[i].setLocation(58 + 245 * i, 160); //위치 설정
+			//
+			//upLabel[i].setBounds(58 + 245 * i, 160, 190, 43);
 			/*위쪽 라벨 폰트 설정
 			 * G마켓 산스 TTF Medium체, 사이즈 17
 			 * 깃허브와 연동해보고 안되면 해당 주석 사용.
 			*/
 			//upLabel[i].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17));
-			mainPane.add(upLabel[i]); // 메인 페이지에 버튼 추가
+			mainPanel.add(upLabel[i]); // 메인 페이지에 버튼 추가
 			
 			//버튼마다 액션 리스터 달아줌.
 			upLabel[i].addActionListener(new MainActionListner());
@@ -85,12 +94,13 @@ public class MainFrame extends JFrame{
 			
 			//버튼 위치 설정
 			downLabel[j].setLocation(200 + 250 * j, 600); //위치 설정
-			mainPane.add(downLabel[j]);
+			mainPanel.add(downLabel[j]);
 		}
 		
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
+		add(mainPanel); //프레임에 패널 추가
 		setVisible(true); // 프레임 출력
 	}
 }
