@@ -7,10 +7,11 @@ import main.MainFrame.MainActionListner;
 import java.awt.*;
 import java.awt.event.*;
 
-public class loginPage extends JFrame{
+public class LoginPage extends JFrame{
 	//기초 설정
 		JFrame loginFrame = new JFrame(); //프레임 생성
 		JPanel loginPanel = new JPanel();
+		JPanel noMemberPanel = new JPanel();
 	
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
@@ -24,7 +25,6 @@ public class loginPage extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 			
 		//화면 버튼 설정
-		//Container mainPane = getContentPane(); //컨텐트 팬 얻어오기. 여기서 awt 사용.
 		loginPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		
 		//화면 기본 설정 - End

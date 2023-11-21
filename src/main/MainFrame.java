@@ -21,7 +21,6 @@ public class MainFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		
 		//화면 버튼 설정
-		//Container mainPane = getContentPane(); //컨텐트 팬 얻어오기. 여기서 awt 사용.
 		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		
 		//로고 설정
@@ -166,7 +165,7 @@ public class MainFrame extends JFrame{
 			switch(bRefer.getText()) {
 			
 			case "로그인": 
-				new loginPage(); //로그인 페이지 전환
+				new LoginPage(); //로그인 페이지 전환
 				setVisible(false); //기존 페이지 안보이게 변경
 				break;
 			
