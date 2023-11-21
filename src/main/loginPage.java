@@ -31,6 +31,5 @@ public class loginPage extends JFrame{
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
 		add(loginPanel); //프레임에 패널 추가
 		setVisible(true); // 프레임 출력
-
 	}
 }

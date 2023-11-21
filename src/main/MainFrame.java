@@ -34,6 +34,7 @@ public class MainFrame extends JFrame{
 		mainPanel.add(mainIL);
 		
 		//검색창 설정
+		//검색창 검색 액션 구현 필요
 		JLabel searchTitle = new JLabel("검색 : ");
 		JTextField search = new JTextField(); //한줄 입력창 생성
 		
@@ -165,9 +166,8 @@ public class MainFrame extends JFrame{
 			switch(bRefer.getText()) {
 			
 			case "로그인": 
-				//System.out.println("");
-				new loginPage();
-				setVisible(false);
+				new loginPage(); //로그인 페이지 전환
+				setVisible(false); //기존 페이지 안보이게 변경
 				break;
 			
 			case "MY": 
