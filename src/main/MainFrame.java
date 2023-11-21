@@ -12,8 +12,6 @@ public class MainFrame extends JFrame{
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
 		MainFrame m = new MainFrame();
-		
-		
 	}
 	
 	//메인 페이지 프레임 구현 내용

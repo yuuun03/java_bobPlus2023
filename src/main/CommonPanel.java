@@ -1,17 +1,8 @@
 package main;
 
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import main.MainFrame.MainActionListner;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class CommonPanel extends JFrame{
 	//기초 설정
@@ -91,9 +82,6 @@ public class CommonPanel extends JFrame{
 			*/
 			//upLabel[i].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17));
 			commonPanel.add(upLabel[i]); // 메인 페이지에 버튼 추가
-				
-			//버튼마다 액션 리스너 달아줌.
-			//upLabel[i].addActionListener(new MainActionListner());
 		}
 					
 		//화면 기본 설정 - End
