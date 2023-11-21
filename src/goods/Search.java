@@ -1,32 +1,39 @@
 package goods;
 
-import javax.swing.AbstractButton;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class Search {
+public class Search extends JFrame implements ActionListener{
+	private JTextField searchField;
+	private JButton searchButton;
+	private String goodsName;
+	
 	public void Search() {
-		JButton button = new JButton("검색");
-		JTextField goodsName = new JTextField(20);
-		JPanel pan = new JPanel();
-		pan.add(button);
-		pan.add(goodsName);
-		
-		button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				label.setText(goodsName.getText());
-			}
-		});
-		
-		setVisible(true);
-		setSize(600, 200);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(600, 200);
+		
+		JPanel pan = new JPanel();
+		
+		searchField = new JTextField(20);
+		searchButton = new JButton("검색");
+		searchButton.addActionListener(this);
+		
+		pan.add(searchField);
+		pan.add(searchButton);
+		
+		add(pan);
+		setVisible(true);
 	}
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == searchButton) {
+			goodsName = searchField.getText();
+		}
+	}
+	
 	public static void main(String[] args) {
-
-	};
+		SwingUtilities.invokeLater(()->{
+			new Search();
+		});
+	}
 }
