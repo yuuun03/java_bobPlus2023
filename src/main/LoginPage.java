@@ -9,17 +9,17 @@ import java.awt.event.*;
 
 public class LoginPage extends JFrame{
 	//기초 설정
-		JFrame loginFrame = new JFrame(); //프레임 생성
-		JPanel loginPanel = new JPanel();
-		JPanel noMemberPanel = new JPanel();
+	JFrame loginFrame = new JFrame(); //프레임 생성
+	JPanel loginPanel = new JPanel();
+	JPanel noMemberPanel = new JPanel();
 	
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
-		loginPage login = new loginPage(); //스윙 프레임 생성
+		LoginPage login = new LoginPage(); //스윙 프레임 생성
 	}
 	
 	// 마이페이지 프레임 구현 내용
-	public loginPage() {
+	public LoginPage() {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		

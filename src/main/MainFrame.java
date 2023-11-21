@@ -12,6 +12,8 @@ public class MainFrame extends JFrame{
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
 		MainFrame m = new MainFrame();
+		
+		
 	}
 	
 	//메인 페이지 프레임 구현 내용
@@ -23,53 +25,21 @@ public class MainFrame extends JFrame{
 		//화면 버튼 설정
 		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		
-		//로고 설정
-		Image ilImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\iconAndLogo.png").getImage();
-		ilImg = ilImg.getScaledInstance(230, 120, Image.SCALE_SMOOTH);
-		ImageIcon iconAndLogo = new ImageIcon(ilImg);
-		JLabel mainIL = new JLabel(iconAndLogo);
-		mainIL.setSize(230,120);
-		mainIL.setLocation(10, 10);
-		mainPanel.add(mainIL);
+		//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가
+		CommonPanel df = new CommonPanel(); //패널 객체 생성
+		add(df.commonPanel); //패널 추가
 		
-		//검색창 설정
-		//검색창 검색 액션 구현 필요
-		JLabel searchTitle = new JLabel("검색 : ");
-		JTextField search = new JTextField(); //한줄 입력창 생성
+		//---액션 설정
+		df.login.addActionListener(new MainActionListner());
+		df.my.addActionListener(new MainActionListner()); //마이페이지
+		df.cart.addActionListener(new MainActionListner());
 		
-		searchTitle.setSize(100, 50);
-		search.setSize(1000, 50);
-		
-		searchTitle.setLocation(260,50);
-		search.setLocation(320, 50);
-		
-		mainPanel.add(searchTitle); //검색 표기 패널 위에 추가
-		mainPanel.add(search); //검색창 패널 위에 추가
-		
-		//장바구니, 로그인 버튼
-		//---로그인
-		JButton login = new JButton("로그인");
-		
-		//---마이페이지 버튼 추가 예정
-		JButton my = new JButton("MY");
-		my.addActionListener(new MainActionListner());
-		
-		//---장바구니
-		Image cartImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\cart.png").getImage();
-		cartImg = cartImg.getScaledInstance(75, 70, Image.SCALE_SMOOTH);
-		ImageIcon cartIcon = new ImageIcon(cartImg);
-		JButton cart = new JButton(cartIcon);
-				
-		JButton[] userB = {login, cart};
-		
-		for(int i = 0; i < userB.length; i++) {
-			userB[i].setSize(75, 70);
-			userB[i].setLocation(1340 + 95 * i, 40);
-			mainPanel.add(userB[i]); //메인패널에 추가
-			
-			//버튼에 액션 추가
-			userB[i].addActionListener(new MainActionListner());
-		}
+		df.newHotGoods.addActionListener(new MainActionListner());
+		df.weekTop10Goods.addActionListener(new MainActionListner());
+		df.checkAttendance.addActionListener(new MainActionListner());
+		df.couponPoint.addActionListener(new MainActionListner());
+		df.communityU.addActionListener(new MainActionListner());
+		df.newMonthGoods.addActionListener(new MainActionListner());
 		
 		//배너 설정
 		Image bImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\teseImage01.jpg").getImage();
@@ -79,31 +49,6 @@ public class MainFrame extends JFrame{
 		banner.setSize(1920, 260);
 		banner.setLocation(0, 240);
 		mainPanel.add(banner);
-		
-		//위쪽 레이블 표기
-		JButton newHotGoods = new JButton("지금 뜨는 상품");
-		JButton weekTop10Goods = new JButton("금주의 TOP 10");
-		JButton checkAttendance = new JButton("출석 체크");
-		JButton couponPoint = new JButton("쿠폰/포인트");
-		JButton communityU = new JButton("커뮤니티");
-		JButton newMonthGoods = new JButton("이달의 신상품");
-		
-		JButton[] upLabel = {newHotGoods, weekTop10Goods, checkAttendance,
-				couponPoint, communityU, newMonthGoods};
-
-		for(int i = 0; i < 6 ; i++) {
-			upLabel[i].setSize(190,43); //사이즈 설정
-			upLabel[i].setLocation(58 + 245 * i, 160); //위치 설정
-			/*위쪽 라벨 폰트 설정
-			 * G마켓 산스 TTF Medium체, 사이즈 17
-			 * 깃허브와 연동해보고 안되면 해당 주석 사용.
-			*/
-			//upLabel[i].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17));
-			mainPanel.add(upLabel[i]); // 메인 페이지에 버튼 추가
-			
-			//버튼마다 액션 리스너 달아줌.
-			upLabel[i].addActionListener(new MainActionListner());
-		}
 		
 		//아래쪽 레이블
 		Image popImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\popular.png").getImage();
