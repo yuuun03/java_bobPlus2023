@@ -57,7 +57,7 @@ public class LoginPage extends JFrame{
 		memberPanel.add(lgB);
 		
 		
-		/*
+		/* 패널 라인이랑 그런거 자꾸 오류나는데...확인좀...
 		//비회원 주문조회
 		noMemberPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		
