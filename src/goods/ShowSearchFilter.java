@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
 
 public class ShowSearchFilter extends JFrame implements ItemListener {
 	Container contentPane;
