@@ -61,6 +61,8 @@ public class MainFrame extends JFrame{
 		ImageIcon cartIcon = new ImageIcon(cartImg);
 		JButton cart = new JButton(cartIcon);
 		
+		System.out.println(cart.getText());
+		
 		JButton[] userB = {login, cart};
 		
 		for(int i = 0; i < userB.length; i++) {
@@ -163,5 +165,49 @@ class MainActionListner implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
 		
+		//버튼 종류마다 이벤트 다르게 지정
+		switch(bRefer.getText()) {
+		case "로그인": 
+			System.out.println("");
+			break;
+			
+		case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
+			/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
+			지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
+			이는 추후 구현 예정*/ 			
+			System.out.println("");
+			break;
+		
+		case "출석 체크": 
+			System.out.println("");
+			break;
+		
+		case "쿠폰/포인트": 
+			System.out.println("");
+			break;
+			
+		case "커뮤니티": 
+			System.out.println("");
+			break;
+		
+		case "이달의 신상품": 
+			System.out.println("");
+			break;
+		
+		case "오늘 뭐 먹지?": 
+			System.out.println("");
+			break;
+
+		case "지금 할인 중": 
+			System.out.println("");
+			break;
+
+		case "인기 급상승": 
+			System.out.println("");
+			break;
+		
+		default : //장바구니 클릭 시 
+			break;
+		}
 	}
 }
