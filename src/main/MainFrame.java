@@ -13,21 +13,72 @@ public class MainFrame extends JFrame{
 	public static void main(String[] args) {
 		MainFrame m = new MainFrame();
 		
-		//JScrollPane scroll = new JScrollPane(); //스크롤 페인 생성
-		//mainPanel.add(scroll);
+		
 	}
 	
 	//메인 페이지 프레임 구현 내용
 	public MainFrame() {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
-		mainPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		
 		//화면 버튼 설정
 		//Container mainPane = getContentPane(); //컨텐트 팬 얻어오기. 여기서 awt 사용.
 		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		
-		//---위쪽 레이블 표기
+		//로고 설정
+		Image ilImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\iconAndLogo.png").getImage();
+		ilImg = ilImg.getScaledInstance(230, 120, Image.SCALE_SMOOTH);
+		ImageIcon iconAndLogo = new ImageIcon(ilImg);
+		JLabel mainIL = new JLabel(iconAndLogo);
+		mainIL.setSize(230,120);
+		mainIL.setLocation(10, 10);
+		mainPanel.add(mainIL);
+		
+		//검색창 설정
+		JLabel searchTitle = new JLabel("검색 : ");
+		JTextField search = new JTextField(); //한줄 입력창 생성
+		
+		searchTitle.setSize(100, 50);
+		search.setSize(1000, 50);
+		
+		searchTitle.setLocation(260,50);
+		search.setLocation(320, 50);
+		
+		mainPanel.add(searchTitle); //검색 표기 패널 위에 추가
+		mainPanel.add(search); //검색창 패널 위에 추가
+		
+		//장바구니, 로그인 버튼
+		//---로그인
+		JButton login = new JButton("로그인");
+		
+		//---마이페이지 버튼 추가 예정
+		JButton my = new JButton("MY");
+		
+		//---장바구니
+		Image cartImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\cart.png").getImage();
+		cartImg = cartImg.getScaledInstance(75, 70, Image.SCALE_SMOOTH);
+		ImageIcon cartIcon = new ImageIcon(cartImg);
+		JButton cart = new JButton(cartIcon);
+		
+		JButton[] userB = {login, cart};
+		
+		for(int i = 0; i < userB.length; i++) {
+			userB[i].setSize(75, 70);
+			userB[i].setLocation(1350 + 85 * i, 40);
+			mainPanel.add(userB[i]); //추가
+		}
+		
+		//배너 설정
+		Image bImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\teseImage01.jpg").getImage();
+		bImg = bImg.getScaledInstance(1920, 260, Image.SCALE_SMOOTH);
+		ImageIcon bIcon = new ImageIcon(bImg);
+		JLabel banner = new JLabel(bIcon);
+		banner.setSize(1920, 260);
+		banner.setLocation(0, 240);
+		mainPanel.add(banner);
+		
+		//위쪽 레이블 표기
 		JButton newHotGoods = new JButton("지금 뜨는 상품");
 		JButton weekTop10Goods = new JButton("금주의 TOP 10");
 		JButton checkAttendance = new JButton("출석 체크");
@@ -41,8 +92,6 @@ public class MainFrame extends JFrame{
 		for(int i = 0; i < 6 ; i++) {
 			upLabel[i].setSize(190,43); //사이즈 설정
 			upLabel[i].setLocation(58 + 245 * i, 160); //위치 설정
-			//
-			//upLabel[i].setBounds(58 + 245 * i, 160, 190, 43);
 			/*위쪽 라벨 폰트 설정
 			 * G마켓 산스 TTF Medium체, 사이즈 17
 			 * 깃허브와 연동해보고 안되면 해당 주석 사용.
@@ -50,11 +99,11 @@ public class MainFrame extends JFrame{
 			//upLabel[i].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17));
 			mainPanel.add(upLabel[i]); // 메인 페이지에 버튼 추가
 			
-			//버튼마다 액션 리스터 달아줌.
+			//버튼마다 액션 리스너 달아줌.
 			upLabel[i].addActionListener(new MainActionListner());
 		}
 		
-		//---아래쪽 레이블 : 설정 중 . . .
+		//아래쪽 레이블
 		Image popImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\popular.png").getImage();
 		popImg = popImg.getScaledInstance(130, 130, Image.SCALE_SMOOTH);
 		ImageIcon popularIcon = new ImageIcon(popImg);
@@ -93,7 +142,7 @@ public class MainFrame extends JFrame{
 			downLabel[j].setSize(150, 150); //사이즈 설정
 			
 			//버튼 위치 설정
-			downLabel[j].setLocation(200 + 250 * j, 600); //위치 설정
+			downLabel[j].setLocation(200 + 250 * j, 570); //위치 설정
 			mainPanel.add(downLabel[j]);
 		}
 		
