@@ -12,8 +12,6 @@ public class MainFrame extends JFrame{
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
 		MainFrame m = new MainFrame();
-		
-		
 	}
 	
 	//메인 페이지 프레임 구현 내용
@@ -54,6 +52,7 @@ public class MainFrame extends JFrame{
 		
 		//---마이페이지 버튼 추가 예정
 		JButton my = new JButton("MY");
+		my.addActionListener(new MainActionListner());
 		
 		//---장바구니
 		Image cartImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\cart.png").getImage();
@@ -66,7 +65,10 @@ public class MainFrame extends JFrame{
 		for(int i = 0; i < userB.length; i++) {
 			userB[i].setSize(75, 70);
 			userB[i].setLocation(1340 + 95 * i, 40);
-			mainPanel.add(userB[i]); //추가
+			mainPanel.add(userB[i]); //메인패널에 추가
+			
+			//버튼에 액션 추가
+			userB[i].addActionListener(new MainActionListner());
 		}
 		
 		//배너 설정
@@ -154,7 +156,6 @@ public class MainFrame extends JFrame{
 	}
 
 	//이벤트 처리 클래스들
-
 	class MainActionListner implements ActionListener{
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
@@ -162,48 +163,43 @@ public class MainFrame extends JFrame{
 			
 			//버튼 종류마다 이벤트 다르게 지정
 			switch(bRefer.getText()) {
+			
 			case "로그인": 
-				System.out.println("");
+				//System.out.println("");
+				new loginPage();
+				setVisible(false);
 				break;
 			
 			case "MY": 
-				//setVisible(false);
-				//new MyPage();
+				new MyPage();
+				setVisible(false);
 				break;
 				
 			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
 				이는 추후 구현 예정*/ 			
-				System.out.println("");
 				break;
 			
 			case "출석 체크": 
-				System.out.println("");
 				break;
 			
 			case "쿠폰/포인트": 
-				System.out.println("");
 				break;
 				
 			case "커뮤니티": 
-				System.out.println("");
 				break;
 			
 			case "이달의 신상품": 
-				System.out.println("");
 				break;
 			
 			case "오늘 뭐 먹지?": 
-				System.out.println("");
 				break;
 
 			case "지금 할인 중": 
-				System.out.println("");
 				break;
 
 			case "인기 급상승": 
-				System.out.println("");
 				break;
 			
 			default : //장바구니 클릭 시 
