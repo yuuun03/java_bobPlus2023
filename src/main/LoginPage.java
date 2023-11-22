@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
+import user.SingUp; //회원가입 팝업창
 
 public class LoginPage extends JFrame{
 	//기초 설정
