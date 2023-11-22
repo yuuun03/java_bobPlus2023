@@ -124,31 +124,40 @@ public class MainFrame extends JFrame{
 			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
-				이는 추후 구현 예정*/ 			
+				이는 추후 구현 예정*/ 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 			
 			case "출석 체크": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 			
 			case "쿠폰/포인트": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 				
 			case "커뮤니티": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 			
 			case "이달의 신상품": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 			
 			case "오늘 뭐 먹지?": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 
 			case "지금 할인 중": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 
 			case "인기 급상승": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 			
 			default : //장바구니 클릭 시 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 			}
 		}
