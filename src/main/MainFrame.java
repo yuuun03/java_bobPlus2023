@@ -17,7 +17,12 @@ public class MainFrame extends JFrame{
 	public MainFrame() {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		//---아이콘 설정
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Image img = kit.getImage("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\iconOnly.png");
+		setIconImage(img);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//종료 설정		
 		
 		//화면 버튼 설정
 		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치

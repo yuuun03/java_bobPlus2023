@@ -20,6 +20,12 @@ public class LoginPage extends JFrame{
 	public LoginPage() {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
+		
+		//---아이콘 설정
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Image img = kit.getImage("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\iconOnly.png");
+		setIconImage(img);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		
 		this.setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치
@@ -95,7 +101,7 @@ public class LoginPage extends JFrame{
 		
 		sign.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
-				System.out.println(" ");
+				new SingUp();
 			}
 		});
 		
