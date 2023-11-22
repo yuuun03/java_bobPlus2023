@@ -6,7 +6,6 @@ import java.awt.event.*;
 
 public class MainFrame extends JFrame{
 	//기초 설정
-	JFrame mainPage = new JFrame(); //프레임 생성
 	JPanel mainPanel = new JPanel();
 	
 	// !!! 실행되는 부분 !!!

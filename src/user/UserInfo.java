@@ -35,6 +35,7 @@ public class UserInfo {
 		}
 		System.out.println("현재 아이디와 비밀번호가 일치하지 않습니다.");
 	}
+	
 	// 회원 인증(isThatYou를 checkUser로 이름 변경!!! void를 boolean으로 변경!!!)
 	private boolean checkUser (String id, String password) {
 		for (int i = 0; i < userList.size(); i++) {

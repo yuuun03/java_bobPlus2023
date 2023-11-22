@@ -7,7 +7,6 @@ import java.awt.event.*;
 
 public class LoginPage extends JFrame{
 	//기초 설정
-	JFrame loginFrame = new JFrame(); //프레임 생성
 	JPanel memberPanel = new JPanel();
 	JPanel noMemberPanel = new JPanel();
 	
@@ -20,19 +19,36 @@ public class LoginPage extends JFrame{
 	public LoginPage() {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		
-		
-		//멤버 로그인
+		this.setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치
 		memberPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치		
+		noMemberPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		
+		//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가
+		CommonPanel df = new CommonPanel(); //패널 객체 생성
+		add(df.commonPanel); //패널 추가
+				
+		//---액션 설정
+		df.login.addActionListener(new MainActionListner());
+		df.my.addActionListener(new MainActionListner()); //마이페이지
+		df.cart.addActionListener(new MainActionListner());
+						
+		df.newHotGoods.addActionListener(new MainActionListner());
+		df.weekTop10Goods.addActionListener(new MainActionListner());
+		df.checkAttendance.addActionListener(new MainActionListner());
+		df.couponPoint.addActionListener(new MainActionListner());
+		df.communityU.addActionListener(new MainActionListner());
+		df.newMonthGoods.addActionListener(new MainActionListner());
+						
+		//멤버 로그인
 		memberPanel.setSize(500,290); //패널 사이즈 설정
-		memberPanel.setLocation(100, 303);
+		memberPanel.setLocation(170, 343);
 		memberPanel.setBorder(new LineBorder(Color.black, 2));
 		
 		//---외곽 요소들
 		JLabel mTitle = new JLabel("회원 로그인"); //타이틀
-		mTitle.setBounds(420, 200, 300, 45);
+		mTitle.setBounds(395, 270, 300, 45);
 		add(mTitle);
 		
 		//---아이디
@@ -48,25 +64,49 @@ public class LoginPage extends JFrame{
 		pw.setBounds(150, 110, 300, 45);
 		
 		//---로그인 버튼
-		JButton lgB = new JButton("로그인");
+		JButton lgB = new JButton("LOGIN");
 		lgB.setBounds(50, 180, 400, 65);
+		
+		lgB.addActionListener(new ActionListener(){ //로그인 액션
+			public void actionPerformed(ActionEvent e) {
+				//테스트 번호들
+				String tID = "asdf"; String tPW = "1234";
+				if (tID.equals(id.getText()) && tPW.equals(pw.getText())){
+					//로그인하기 버튼을 없애고 MY페이지로 변환할 필요 있음.
+					new MainFrame();
+					setVisible(false);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다.");
+				}
+			}
+		});
 		
 		//---추가
 		memberPanel.add(idLabel); memberPanel.add(id);
 		memberPanel.add(pwLabel); memberPanel.add(pw);
 		memberPanel.add(lgB);
 		
+		//회원가입
+		JLabel sign = new JLabel("회원 가입 >");
+		sign.setBounds(170, 600, 100, 100);
+		add(sign);
 		
-		/* 패널 라인이랑 그런거 자꾸 오류나는데...확인좀...
+		sign.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				System.out.println(" ");
+			}
+		});
+		
+		
 		//비회원 주문조회
-		noMemberPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
-		
-		noMemberPanel.setBounds(800, 500, 500, 290);
+		noMemberPanel.setSize(500,290); //패널 사이즈 설정
+		noMemberPanel.setLocation(870, 343);
 		noMemberPanel.setBorder(new LineBorder(Color.black, 2));
 				
 		//---외곽 요소들
 		JLabel nmTitle = new JLabel("비회원 주문 조회"); //타이틀
-		nmTitle.setBounds(820, 200, 300, 45);
+		nmTitle.setBounds(1080, 270, 300, 45);
 		add(nmTitle);
 				
 		//---주문번호
@@ -81,31 +121,27 @@ public class LoginPage extends JFrame{
 		phoneNumLabel.setBounds(50, 80, 100, 100);
 		phoneNum.setBounds(150, 110, 300, 45);
 				
-		//---로그인 버튼
-		JButton nmB = new JButton("비회원 주문 조회");
+		//---주문조회 버튼
+		JButton nmB = new JButton("주문 조회");
 		nmB.setBounds(50, 180, 400, 65);
+		
+		nmB.addActionListener(new ActionListener(){ //로그인 액션
+			public void actionPerformed(ActionEvent e) {
+				//테스트 번호.
+				String tON = "12345678"; String tPN = "01012345678";
+				if (tON.equals(odNum.getText()) && tPN.equals(phoneNum.getText())){
+					JOptionPane.showMessageDialog(null, "조회성공.\n현재 기능 구현 중에 있습니다.");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "조회에 실패하였습니다.");
+				}
+			}
+		});
 			
 		//---추가
 		noMemberPanel.add(odNumLabel); noMemberPanel.add(odNum);
 		noMemberPanel.add(phoneNumLabel); noMemberPanel.add(phoneNum);
-		noMemberPanel.add(nmB);*/
-		
-		//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가
-		CommonPanel df = new CommonPanel(); //패널 객체 생성
-		add(df.commonPanel); //패널 추가
-		
-		//---액션 설정
-		df.login.addActionListener(new MainActionListner());
-		df.my.addActionListener(new MainActionListner()); //마이페이지
-		df.cart.addActionListener(new MainActionListner());
-				
-		df.newHotGoods.addActionListener(new MainActionListner());
-		df.weekTop10Goods.addActionListener(new MainActionListner());
-		df.checkAttendance.addActionListener(new MainActionListner());
-		df.couponPoint.addActionListener(new MainActionListner());
-		df.communityU.addActionListener(new MainActionListner());
-		df.newMonthGoods.addActionListener(new MainActionListner());
-				
+		noMemberPanel.add(nmB);		
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
@@ -119,7 +155,7 @@ public class LoginPage extends JFrame{
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
 			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
-				
+			
 			//버튼 종류마다 이벤트 다르게 지정
 			switch(bRefer.getText()) {
 			
