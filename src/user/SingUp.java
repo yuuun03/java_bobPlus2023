@@ -11,7 +11,9 @@ import java.util.Set;
 import java.util.Vector;
 
 public class SingUp extends JFrame{
-		
+	
+	JPanel popUp = new JPanel();
+	
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
 		SingUp account = new SingUp(); //스윙 프레임 생성
@@ -21,6 +23,7 @@ public class SingUp extends JFrame{
 	public SingUp() {
 		//화면 기본 설정 - Start
 		setTitle("밥심+ 회원 가입"); //제목 설정
+		popUp.setBounds(0, 0, 530, 1500);
 		
 		//---아이콘 설정
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -28,7 +31,10 @@ public class SingUp extends JFrame{
 		setIconImage(img);	
 			
 		this.setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치	
+		popUp.setLayout(null);
 		
+		
+		//...???
 		//정보 입력 필드
 		/*필요한 정보
 		newUser(String name, String id, String email, String password, long phoneNum, int birth, 
@@ -65,16 +71,25 @@ public class SingUp extends JFrame{
 			
 			key.setBounds(15, 25 + 70 * i00, 300, 50);
 			val.setBounds(120, 30 + 70 * i00, 350, 45);
-			add(key); add(val);
+			popUp.add(key); popUp.add(val);
 			
 			i00++;
 		}
 		
+		//---알러지 처리
+		JCheckBox[] allergies = new JCheckBox[22];
+		
 		//정보 처리 필드
 		
+		//---패널에 스크롤 페인 추가 : 스크롤 페인은 추가 안할 수도 있음.
+		/*
+		JScrollPane scroll = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);		
+		scroll.setBounds(0, 0, 516, 1500);
+		popUp.add(scroll);*/
+		
 		//화면 기본 설정 - End
-		setSize(500, 800); //윈도우 사이즈 1920, 1080 고정.
-
+		setSize(530, 800); //윈도우 사이즈 1920, 1080 고정.
+		add(popUp);
 		setVisible(true); // 프레임 출력
 	}
 }
