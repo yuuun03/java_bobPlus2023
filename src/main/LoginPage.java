@@ -101,7 +101,8 @@ public class LoginPage extends JFrame{
 		
 		sign.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
-				SingUp asdf =new SingUp();
+				//SingUp asdf =new SingUp();
+				new SingUp();
 			}
 		});
 		
