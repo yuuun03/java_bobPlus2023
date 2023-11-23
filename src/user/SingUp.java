@@ -40,16 +40,6 @@ public class SingUp extends JFrame{
 		popUp.setLayout(null);
 		
 		//정보 입력 필드
-		/*필요한 정보
-		newUser(String name, String id, String email, String password, long phoneNum, int birth, 
-				int userRank, Vector<String> allergy, String address, Vector<String> cartList, Vector<String> liketList,
-				Vector<String> buytList, int birthCoupon)
-				
-				userLank 생성 당시 빼거나 관리자가 집어넣을 것.
-				cartList, Vector<String> liketList,
-				Vector<String> buytList는 무조건 빼는게 맞을듯... 
-				birthCoupon는 관리자 관할 오케이.
-				*/
 		// --- 이름, 아이디 , 이메일, PW(재확인까지), 전화번호, 생일		
 		JLabel nLabel = new JLabel ("이름 : "); JTextField name = new JTextField(20);
 		JLabel idLabel = new JLabel ("아이디 : "); JTextField id = new JTextField(20);
