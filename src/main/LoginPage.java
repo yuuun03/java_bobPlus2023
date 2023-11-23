@@ -23,7 +23,7 @@ public class LoginPage extends JFrame{
 		
 		//---아이콘 설정
 		Toolkit kit = Toolkit.getDefaultToolkit();
-		Image img = kit.getImage("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\iconOnly.png");
+		Image img = kit.getImage("src/graphics/images/iconOnly.png");
 		setIconImage(img);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	

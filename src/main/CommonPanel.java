@@ -19,7 +19,7 @@ public class CommonPanel extends JFrame{
 		commonPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 			
 		//로고 설정
-		Image ilImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\iconAndLogo.png").getImage();
+		Image ilImg = new ImageIcon("src/graphics/images/iconAndLogo.png").getImage();
 		ilImg = ilImg.getScaledInstance(230, 120, Image.SCALE_SMOOTH);
 		ImageIcon iconAndLogo = new ImageIcon(ilImg);
 		JLabel mainIL = new JLabel(iconAndLogo);
@@ -49,7 +49,7 @@ public class CommonPanel extends JFrame{
 		my = new JButton("MY");
 			
 		//---장바구니
-		Image cartImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\cart.png").getImage();
+		Image cartImg = new ImageIcon("src/graphics/images/cart.png").getImage();
 		cartImg = cartImg.getScaledInstance(75, 70, Image.SCALE_SMOOTH);
 		ImageIcon cartIcon = new ImageIcon(cartImg);
 		cart = new JButton(cartIcon);

@@ -19,7 +19,7 @@ public class MainFrame extends JFrame{
 		setTitle("밥심+"); //제목 설정
 		//---아이콘 설정
 		Toolkit kit = Toolkit.getDefaultToolkit();
-		Image img = kit.getImage("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\iconOnly.png");
+		Image img = kit.getImage("src/graphics/images/iconOnly.png");
 		setIconImage(img);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//종료 설정		
@@ -54,27 +54,27 @@ public class MainFrame extends JFrame{
 		mainPanel.add(banner);
 		
 		//아래쪽 레이블
-		Image popImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\popular.png").getImage();
+		Image popImg = new ImageIcon("src/graphics/images/popular.png").getImage();
 		popImg = popImg.getScaledInstance(130, 130, Image.SCALE_SMOOTH);
 		ImageIcon popularIcon = new ImageIcon(popImg);
 		JButton popularGoods = new JButton("인기 상품", popularIcon);
 		
-		Image todImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\today_s_pick.png").getImage();
+		Image todImg = new ImageIcon("src/graphics/images/today_s_pick.png").getImage();
 		todImg = todImg.getScaledInstance(130, 130, Image.SCALE_SMOOTH);
 		ImageIcon todayIcon = new ImageIcon(todImg);
 		JButton todaySPick = new JButton("오늘 뭐 먹지?", todayIcon);
 		
-		Image salImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\sale.png").getImage();
+		Image salImg = new ImageIcon("src/graphics/images/sale.png").getImage();
 		salImg = salImg.getScaledInstance(130, 130, Image.SCALE_SMOOTH);
 		ImageIcon saleIcon = new ImageIcon(salImg);
 		JButton sale = new JButton("지금 할인 중", saleIcon);
 		
-		Image hitImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\hit.png").getImage();
+		Image hitImg = new ImageIcon("src/graphics/images/hit.png").getImage();
 		hitImg = hitImg.getScaledInstance(130, 130, Image.SCALE_SMOOTH);
 		ImageIcon hitIcon = new ImageIcon(hitImg);
 		JButton hit = new JButton("인기 급상승", hitIcon);
 		
-		Image comImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\community.png").getImage();
+		Image comImg = new ImageIcon("src/graphics/images/community.png").getImage();
 		comImg = comImg.getScaledInstance(130, 130, Image.SCALE_SMOOTH);
 		ImageIcon communityIcon = new ImageIcon(comImg);
 		JButton communityD = new JButton("커뮤니티", communityIcon);
