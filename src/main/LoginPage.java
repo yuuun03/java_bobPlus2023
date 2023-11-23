@@ -37,16 +37,16 @@ public class LoginPage extends JFrame{
 		add(df.commonPanel); //패널 추가
 				
 		//---액션 설정
-		df.login.addActionListener(new MainActionListner());
-		df.my.addActionListener(new MainActionListner()); //마이페이지
-		df.cart.addActionListener(new MainActionListner());
+		df.login.addActionListener(new MainActionListener());
+		df.my.addActionListener(new MainActionListener()); //마이페이지
+		df.cart.addActionListener(new MainActionListener());
 						
-		df.newHotGoods.addActionListener(new MainActionListner());
-		df.weekTop10Goods.addActionListener(new MainActionListner());
-		df.checkAttendance.addActionListener(new MainActionListner());
-		df.couponPoint.addActionListener(new MainActionListner());
-		df.communityU.addActionListener(new MainActionListner());
-		df.newMonthGoods.addActionListener(new MainActionListner());
+		df.newHotGoods.addActionListener(new MainActionListener());
+		df.weekTop10Goods.addActionListener(new MainActionListener());
+		df.checkAttendance.addActionListener(new MainActionListener());
+		df.couponPoint.addActionListener(new MainActionListener());
+		df.communityU.addActionListener(new MainActionListener());
+		df.newMonthGoods.addActionListener(new MainActionListener());
 						
 		//멤버 로그인
 		memberPanel.setSize(500,290); //패널 사이즈 설정
@@ -158,7 +158,7 @@ public class LoginPage extends JFrame{
 	}
 	
 	//이벤트 처리 클래스들
-	class MainActionListner implements ActionListener{
+	class MainActionListener implements ActionListener{
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
 			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
