@@ -28,7 +28,7 @@ public class CommonPanel extends JFrame{
 		commonPanel.add(mainIL);
 			
 		//검색창 설정
-		//검색창 검색 액션 구현 필요
+		//검색창 검색 액션 구현 필요 (Search.java)
 		JLabel searchTitle = new JLabel("검색 : ");
 		JTextField search = new JTextField(); //한줄 입력창 생성
 			
