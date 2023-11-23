@@ -44,8 +44,8 @@ public class MainFrame extends JFrame{
 		df.newMonthGoods.addActionListener(new MainActionListner());
 		
 		//배너 설정
-		//배너 이미지 사이즈 맞출것
-		Image bImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\banner.png").getImage();
+		//배너 이미지 사이즈 맞출것 및 이미지 전체 경로 설정 재설정 필요
+		Image bImg = new ImageIcon("src/graphics/images/banner.png").getImage();
 		bImg = bImg.getScaledInstance(1920, 260, Image.SCALE_SMOOTH);
 		ImageIcon bIcon = new ImageIcon(bImg);
 		JLabel banner = new JLabel(bIcon);
