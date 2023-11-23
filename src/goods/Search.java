@@ -22,11 +22,11 @@ public class Search extends JFrame implements ActionListener{
 		pan.add(searchButton);
 		
 		add(pan);
-		setVisible(true);
+		setVisible(true); //여기까지가 검색창 띄우는거 (CommonPanel이랑 겹침)
 	}
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == searchButton) {
-			goodsName = searchField.getText();
+		if(e.getSource() == searchButton) { //'검색'버튼 입력이 인식되면
+			goodsName = searchField.getText(); //입력되어있는 텍스트 받아오기
 		}
 	}
 	
