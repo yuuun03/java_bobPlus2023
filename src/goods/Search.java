@@ -2,7 +2,6 @@ package goods;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.awt.*;
 
 public class Search extends JFrame implements ActionListener{
 	private JTextField searchField;
