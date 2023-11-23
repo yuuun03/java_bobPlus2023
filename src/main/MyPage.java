@@ -9,7 +9,6 @@ import java.awt.event.*;
 public class MyPage extends JFrame{
 	//기초 설정
 		JPanel mypagePanel = new JPanel();
-		JPanel sidePanel = new JPanel();
 	// !!! 실행되는 부분 !!!
 		public static void main(String[] args) {
 			MyPage myPage = new MyPage(); //스윙 프레임 생성
@@ -29,12 +28,10 @@ public class MyPage extends JFrame{
 			//화면 버튼 설정
 			Container mypagePane = getContentPane(); //컨텐트 팬 얻어오기. 여기서 awt 사용.
 			mypagePane.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
-			sidePanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
-			mypagePane.add(sidePanel);
 			
 			JLabel mypagelogo = new JLabel("마이페이지");
-			mypagelogo.setLocation(200, 10);
-			mypagelogo.setSize(200,100);
+			mypagelogo.setLocation(260, 50);
+			mypagelogo.setSize(100,50);
 			mypagePane.add(mypagelogo);
 			
 			//JList
