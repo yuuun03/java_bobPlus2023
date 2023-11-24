@@ -36,21 +36,25 @@ public class MyPage extends JFrame{
 			add(df.commonPanel); //패널 추가
 			
 			//---액션 설정
-			df.login.addActionListener(new MainActionListener());
-			df.my.addActionListener(new MainActionListener()); //마이페이지
-			df.cart.addActionListener(new MainActionListener());
+			df.login.addActionListener(new MyPageActionListener());
+			df.my.addActionListener(new MyPageActionListener()); //마이페이지
+			df.cart.addActionListener(new MyPageActionListener());
 			
-			df.newHotGoods.addActionListener(new MainActionListener());
-			df.weekTop10Goods.addActionListener(new MainActionListener());
-			df.checkAttendance.addActionListener(new MainActionListener());
-			df.couponPoint.addActionListener(new MainActionListener());
-			df.communityU.addActionListener(new MainActionListener());
-			df.newMonthGoods.addActionListener(new MainActionListener());
+			df.newHotGoods.addActionListener(new MyPageActionListener());
+			df.weekTop10Goods.addActionListener(new MyPageActionListener());
+			df.checkAttendance.addActionListener(new MyPageActionListener());
+			df.couponPoint.addActionListener(new MyPageActionListener());
+			df.communityU.addActionListener(new MyPageActionListener());
+			df.newMonthGoods.addActionListener(new MyPageActionListener());
 			
+			// 마이페이지
 			JLabel mypagelogo = new JLabel("마이페이지");
 			mypagelogo.setLocation(260, 50);
 			mypagelogo.setSize(100,50);
 			mypagePane.add(mypagelogo);
+			
+			// 사용자 정보 출력
+			
 			
 			//JList
 			String [] leftSide = {"주문목록/배송조회", "취소/반품/교환/환불 내역", "영수증 조회/출력", " ", " ",
@@ -69,7 +73,7 @@ public class MyPage extends JFrame{
 			
 		}
 		//이벤트 처리 클래스들
-		class MainActionListener implements ActionListener{
+		class MyPageActionListener implements ActionListener{
 			//Action : 버튼 클릭 
 			public void actionPerformed(ActionEvent e) {
 				JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
