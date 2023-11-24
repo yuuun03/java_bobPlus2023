@@ -1,16 +1,13 @@
 package main;
 
 import javax.swing.*;
-
-import main.MainFrame.MainActionListener;
+import javax.swing.border.LineBorder;
 import user.SingUp;
 
 import java.awt.*;
 import java.awt.event.*;
 
 public class MyPage extends JFrame{
-	//기초 설정
-		JPanel mypagePanel = new JPanel();
 	// !!! 실행되는 부분 !!!
 		public static void main(String[] args) {
 			MyPage myPage = new MyPage(); //스윙 프레임 생성
@@ -53,9 +50,6 @@ public class MyPage extends JFrame{
 			mypagelogo.setSize(100,50);
 			mypagePane.add(mypagelogo);
 			
-			// 사용자 정보 출력
-			
-			
 			//JList
 			String [] leftSide = {"주문목록/배송조회", "취소/반품/교환/환불 내역", "영수증 조회/출력", " ", " ",
 					"찜한 상품", "나의 장바구니", "배송지 관리", " ", " ", "문의하기", "문의내역 확인", " ", " ", 
@@ -65,6 +59,10 @@ public class MyPage extends JFrame{
 			strList.setSize(250,350);
 			mypagePane.add(strList);
 			
+			// 사용자 정보 출력
+			JLabel username = new JLabel("이찬비님");
+			username.setBounds(130, 600, 100, 50);
+			mypagePane.add(username);
 			
 			//화면 기본 설정 - End
 			setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
