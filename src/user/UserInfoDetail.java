@@ -24,9 +24,9 @@ public class UserInfoDetail {
 	protected String address = "";
 	
 	//---목록: 장바구니, 찜, 구매
-	protected Vector<String> cartList = new Vector<String> ();
-	protected Vector<String> likeList = new Vector<String> ();
-	protected Vector<String> buyList = new Vector<String> ();
+	protected Vector<String> cartList;
+	protected Vector<String> likeList;
+	protected Vector<String> buyList;
 	
 	//---생일 쿠폰
 	protected int birthCoupon = 0;
@@ -35,8 +35,7 @@ public class UserInfoDetail {
 	// 생성자
 	public UserInfoDetail() {}
 	public UserInfoDetail(String name, String id, String email, String password, long phoneNum, 
-			int birth, int userRank, Vector<String> allergy, String address, Vector<String> cartList, 
-			Vector<String> liketList, Vector<String> buytList, int birthCoupon) {
+			int birth, int userRank, Vector<String> allergy, String address, int birthCoupon) {
 		//---회원 이름
 		this.name = name;
 		
@@ -57,9 +56,9 @@ public class UserInfoDetail {
 		this.address = address;
 		
 		//---목록: 장바구니, 찜, 구매
-		this.cartList = cartList;
-		this.likeList = likeList;
-		this.buyList = buyList;
+		this.cartList = new Vector<String>();
+		this.likeList = new Vector<String>();
+		this.buyList = new Vector<String>();
 		
 		//---생일 쿠폰
 		this.birthCoupon = birthCoupon;
@@ -87,8 +86,9 @@ public class UserInfoDetail {
 	// 설정자
 	protected void setName(String name) {this.name = name;}
 	
-	protected void setId(String id) {this.id = id;}
-	protected void setPassword(String password) {this.password = password;}
+	//테스트 위해 아이디와 패스워드만 임의로 퍼블릭 변경(테스트 이후 복구 예정)
+	public void setId(String id) {this.id = id;}
+	public void setPassword(String password) {this.password = password;}
 	
 	protected void setEmail(String email) {this.email = email;}
 	protected void setPhoneNum(long phoneNum) {this.phoneNum = phoneNum;}

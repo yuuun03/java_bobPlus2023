@@ -19,7 +19,7 @@ public class CommonPanel extends JFrame{
 		commonPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 			
 		//로고 설정
-		Image ilImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\iconAndLogo.png").getImage();
+		Image ilImg = new ImageIcon("src/graphics/images/iconAndLogo.png").getImage();
 		ilImg = ilImg.getScaledInstance(230, 120, Image.SCALE_SMOOTH);
 		ImageIcon iconAndLogo = new ImageIcon(ilImg);
 		JLabel mainIL = new JLabel(iconAndLogo);
@@ -33,7 +33,7 @@ public class CommonPanel extends JFrame{
 		JTextField search = new JTextField(); //한줄 입력창 생성
 			
 		searchTitle.setSize(100, 50);
-		search.setSize(1000, 50);
+		search.setSize(900, 50);
 			
 		searchTitle.setLocation(260,50);
 		search.setLocation(320, 50);
@@ -49,16 +49,16 @@ public class CommonPanel extends JFrame{
 		my = new JButton("MY");
 			
 		//---장바구니
-		Image cartImg = new ImageIcon("D:\\eclipseCode\\BobPlus2023\\bin\\graphics\\images\\cart.png").getImage();
+		Image cartImg = new ImageIcon("src/graphics/images/cart.png").getImage();
 		cartImg = cartImg.getScaledInstance(75, 70, Image.SCALE_SMOOTH);
 		ImageIcon cartIcon = new ImageIcon(cartImg);
 		cart = new JButton(cartIcon);
 					
-		JButton[] userB = {login, cart};
+		JButton[] userB = {login, my, cart};
 			
 		for(int i = 0; i < userB.length; i++) {
 			userB[i].setSize(75, 70);
-			userB[i].setLocation(1340 + 95 * i, 40);
+			userB[i].setLocation(1245 + 85 * i, 40);
 			commonPanel.add(userB[i]); //메인패널에 추가				
 		}
 			

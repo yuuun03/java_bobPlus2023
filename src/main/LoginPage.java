@@ -4,26 +4,23 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
-import user.SingUp; //회원가입 팝업창
+import user.SignUp; //회원가입 팝업창
+import user.UserInfoDetail;
 
 public class LoginPage extends JFrame{
 	//기초 설정
 	JPanel memberPanel = new JPanel();
 	JPanel noMemberPanel = new JPanel();
 	
-	// !!! 실행되는 부분 !!!
-	public static void main(String[] args) {
-		LoginPage login = new LoginPage(); //스윙 프레임 생성
-	}
-	
 	// 마이페이지 프레임 구현 내용
-	public LoginPage() {
+	public LoginPage() {} //기본 생성자
+	public LoginPage(UserInfoDetail myUser) {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
 		
 		//---아이콘 설정
 		Toolkit kit = Toolkit.getDefaultToolkit();
-		Image img = kit.getImage("D:\\eclipseCode\\BobPlus2023\\src\\graphics\\images\\iconOnly.png");
+		Image img = kit.getImage("src/graphics/images/iconOnly.png");
 		setIconImage(img);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
@@ -37,16 +34,26 @@ public class LoginPage extends JFrame{
 		add(df.commonPanel); //패널 추가
 				
 		//---액션 설정
-		df.login.addActionListener(new MainActionListner());
-		df.my.addActionListener(new MainActionListner()); //마이페이지
-		df.cart.addActionListener(new MainActionListner());
+		df.login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginPage(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
+		
+		df.my.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MyPage(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
+		
+		df.cart.addActionListener(new MainActionListener());
 						
-		df.newHotGoods.addActionListener(new MainActionListner());
-		df.weekTop10Goods.addActionListener(new MainActionListner());
-		df.checkAttendance.addActionListener(new MainActionListner());
-		df.couponPoint.addActionListener(new MainActionListner());
-		df.communityU.addActionListener(new MainActionListner());
-		df.newMonthGoods.addActionListener(new MainActionListner());
+		df.newHotGoods.addActionListener(new MainActionListener());
+		df.weekTop10Goods.addActionListener(new MainActionListener());
+		df.checkAttendance.addActionListener(new MainActionListener());
+		df.couponPoint.addActionListener(new MainActionListener());
+		df.communityU.addActionListener(new MainActionListener());
+		df.newMonthGoods.addActionListener(new MainActionListener());
 						
 		//멤버 로그인
 		memberPanel.setSize(500,290); //패널 사이즈 설정
@@ -77,11 +84,11 @@ public class LoginPage extends JFrame{
 		lgB.addActionListener(new ActionListener(){ //로그인 액션
 			public void actionPerformed(ActionEvent e) {
 				//테스트 번호들
-				String tID = "asdf"; String tPW = "1234";
-				if (tID.equals(id.getText()) && tPW.equals(pw.getText())){
+				//myUser.setId("test"); myUser.setPassword("1234");
+				if (myUser.getId().equals(id.getText()) && myUser.getPassword().equals(pw.getText())){
 					//로그인하기 버튼을 없애고 MY페이지로 변환할 필요 있음.
-					new MainFrame();
-					setVisible(false);
+					new MainFrame(myUser);
+					dispose();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다.");
@@ -101,7 +108,7 @@ public class LoginPage extends JFrame{
 		
 		sign.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
-				new SingUp();
+				new SignUp(myUser);
 			}
 		});
 		
@@ -158,22 +165,16 @@ public class LoginPage extends JFrame{
 	}
 	
 	//이벤트 처리 클래스들
-	class MainActionListner implements ActionListener{
+	class MainActionListener implements ActionListener{
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
 			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
 			
 			//버튼 종류마다 이벤트 다르게 지정
 			switch(bRefer.getText()) {
-			
-			case "로그인": 
-				new LoginPage(); //로그인 페이지 전환
-				setVisible(false); //기존 페이지 안보이게 변경
-				break;
-				
 			case "MY": 
 				new MyPage();
-				setVisible(false);
+				dispose();
 				break;
 					
 			case "지금 뜨는 상품" : case "금주의 TOP 10" :

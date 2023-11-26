@@ -11,18 +11,19 @@ public class UserInfo {
 	public UserInfo() {}
 	
 	//신규 회원(생성자 아님 주의!!!)
-	private void newUser(String name, String id, String email, String password, long phoneNum, int birth, 
-			int userRank, Vector<String> allergy, String address, Vector<String> cartList, Vector<String> liketList,
-			Vector<String> buytList, int birthCoupon) {
+	void newUser(String name, String id, String email, String password, long phoneNum, int birth, 
+			int userRank, Vector<String> allergy, String address, int birthCoupon) {
 		
 		//새 회원 정보 객체 생성.
 		UserInfoDetail user = new UserInfoDetail(name, id, email, password, phoneNum, birth, 
-				userRank, allergy, address, cartList, liketList, buytList, birthCoupon);
+				userRank, allergy, address, birthCoupon);
 
 		//기존 회원 정보 리스트에 추가
 		userList.add(user);
 	}
-	
+	public Vector<UserInfoDetail> getUserList(){
+		return this.userList;
+	}
 	// 회원 탈퇴
 	private void userDelete(String id, String password) {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}
