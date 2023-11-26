@@ -33,7 +33,7 @@ public class CommonPanel extends JFrame{
 		JTextField search = new JTextField(); //한줄 입력창 생성
 			
 		searchTitle.setSize(100, 50);
-		search.setSize(1000, 50);
+		search.setSize(900, 50);
 			
 		searchTitle.setLocation(260,50);
 		search.setLocation(320, 50);
@@ -54,11 +54,11 @@ public class CommonPanel extends JFrame{
 		ImageIcon cartIcon = new ImageIcon(cartImg);
 		cart = new JButton(cartIcon);
 					
-		JButton[] userB = {login, cart};
+		JButton[] userB = {login, my, cart};
 			
 		for(int i = 0; i < userB.length; i++) {
 			userB[i].setSize(75, 70);
-			userB[i].setLocation(1340 + 95 * i, 40);
+			userB[i].setLocation(1245 + 85 * i, 40);
 			commonPanel.add(userB[i]); //메인패널에 추가				
 		}
 			

@@ -42,7 +42,12 @@ public class MainFrame extends JFrame{
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 		
-		df.my.addActionListener(new MainActionListener()); //마이페이지
+		df.my.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MyPage(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
+			
 		df.cart.addActionListener(new MainActionListener());
 		
 		df.newHotGoods.addActionListener(new MainActionListener());
@@ -122,11 +127,6 @@ public class MainFrame extends JFrame{
 			
 			//버튼 종류마다 이벤트 다르게 지정
 			switch(bRefer.getText()) {
-			
-			case "MY": 
-				new MyPage();
-				dispose();
-				break;
 				
 			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
