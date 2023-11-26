@@ -3,6 +3,7 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import graphics.FontSetting;
 
 public class CommonPanel extends JFrame{
 	//기초 설정
@@ -59,6 +60,7 @@ public class CommonPanel extends JFrame{
 		for(int i = 0; i < userB.length; i++) {
 			userB[i].setSize(75, 70);
 			userB[i].setLocation(1245 + 85 * i, 40);
+			//userB[i].setFont(FontSetting.DF);
 			commonPanel.add(userB[i]); //메인패널에 추가				
 		}
 			
