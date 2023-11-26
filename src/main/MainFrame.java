@@ -3,6 +3,7 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import user.UserInfoDetail;
 
 public class MainFrame extends JFrame{
 	//기초 설정
@@ -10,11 +11,14 @@ public class MainFrame extends JFrame{
 	
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
-		MainFrame m = new MainFrame();
+		UserInfoDetail myUser = new UserInfoDetail(); //사용자 객체 미리 생성.
+		MainFrame m = new MainFrame(myUser);
 	}
 	
+	
 	//메인 페이지 프레임 구현 내용
-	public MainFrame() {
+	public MainFrame() {}
+	public MainFrame(UserInfoDetail myUser) {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
 		//---아이콘 설정
@@ -32,7 +36,12 @@ public class MainFrame extends JFrame{
 		add(df.commonPanel); //패널 추가
 		
 		//---액션 설정
-		df.login.addActionListener(new MainActionListener());
+		df.login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginPage(myUser); //로그인 페이지 전환
+				setVisible(false); //기존 페이지 안보이게 변경
+			}});
+		
 		df.my.addActionListener(new MainActionListener()); //마이페이지
 		df.cart.addActionListener(new MainActionListener());
 		
@@ -104,6 +113,7 @@ public class MainFrame extends JFrame{
 		setVisible(true); // 프레임 출력
 	}
 
+	
 	//이벤트 처리 클래스들
 	class MainActionListener implements ActionListener{
 		//Action : 버튼 클릭 
@@ -113,11 +123,6 @@ public class MainFrame extends JFrame{
 			//버튼 종류마다 이벤트 다르게 지정
 			switch(bRefer.getText()) {
 			
-			case "로그인": 
-				new LoginPage(); //로그인 페이지 전환
-				setVisible(false); //기존 페이지 안보이게 변경
-				break;
-			
 			case "MY": 
 				new MyPage();
 				setVisible(false);
@@ -126,7 +131,7 @@ public class MainFrame extends JFrame{
 			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
-				이는 추후 구현 예정*/ 
+				이는 추후 구현 예정*/
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 			
