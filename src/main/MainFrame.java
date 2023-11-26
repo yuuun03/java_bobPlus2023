@@ -159,7 +159,8 @@ public class MainFrame extends JFrame{
 				break;
 			
 			default : //장바구니 클릭 시 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				new Cart();
+				setVisible(false);
 				break;
 			}
 		}
