@@ -96,6 +96,7 @@ public class MainFrame extends JFrame{
 		
 		JButton[] downLabel = {popularGoods, todaySPick, sale, hit, communityD};
 		
+		Font dLabelFont = new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 20);
 		for(int j = 0; j < 5; j++) {
 			//폰트 위치 설정
 			downLabel[j].setVerticalTextPosition(JButton.BOTTOM); //수직 설정
@@ -104,10 +105,11 @@ public class MainFrame extends JFrame{
 			//형태 설정
 			downLabel[j].setBorderPainted(false); //외곽선 없앰
 			downLabel[j].setContentAreaFilled(false); //배경색 없앰	
-			downLabel[j].setSize(150, 150); //사이즈 설정
+			downLabel[j].setSize(200, 200); //사이즈 설정
+			downLabel[j].setFont(dLabelFont);
 			
 			//버튼 위치 설정
-			downLabel[j].setLocation(200 + 250 * j, 570); //위치 설정
+			downLabel[j].setLocation(150 + 260 * j, 550); //위치 설정
 			mainPanel.add(downLabel[j]);
 			downLabel[j].addActionListener(new MainActionListener());
 		}
