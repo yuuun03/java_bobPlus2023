@@ -91,13 +91,15 @@ public class MyPage extends JFrame{
 		strList.setBackground(new Color(151, 192, 48));
 		strList.setFont(basic);
 		strList.setForeground(Color.WHITE);
+		strList.setSelectionBackground(new Color(151, 192, 48));
+		strList.setSelectionForeground(Color.WHITE);
 		mainPanel.add(strList);
 		
 		// 사용자 이름 및 등급 출력
-		JButton userName = new JButton("이 찬 비  님");
-		JButton userRank = new JButton("등급:   밥알");
-		userName.setBounds(0, 10, 350, 80);
-		userRank.setBounds(0, 70, 350, 80);
+		JButton userName = new JButton("O O O    님");
+		JButton userRank = new JButton("등급:     밥알");
+		userName.setBounds(0, 10, 340, 80);
+		userRank.setBounds(0, 70, 340, 80);
 		
 		userName.setFont(buttonFont);
 		userRank.setFont(buttonFont);
