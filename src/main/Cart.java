@@ -1,18 +1,11 @@
 package main;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-
-import main.LoginPage.MainActionListener;
-import user.SingUp;
-
 import java.awt.*;
 import java.awt.event.*;
 
 public class Cart extends JFrame {
 	
-	
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

@@ -6,10 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/BobPlus/ojdbc8.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="D:/eclipseCode/BobPlus2023/ojdbc8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
