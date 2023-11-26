@@ -55,17 +55,10 @@ public class MyPage extends JFrame{
 		String [] leftSide = {"주문목록/배송조회", "취소/반품/교환/환불 내역", "영수증 조회/출력", " ", " ",
 				"찜한 상품", "나의 장바구니", "배송지 관리", " ", " ", "문의하기", "문의내역 확인", " ", " ", 
 				"회원정보 확인/수정", "알러지/조리기구 정보 수정"};
-		JList<String> strList = new JList<String> (leftSide); // 왼쪽 사이드 리스트 생성
-		strList.setLocation(30, 400);
-		strList.setSize(250,350);
-		mainPanel.add(strList);
-		
-		// 사용자 정보 출력
-		JLabel username = new JLabel("이찬비님");
-		username.setBounds(400, 600, 100, 100);
-		mainPanel.add(username);
-		
-		// 사각형 출력
+		//JList<String> strList = new JList<String> (leftSide); // 왼쪽 사이드 리스트 생성
+		//strList.setLocation(30, 400);
+		//strList.setSize(250,350);
+		//mainPanel.add(strList);
 		
 		
 		//화면 기본 설정 - End
