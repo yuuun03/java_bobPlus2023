@@ -76,7 +76,9 @@ public class MyPage extends JFrame{
 		userReview.setBounds(1200, 240, 330, 160);
 		mainPanel.add(userReview);
 		
-		//알러지 정보 출력 x: 280+ 알파
+		//알러지 정보 출력 x: 280+ 알파, y: 400
+		Image allergy = new ImageIcon("src/graphics/images/allegy.png").getImage();
+		allergy = allergy.getScaledInstance(300, 400, Image.SCALE_SMOOTH);
 		JCheckBox infoAllergy[] = new JCheckBox[22];
 		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
 		
@@ -87,10 +89,10 @@ public class MyPage extends JFrame{
 			
 			//위치 조정
 			infoAllergy[i].setSize(40 + 20 * alName[i].length(), 50);
-			infoAllergy[i].setLocation(280 + 200 * w, 400 + 30 * v);
+			infoAllergy[i].setLocation(460 + 200 * w, 400 + 30 * v);
 			
 			w++;
-			if (w == 4) {w = 0; v++;}
+			if (w == 5) {w = 0; v++;}
 			
 			//이벤트 처리
 			//infoAllergy[i].addItemListener(new signUpListner());
