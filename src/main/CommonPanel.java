@@ -87,5 +87,6 @@ public class CommonPanel extends JFrame{
 					
 		//화면 기본 설정 - End
 		commonPanel.setSize(1920, 203); //윈도우 사이즈 1920, 1080 고정.
+		commonPanel.setBackground(Color.white);
 	}
 }
