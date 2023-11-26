@@ -55,12 +55,12 @@ public class MyPage extends JFrame{
 		String [] leftSide = {"주문목록/배송조회", "취소/반품/교환/환불 내역", "영수증 조회/출력", " ", " ",
 				"찜한 상품", "나의 장바구니", "배송지 관리", " ", " ", "문의하기", "문의내역 확인", " ", " ", 
 				"회원정보 확인/수정", "알러지/조리기구 정보 수정"};
-		//JList<String> strList = new JList<String> (leftSide); // 왼쪽 사이드 리스트 생성
-		//strList.setLocation(30, 400);
-		//strList.setSize(250,350);
-		//mainPanel.add(strList);
+		JList<String> strList = new JList<String> (leftSide); // 왼쪽 사이드 리스트 생성
+		strList.setLocation(30, 400);
+		strList.setSize(250,350);
+		mainPanel.add(strList);
 		
-		
+		mainPanel.setBounds(0,0, 1920,1080);
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
 		add(mainPanel);
