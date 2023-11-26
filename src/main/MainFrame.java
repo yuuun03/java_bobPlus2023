@@ -118,6 +118,8 @@ public class MainFrame extends JFrame{
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
 		add(mainPanel); //프레임에 패널 추가
+		mainPanel.setBackground(Color.white);
+		setBackground(Color.white);
 		setVisible(true); // 프레임 출력
 	}
 
