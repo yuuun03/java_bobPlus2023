@@ -7,18 +7,15 @@ import user.UserInfoDetail;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 public class MyPage extends JFrame{
 	JPanel mainPanel = new JPanel();
-	// !!! 실행되는 부분 !!!
-	public static void main(String[] args) {
-		UserInfoDetail myUser = new UserInfoDetail(); //사용자 객체 미리 생성.
-		MyPage myPage = new MyPage(myUser); //스윙 프레임 생성
-	}
 		
 	// 마이페이지 프레임 구현 내용
 	public MyPage() {}
 	public MyPage(UserInfoDetail myUser) {
+		JPanel mainPanel = new JPanel();
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
 			
@@ -43,7 +40,6 @@ public class MyPage extends JFrame{
 			}});
 		df.my.addActionListener(new MyPageActionListener()); //마이페이지
 		df.cart.addActionListener(new MyPageActionListener());
-			
 		df.newHotGoods.addActionListener(new MyPageActionListener());
 		df.weekTop10Goods.addActionListener(new MyPageActionListener());
 		df.checkAttendance.addActionListener(new MyPageActionListener());
@@ -59,6 +55,46 @@ public class MyPage extends JFrame{
 		strList.setLocation(30, 400);
 		strList.setSize(250,350);
 		mainPanel.add(strList);
+		
+		// 사용자 정보 출력
+		JButton userName = new JButton("이찬비님 \n 등급: 밥알");
+		userName.setBounds(0, 240, 400, 160);
+		mainPanel.add(userName);
+		
+		// 배송 정보 출력
+		JButton delivery = new JButton("배송중 \n 2개");
+		delivery.setBounds(400, 240, 300, 160);
+		mainPanel.add(delivery);
+		
+		// 쿠폰 및 포인트 정보 출력
+		JButton userCoupon = new JButton("보유 쿠폰: 3장 \n 보유 포인트: 790P");
+		userCoupon.setBounds(700, 240, 500, 160);
+		mainPanel.add(userCoupon);
+		
+		// 내가 작성한 리뷰 정보 출력
+		JButton userReview = new JButton("내가 작성한 리뷰 \n 35개");
+		userReview.setBounds(1200, 240, 330, 160);
+		mainPanel.add(userReview);
+		
+		//알러지 정보 출력 x: 280+ 알파
+		JCheckBox infoAllergy[] = new JCheckBox[22];
+		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
+		
+		int w = 0; int v = 0; //세부 위치 조정 위한 변수
+		for(int i = 0; i < alName.length; i++) { //알러지 체크 박스 생성
+			infoAllergy[i] = (new JCheckBox(alName[i]));
+			mainPanel.add(infoAllergy[i]);
+			
+			//위치 조정
+			infoAllergy[i].setSize(40 + 20 * alName[i].length(), 50);
+			infoAllergy[i].setLocation(280 + 200 * w, 400 + 30 * v);
+			
+			w++;
+			if (w == 4) {w = 0; v++;}
+			
+			//이벤트 처리
+			//infoAllergy[i].addItemListener(new signUpListner());
+		}
 		
 		mainPanel.setBounds(0,0, 1920,1080);
 		//화면 기본 설정 - End
