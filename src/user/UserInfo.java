@@ -21,7 +21,9 @@ public class UserInfo {
 		//기존 회원 정보 리스트에 추가
 		userList.add(user);
 	}
-	
+	public Vector<UserInfoDetail> getUserList(){
+		return this.userList;
+	}
 	// 회원 탈퇴
 	private void userDelete(String id, String password) {
 		if (userList.isEmpty()) {System.out.println("등록되어 있는 회원이 없습니다.");}

@@ -3,66 +3,76 @@ package main;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import user.SingUp;
+import user.UserInfoDetail;
 
 import java.awt.*;
 import java.awt.event.*;
 
 public class MyPage extends JFrame{
+	JPanel bannerPanel = new JPanel();
+	JPanel leftSidePanel = new JPanel();
 	// !!! 실행되는 부분 !!!
-		public static void main(String[] args) {
-			MyPage myPage = new MyPage(); //스윙 프레임 생성
-		}
+	public static void main(String[] args) {
+		UserInfoDetail myUser = new UserInfoDetail(); //사용자 객체 미리 생성.
+		MyPage myPage = new MyPage(); //스윙 프레임 생성
+	}
 		
-		// 마이페이지 프레임 구현 내용
-		public MyPage() {
-			//화면 기본 설정 - Start
-			setTitle("밥심+"); //제목 설정
+	// 마이페이지 프레임 구현 내용
+	public MyPage() {}
+	public MyPage(UserInfoDetail myUser) {
+		//화면 기본 설정 - Start
+		setTitle("밥심+"); //제목 설정
 			
-			Toolkit kit = Toolkit.getDefaultToolkit();
-			Image img = kit.getImage("src/graphics/images/iconOnly.png");
-			setIconImage(img);
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Image img = kit.getImage("src/graphics/images/iconOnly.png");
+		setIconImage(img);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//화면 버튼 설정
+		bannerPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
+		leftSidePanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 			
-			//화면 버튼 설정
-			Container mypagePane = getContentPane(); //컨텐트 팬 얻어오기. 여기서 awt 사용.
-			mypagePane.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
-			add(mypagePane);
+		//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가
+		CommonPanel df = new CommonPanel(); //패널 객체 생성
+		add(df.commonPanel); //패널 추가
 			
-			//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가
-			CommonPanel df = new CommonPanel(); //패널 객체 생성
-			add(df.commonPanel); //패널 추가
+		//---액션 설정
+		df.login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginPage(myUser); //로그인 페이지 전환
+				setVisible(false); //기존 페이지 안보이게 변경
+			}});
+		df.my.addActionListener(new MyPageActionListener()); //마이페이지
+		df.cart.addActionListener(new MyPageActionListener());
 			
-			//---액션 설정
-			df.login.addActionListener(new MyPageActionListener());
-			df.my.addActionListener(new MyPageActionListener()); //마이페이지
-			df.cart.addActionListener(new MyPageActionListener());
+		df.newHotGoods.addActionListener(new MyPageActionListener());
+		df.weekTop10Goods.addActionListener(new MyPageActionListener());
+		df.checkAttendance.addActionListener(new MyPageActionListener());
+		df.couponPoint.addActionListener(new MyPageActionListener());
+		df.communityU.addActionListener(new MyPageActionListener());
+		df.newMonthGoods.addActionListener(new MyPageActionListener());
 			
-			df.newHotGoods.addActionListener(new MyPageActionListener());
-			df.weekTop10Goods.addActionListener(new MyPageActionListener());
-			df.checkAttendance.addActionListener(new MyPageActionListener());
-			df.couponPoint.addActionListener(new MyPageActionListener());
-			df.communityU.addActionListener(new MyPageActionListener());
-			df.newMonthGoods.addActionListener(new MyPageActionListener());
+		//JList
+		String [] leftSide = {"주문목록/배송조회", "취소/반품/교환/환불 내역", "영수증 조회/출력", " ", " ",
+				"찜한 상품", "나의 장바구니", "배송지 관리", " ", " ", "문의하기", "문의내역 확인", " ", " ", 
+				"회원정보 확인/수정", "알러지/조리기구 정보 수정"};
+		JList<String> strList = new JList<String> (leftSide); // 왼쪽 사이드 리스트 생성
+		strList.setLocation(30, 400);
+		strList.setSize(250,350);
+		leftSidePanel.add(strList);
 			
-			//JList
-			String [] leftSide = {"주문목록/배송조회", "취소/반품/교환/환불 내역", "영수증 조회/출력", " ", " ",
-					"찜한 상품", "나의 장바구니", "배송지 관리", " ", " ", "문의하기", "문의내역 확인", " ", " ", 
-					"회원정보 확인/수정", "알러지/조리기구 정보 수정"};
-			JList<String> strList = new JList<String> (leftSide); // 왼쪽 사이드 리스트 생성
-			strList.setLocation(30, 400);
-			strList.setSize(250,350);
-			mypagePane.add(strList);
-			
-			// 사용자 정보 출력
-			JLabel username = new JLabel("이찬비님");
-			username.setBounds(130, 600, 100, 100);
-			mypagePane.add(username);
+		// 사용자 정보 출력
+		JLabel username = new JLabel("이찬비님");
+		username.setBounds(400, 600, 100, 100);
+		bannerPanel.add(username);
 			
 			
-			//화면 기본 설정 - End
-			setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
-			setVisible(true); // 프레임 출력
+		//화면 기본 설정 - End
+		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
+		add(bannerPanel);
+		add(leftSidePanel);
+		setVisible(true); // 프레임 출력
 			
 			
 		}
@@ -77,12 +87,12 @@ public class MyPage extends JFrame{
 				
 				case "로그인": 
 					new LoginPage(); //로그인 페이지 전환
-					setVisible(false); //기존 페이지 안보이게 변경
+					dispose(); //기존 페이지 안보이게 변경
 					break;
 				
 				case "MY": 
 					new MyPage();
-					setVisible(false);
+					dispose();
 					break;
 					
 				case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
