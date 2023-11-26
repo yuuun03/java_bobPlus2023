@@ -75,12 +75,13 @@ public class CommonPanel extends JFrame{
 			
 		JButton[] upLabel = {newHotGoods, weekTop10Goods, checkAttendance,
 				couponPoint, communityU, newMonthGoods};
-
+		
+		Font uLabelFont = new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17);
 		for(int i = 0; i < 6 ; i++) {
 			upLabel[i].setSize(190,43); //사이즈 설정
 			upLabel[i].setLocation(58 + 245 * i, 160); //위치 설정
 		
-			upLabel[i].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17));
+			upLabel[i].setFont(uLabelFont);
 			commonPanel.add(upLabel[i]); // 메인 페이지에 버튼 추가
 		}
 					
