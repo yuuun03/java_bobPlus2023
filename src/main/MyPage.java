@@ -27,6 +27,7 @@ public class MyPage extends JFrame{
 			//화면 버튼 설정
 			Container mypagePane = getContentPane(); //컨텐트 팬 얻어오기. 여기서 awt 사용.
 			mypagePane.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
+			add(mypagePane);
 			
 			//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가
 			CommonPanel df = new CommonPanel(); //패널 객체 생성
@@ -44,12 +45,6 @@ public class MyPage extends JFrame{
 			df.communityU.addActionListener(new MyPageActionListener());
 			df.newMonthGoods.addActionListener(new MyPageActionListener());
 			
-			// 마이페이지
-			JLabel mypagelogo = new JLabel("마이페이지");
-			mypagelogo.setLocation(260, 50);
-			mypagelogo.setSize(100,50);
-			mypagePane.add(mypagelogo);
-			
 			//JList
 			String [] leftSide = {"주문목록/배송조회", "취소/반품/교환/환불 내역", "영수증 조회/출력", " ", " ",
 					"찜한 상품", "나의 장바구니", "배송지 관리", " ", " ", "문의하기", "문의내역 확인", " ", " ", 
@@ -61,8 +56,9 @@ public class MyPage extends JFrame{
 			
 			// 사용자 정보 출력
 			JLabel username = new JLabel("이찬비님");
-			username.setBounds(130, 600, 100, 50);
+			username.setBounds(130, 600, 100, 100);
 			mypagePane.add(username);
+			
 			
 			//화면 기본 설정 - End
 			setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
