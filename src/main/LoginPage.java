@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
-import user.SingUp; //회원가입 팝업창
+import user.SignUp; //회원가입 팝업창
 import user.UserInfoDetail;
 
 public class LoginPage extends JFrame{
@@ -104,7 +104,7 @@ public class LoginPage extends JFrame{
 		sign.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				//SingUp asdf =new SingUp();
-				new SingUp();
+				new SignUp(myUser);
 			}
 		});
 		

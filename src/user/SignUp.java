@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.Vector;
 import user.UserInfo;
 
-public class SingUp extends JFrame{
+public class SignUp extends JFrame{
 	
 	JPanel popUp = new JPanel(); //메인 패널
 	
@@ -22,11 +22,12 @@ public class SingUp extends JFrame{
 	
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
-		SingUp account = new SingUp(); //스윙 프레임 생성
+		SignUp account = new SignUp(); //스윙 프레임 생성
 	}
 		
 	// 마이페이지 프레임 구현 내용
-	public SingUp() {
+	public SignUp() {}
+	public SignUp(UserInfoDetail myUser) {
 		//화면 기본 설정 - Start
 		setTitle("밥심+ 회원 가입"); //제목 설정
 		popUp.setBounds(0, 0, 530, 1500);
@@ -90,7 +91,7 @@ public class SingUp extends JFrame{
 			if (w == 4) {w = 0; v++;}
 			
 			//이벤트 처리
-			infoAllergy[i].addItemListener(new singUpListner());
+			infoAllergy[i].addItemListener(new signUpListner());
 		}
 		
 		// --- 주소 처리
@@ -122,7 +123,7 @@ public class SingUp extends JFrame{
 	}
 	
 	//체크박스 이벤트 처리기
-	class singUpListner implements ItemListener{
+	class signUpListner implements ItemListener{
 		public void itemStateChanged(ItemEvent e) {
 			if(e.getStateChange() == ItemEvent.SELECTED) {
 				JCheckBox now = (JCheckBox)(e.getSource());
