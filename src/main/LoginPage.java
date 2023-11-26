@@ -54,7 +54,17 @@ public class LoginPage extends JFrame{
 		df.couponPoint.addActionListener(new MainActionListener());
 		df.communityU.addActionListener(new MainActionListener());
 		df.newMonthGoods.addActionListener(new MainActionListener());
-						
+		
+		//폰트 설정
+		//--- 로그인, 배송 조회 버튼
+		Font buttonFont = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 25);
+		//--- 로그인, 주문 조회 타이틀
+		Font miniTitle = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 23);
+		//--- 일반 라벨
+		Font basic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 17);
+		//--- 회원가입 버튼 전용
+		Font sFont = new Font("G마켓 산스 TTF Light", Font.PLAIN, 15);
+		
 		//멤버 로그인
 		memberPanel.setSize(500,290); //패널 사이즈 설정
 		memberPanel.setLocation(170, 343);
@@ -62,7 +72,8 @@ public class LoginPage extends JFrame{
 		
 		//---외곽 요소들
 		JLabel mTitle = new JLabel("회원 로그인"); //타이틀
-		mTitle.setBounds(395, 270, 300, 45);
+		mTitle.setFont(miniTitle);
+		mTitle.setBounds(362, 270, 300, 45);
 		add(mTitle);
 		
 		//---아이디
@@ -70,16 +81,19 @@ public class LoginPage extends JFrame{
 		JTextField id = new JTextField(10);
 		idLabel.setBounds(50, 20, 100, 100);
 		id.setBounds(150, 50, 300, 45);
+		idLabel.setFont(basic);
 		
 		//---패스워드
 		JLabel pwLabel = new JLabel("비밀번호 : ");
 		JPasswordField pw = new JPasswordField(10);
 		pwLabel.setBounds(50, 80, 100, 100);
 		pw.setBounds(150, 110, 300, 45);
+		pwLabel.setFont(basic);
 		
 		//---로그인 버튼
-		JButton lgB = new JButton("LOGIN");
+		JButton lgB = new JButton("L O G I N");
 		lgB.setBounds(50, 180, 400, 65);
+		lgB.setFont(buttonFont);
 		
 		lgB.addActionListener(new ActionListener(){ //로그인 액션
 			public void actionPerformed(ActionEvent e) {
@@ -104,6 +118,7 @@ public class LoginPage extends JFrame{
 		//회원가입
 		JLabel sign = new JLabel("회원 가입 >");
 		sign.setBounds(170, 600, 100, 100);
+		sign.setFont(sFont);
 		add(sign);
 		
 		sign.addMouseListener(new MouseAdapter() {
@@ -120,7 +135,8 @@ public class LoginPage extends JFrame{
 				
 		//---외곽 요소들
 		JLabel nmTitle = new JLabel("비회원 주문 조회"); //타이틀
-		nmTitle.setBounds(1080, 270, 300, 45);
+		nmTitle.setBounds(1043, 270, 300, 45);
+		nmTitle.setFont(miniTitle);
 		add(nmTitle);
 				
 		//---주문번호
@@ -128,16 +144,19 @@ public class LoginPage extends JFrame{
 		JTextField odNum = new JTextField(10);
 		odNumLabel.setBounds(50, 20, 100, 100);
 		odNum.setBounds(150, 50, 300, 45);
-				
+		odNumLabel.setFont(basic);
+		
 		//---패스워드
 		JLabel phoneNumLabel = new JLabel("전화번호 : ");
 		JTextField phoneNum = new JTextField(11);
 		phoneNumLabel.setBounds(50, 80, 100, 100);
 		phoneNum.setBounds(150, 110, 300, 45);
-				
+		phoneNumLabel.setFont(basic);
+		
 		//---주문조회 버튼
-		JButton nmB = new JButton("주문 조회");
+		JButton nmB = new JButton("주 문  조 회");
 		nmB.setBounds(50, 180, 400, 65);
+		nmB.setFont(buttonFont);
 		
 		nmB.addActionListener(new ActionListener(){ //로그인 액션
 			public void actionPerformed(ActionEvent e) {
