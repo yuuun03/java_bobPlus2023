@@ -42,11 +42,12 @@ public class MainFrame extends JFrame{
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 		
+		/*
 		df.my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new MyPage(myUser); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
-			}});
+			}});*/
 			
 		df.cart.addActionListener(new MainActionListener());
 		
