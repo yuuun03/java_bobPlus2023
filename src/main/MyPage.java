@@ -33,13 +33,30 @@ public class MyPage extends JFrame{
 		add(df.commonPanel); //패널 추가
 			
 		//---액션 설정
-		df.login.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new LoginPage(myUser); //로그인 페이지 전환
-				setVisible(false); //기존 페이지 안보이게 변경
-			}});
-		df.my.addActionListener(new MyPageActionListener()); //마이페이지
-		df.cart.addActionListener(new MyPageActionListener());
+		//---액션 설정
+				df.mainIL.addMouseListener(new MouseAdapter() {
+					public void mouseReleased(MouseEvent e) {
+						new MainFrame(myUser);
+					}
+				});
+				
+				df.login.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						new LoginPage(myUser); //로그인 페이지 전환
+						dispose(); //기존 페이지 안보이게 변경
+					}});
+				
+				df.my.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						new MyPage(myUser); //로그인 페이지 전환
+						dispose(); //기존 페이지 안보이게 변경
+					}});
+					
+				df.cart.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						new Cart(myUser); //로그인 페이지 전환
+						dispose(); //기존 페이지 안보이게 변경
+					}});
 		df.newHotGoods.addActionListener(new MyPageActionListener());
 		df.weekTop10Goods.addActionListener(new MyPageActionListener());
 		df.checkAttendance.addActionListener(new MyPageActionListener());
@@ -56,29 +73,66 @@ public class MyPage extends JFrame{
 		strList.setSize(250,350);
 		mainPanel.add(strList);
 		
-		// 사용자 정보 출력
-		JButton userName = new JButton("이찬비님 \n 등급: 밥알");
-		userName.setBounds(0, 240, 400, 160);
-		mainPanel.add(userName);
+		// 사용자 이름 및 등급 출력
+		JButton userName = new JButton("이찬비님");
+		JButton userRank = new JButton("등급: 밥알");
 		
-		// 배송 정보 출력
-		JButton delivery = new JButton("배송중 \n 2개");
-		delivery.setBounds(400, 240, 300, 160);
+		userName.setBounds(0, 240, 400, 80);
+		userRank.setBounds(0, 320, 400, 80);
+		
+		userName.setBorderPainted(false); userRank.setBorderPainted(false); // 외각선 제거
+		userName.setContentAreaFilled(false); userRank.setContentAreaFilled(false); // 배경색 제거
+		
+		mainPanel.add(userName);
+		mainPanel.add(userRank);
+		
+		// 배송 상태 및 배송 개수 정보 출력
+		JButton delivery = new JButton("배송중");
+		JButton deliveryNum = new JButton("2개");
+		
+		delivery.setBounds(400, 240, 300, 80);
+		deliveryNum.setBounds(400, 320, 300, 80);
+		
+		delivery.setBorderPainted(false); deliveryNum.setBorderPainted(false); // 외각선 제거
+		delivery.setContentAreaFilled(false); deliveryNum.setContentAreaFilled(false); // 배경색 제거
+		
 		mainPanel.add(delivery);
+		mainPanel.add(deliveryNum);
 		
 		// 쿠폰 및 포인트 정보 출력
-		JButton userCoupon = new JButton("보유 쿠폰: 3장 \n 보유 포인트: 790P");
-		userCoupon.setBounds(700, 240, 500, 160);
+		JButton userCoupon = new JButton("보유 쿠폰: 3장");
+		JButton userPoint = new JButton("보유 포인트: 790P");
+		
+		userCoupon.setBounds(700, 240, 500, 80);
+		userPoint.setBounds(700, 320, 500, 80);
+		
+		userCoupon.setBorderPainted(false); userPoint.setBorderPainted(false); // 외각선 제거
+		userCoupon.setContentAreaFilled(false); userPoint.setContentAreaFilled(false); // 배경색 제거
+		
 		mainPanel.add(userCoupon);
+		mainPanel.add(userPoint);
 		
-		// 내가 작성한 리뷰 정보 출력
-		JButton userReview = new JButton("내가 작성한 리뷰 \n 35개");
-		userReview.setBounds(1200, 240, 330, 160);
+		// 내가 작성한 리뷰 및 개수 출력
+		JButton userReview = new JButton("내가 작성한 리뷰");
+		JButton userReviewNum = new JButton("35개");
+		
+		userReview.setBounds(1200, 240, 330, 80);
+		userReviewNum.setBounds(1200, 320, 330, 80);
+		
+		userReview.setBorderPainted(false); userReviewNum.setBorderPainted(false); // 외각선 제거
+		userReview.setContentAreaFilled(false); userReviewNum.setContentAreaFilled(false); // 배경색 제거
+		
 		mainPanel.add(userReview);
+		mainPanel.add(userReviewNum);
 		
-		//알러지 정보 출력 x: 280+ 알파, y: 400
+		//알러지 정보 출력 
 		Image allergy = new ImageIcon("src/graphics/images/allegy.png").getImage();
-		allergy = allergy.getScaledInstance(300, 400, Image.SCALE_SMOOTH);
+		allergy = allergy.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		ImageIcon iconAllergy = new ImageIcon(allergy);
+		JLabel mainAll = new JLabel(iconAllergy);
+		mainAll.setSize(300,300);
+		mainAll.setLocation(220, 340);
+		mainPanel.add(mainAll);
 		JCheckBox infoAllergy[] = new JCheckBox[22];
 		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
 		
@@ -88,7 +142,7 @@ public class MyPage extends JFrame{
 			mainPanel.add(infoAllergy[i]);
 			
 			//위치 조정
-			infoAllergy[i].setSize(40 + 20 * alName[i].length(), 50);
+			infoAllergy[i].setSize(40 + 20 * alName[i].length(), 40);
 			infoAllergy[i].setLocation(460 + 200 * w, 400 + 30 * v);
 			
 			w++;
