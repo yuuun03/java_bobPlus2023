@@ -79,11 +79,11 @@ public class LoginPage extends JFrame{
 		lgB.addActionListener(new ActionListener(){ //로그인 액션
 			public void actionPerformed(ActionEvent e) {
 				//테스트 번호들
-				myUser.setId("test"); myUser.setPassword("1234");
+				//myUser.setId("test"); myUser.setPassword("1234");
 				if (myUser.getId().equals(id.getText()) && myUser.getPassword().equals(pw.getText())){
 					//로그인하기 버튼을 없애고 MY페이지로 변환할 필요 있음.
 					new MainFrame(myUser);
-					setVisible(false);
+					dispose();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다.");
@@ -103,7 +103,6 @@ public class LoginPage extends JFrame{
 		
 		sign.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
-				//SingUp asdf =new SingUp();
 				new SignUp(myUser);
 			}
 		});
@@ -170,7 +169,7 @@ public class LoginPage extends JFrame{
 			switch(bRefer.getText()) {
 			case "MY": 
 				new MyPage();
-				setVisible(false);
+				dispose();
 				break;
 					
 			case "지금 뜨는 상품" : case "금주의 TOP 10" :

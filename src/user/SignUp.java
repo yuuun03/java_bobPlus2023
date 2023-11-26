@@ -24,6 +24,15 @@ public class SignUp extends JFrame{
 	public static void main(String[] args) {
 		SignUp account = new SignUp(); //스윙 프레임 생성
 	}
+	
+	//유저 세팅 위한 함수
+	public static void setUser(UserInfoDetail myUser, UserInfoDetail n) {
+		myUser.setName(n.getName()); myUser.setId(n.getId());
+		myUser.setEmail(n.getEmail()); myUser.setPassword(n.getPassword());
+		myUser.setPhoneNum(n.getPhoneNum()); myUser.setBirth(n.getBirth());
+		myUser.setUserRank(n.getUserRank()); myUser.setAllergy(n.getAllergy());
+		myUser.setAddress(n.getAddress()); myUser.setBirth(n.getBirth());
+	}
 		
 	// 마이페이지 프레임 구현 내용
 	public SignUp() {}
@@ -108,9 +117,16 @@ public class SignUp extends JFrame{
 		
 		sUp.addActionListener(new ActionListener(){ //회원가입 액션
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("수정 이전 : "+myUser.getId());
 				UserInfo user = new UserInfo();
 				user.newUser(name.getText(), id.getText(), email.getText(), pw.getText(), Long.parseLong(phoneNum.getText()),
 						Integer.parseInt(birth.getText()), 5, userAllergy, address.getText(), 0);
+				
+				Vector<UserInfoDetail> temp = user.getUserList(); //저장용 임시 배열
+				System.out.println("배열 확인 : " + temp);
+				System.out.println("마지막 요소 확인 : " + temp.lastElement());
+				setUser(myUser, temp.lastElement());
+				System.out.println("수정 이후 : " + myUser.getId());
 				dispose();
 			}
 		});

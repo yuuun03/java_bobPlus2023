@@ -39,7 +39,7 @@ public class MainFrame extends JFrame{
 		df.login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new LoginPage(myUser); //로그인 페이지 전환
-				setVisible(false); //기존 페이지 안보이게 변경
+				dispose(); //기존 페이지 안보이게 변경
 			}});
 		
 		df.my.addActionListener(new MainActionListener()); //마이페이지
@@ -125,7 +125,7 @@ public class MainFrame extends JFrame{
 			
 			case "MY": 
 				new MyPage();
-				setVisible(false);
+				dispose();
 				break;
 				
 			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
@@ -165,7 +165,7 @@ public class MainFrame extends JFrame{
 			
 			default : //장바구니 클릭 시 
 				new Cart();
-				setVisible(false);
+				dispose();
 				break;
 			}
 		}
