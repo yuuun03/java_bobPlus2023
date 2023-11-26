@@ -9,13 +9,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MyPage extends JFrame{
-	JPanel bannerPanel = new JPanel();
-	JPanel leftSidePanel = new JPanel();
-	JPanel mainUserInfoPanel = new JPanel();
+	JPanel mainPanel = new JPanel();
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
 		UserInfoDetail myUser = new UserInfoDetail(); //사용자 객체 미리 생성.
-		MyPage myPage = new MyPage(); //스윙 프레임 생성
+		MyPage myPage = new MyPage(myUser); //스윙 프레임 생성
 	}
 		
 	// 마이페이지 프레임 구현 내용
@@ -32,9 +30,7 @@ public class MyPage extends JFrame{
 			
 		//화면 버튼 설정
 		setLayout(null);
-		bannerPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
-		leftSidePanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
-		mainUserInfoPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
+		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가
 		CommonPanel df = new CommonPanel(); //패널 객체 생성
 		add(df.commonPanel); //패널 추가
@@ -62,21 +58,19 @@ public class MyPage extends JFrame{
 		JList<String> strList = new JList<String> (leftSide); // 왼쪽 사이드 리스트 생성
 		strList.setLocation(30, 400);
 		strList.setSize(250,350);
-		leftSidePanel.add(strList);
+		mainPanel.add(strList);
 		
 		// 사용자 정보 출력
 		JLabel username = new JLabel("이찬비님");
 		username.setBounds(400, 600, 100, 100);
-		bannerPanel.add(username);
+		mainPanel.add(username);
 		
 		// 사각형 출력
 		
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
-		add(bannerPanel);
-		add(leftSidePanel);
-		add(mainUserInfoPanel);
+		add(mainPanel);
 		setVisible(true); // 프레임 출력
 			
 			
@@ -86,43 +80,33 @@ public class MyPage extends JFrame{
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
 			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
-			
+					
 			//버튼 종류마다 이벤트 다르게 지정
 			switch(bRefer.getText()) {
-			
-			case "로그인": 
-				new LoginPage(); //로그인 페이지 전환
-				dispose(); //기존 페이지 안보이게 변경
-				break;
-				
-			case "MY": 
-				new MyPage();
-				dispose();
-				break;
-					
+						
 			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
-				이는 추후 구현 예정*/ 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-				
-			case "출석 체크": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-				
-			case "쿠폰/포인트": 
+				이는 추후 구현 예정*/
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 					
+			case "출석 체크": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
+					
+			case "쿠폰/포인트": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
+						
 			case "커뮤니티": 
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
-				
+					
 			case "이달의 신상품": 
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
-				
+					
 			case "오늘 뭐 먹지?": 
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
@@ -134,9 +118,10 @@ public class MyPage extends JFrame{
 			case "인기 급상승": 
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
-				
+					
 			default : //장바구니 클릭 시 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				new Cart();
+				dispose();
 				break;
 			}
 		}
