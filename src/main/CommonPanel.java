@@ -13,6 +13,9 @@ public class CommonPanel extends JFrame{
 	JButton newHotGoods; JButton weekTop10Goods; JButton checkAttendance;
 	JButton couponPoint; JButton communityU; JButton newMonthGoods;
 	
+	//로고
+	JLabel mainIL;
+	
 	//메인 페이지 프레임 구현 내용
 	public CommonPanel() {
 		//화면 버튼 설정
@@ -22,11 +25,11 @@ public class CommonPanel extends JFrame{
 		Image ilImg = new ImageIcon("src/graphics/images/iconAndLogo.png").getImage();
 		ilImg = ilImg.getScaledInstance(230, 120, Image.SCALE_SMOOTH);
 		ImageIcon iconAndLogo = new ImageIcon(ilImg);
-		JLabel mainIL = new JLabel(iconAndLogo);
+		mainIL = new JLabel(iconAndLogo);
 		mainIL.setSize(230,120);
 		mainIL.setLocation(10, 10);
 		commonPanel.add(mainIL);
-			
+		
 		//검색창 설정
 		//검색창 검색 액션 구현 필요 (Search.java)
 		JLabel searchTitle = new JLabel("검색 : ");

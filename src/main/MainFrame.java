@@ -3,6 +3,8 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import user.SignUp;
 import user.UserInfoDetail;
 
 public class MainFrame extends JFrame{
@@ -36,12 +38,17 @@ public class MainFrame extends JFrame{
 		add(df.commonPanel); //패널 추가
 		
 		//---액션 설정
+		df.mainIL.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				new MainFrame(myUser);
+			}
+		});
+		
 		df.login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new LoginPage(myUser); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
-		
 		
 		df.my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -49,7 +56,12 @@ public class MainFrame extends JFrame{
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 			
-		df.cart.addActionListener(new MainActionListener());
+		df.cart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Cart(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
+			
 		
 		df.newHotGoods.addActionListener(new MainActionListener());
 		df.weekTop10Goods.addActionListener(new MainActionListener());
@@ -169,8 +181,6 @@ public class MainFrame extends JFrame{
 				break;
 			
 			default : //장바구니 클릭 시 
-				new Cart();
-				dispose();
 				break;
 			}
 		}

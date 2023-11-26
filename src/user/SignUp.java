@@ -102,8 +102,9 @@ public class SignUp extends JFrame{
 			infoAllergy[i] = (new JCheckBox(alName[i]));
 			popUp.add(infoAllergy[i]);
 			
-			//폰트 설정
+			//디자인 설정
 			infoAllergy[i].setFont(alFont);
+			infoAllergy[i].setBackground(Color.white);
 			
 			//위치 조정
 			infoAllergy[i].setSize(40 + 10 * alName[i].length(), 40);
@@ -128,6 +129,7 @@ public class SignUp extends JFrame{
 		JButton sUp = new JButton("회원 가입");
 		sUp.setBounds(10, 665, 460, 70);
 		sUp.setFont(buttonFont);
+		sUp.setBackground(new Color(200, 228, 137));
 		popUp.add(sUp);
 		
 		sUp.addActionListener(new ActionListener(){ //회원가입 액션
@@ -145,6 +147,8 @@ public class SignUp extends JFrame{
 		
 		//화면 기본 설정 - End
 		setSize(500, 820); //윈도우 사이즈 1920, 1080 고정.
+		setBackground(Color.white);
+		popUp.setBackground(Color.white);
 		add(popUp);
 		setVisible(true); // 프레임 출력
 	}
