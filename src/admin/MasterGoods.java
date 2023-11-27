@@ -16,7 +16,7 @@ public class MasterGoods {
 			double productDisRate, Vector<String> cookingUtensils,
 			Vector<String> containAllergy) {
 		
-		//새 상품 객체 생성.
+		//새 상품 객체 생성
 		Product p = new Product(name, image, productStar,
 				serving, productCount, price, productDisRate,
 				cookingUtensils,containAllergy);
@@ -83,5 +83,4 @@ public class MasterGoods {
 	
 	//scrollPage - 메인 UI/UX에서 실행 예정
 	//public void scrollPage() {}
-
 }
