@@ -77,6 +77,10 @@ public class MasterGoods {
 		return "추후 구현 예정";
 	}
 	
+	public Vector<Product> getPList(){ //Getter >> goods에서 받아오려고 추가
+		return pList;
+	}
+	
 	//scrollPage - 메인 UI/UX에서 실행 예정
 	//public void scrollPage() {}
 
