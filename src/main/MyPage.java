@@ -226,7 +226,7 @@ public class MyPage extends JFrame{
 		mainPanel.setBounds(0,0, 1920,1080);
 		allergyPanel.setBounds(300 ,420, 1230, 160);
 		userInfoPanel.setBounds(0 ,240, 1920, 160);
-		newOrderPanel.setBounds(300 ,800, 700, 30); // 화면 출력이 안됨...
+		newOrderPanel.setBounds(300 ,630, 1250, 30);
 		line1Panel.setBounds(360 ,240, 2, 160);
 		line2Panel.setBounds(640 ,240, 2, 160);
 		line3Panel.setBounds(1140 ,240, 2, 160);
@@ -234,17 +234,17 @@ public class MyPage extends JFrame{
 		mainPanel.setBackground(Color.white);
 		allergyPanel.setBackground(new Color(200, 228, 137));
 		userInfoPanel.setBackground(new Color(200, 228, 137));
-		newOrderPanel.setBackground(new Color(200, 228, 137)); // 화면 출력이 안됨...
+		newOrderPanel.setBackground(new Color(200, 228, 137));
 		line1Panel.setBackground(new Color(151, 192, 48));
 		line2Panel.setBackground(new Color(151, 192, 48));
 		line3Panel.setBackground(new Color(151, 192, 48));
 		
-		add(line1Panel);
-		add(line2Panel);
-		add(line3Panel);
-		add(newOrderPanel);// 화면 출력이 안됨...
-		add(userInfoPanel);
-		add(allergyPanel);
+		mainPanel.add(line1Panel);
+		mainPanel.add(line2Panel);
+		mainPanel.add(line3Panel);
+		mainPanel.add(newOrderPanel);
+		mainPanel.add(userInfoPanel);
+		mainPanel.add(allergyPanel);
 		add(mainPanel);
 		
 		setVisible(true); // 프레임 출력
