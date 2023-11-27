@@ -59,7 +59,7 @@ public class ShowSearchFilter extends JFrame implements ItemListener {
         getSelectedStatus(names, selectedStatus);
     }
 
-    private int[] convertStatusToBinaryArray(int[] status) {
+    private int[] convertStatusToBinaryArray(int[] status) { //Vector로 변경??
         int[] binaryArray = new int[status.length];
         for (int i = 0; i < status.length; i++) {
             if (status[i] == 1) {
