@@ -16,7 +16,7 @@ public class ShowSearchFilter extends JFrame implements ItemListener {
 	String stName[] = {"냉장보관","냉동보관","실온보관"};
 	
 	JCheckBox infoAllergy[] = new JCheckBox[22];
-	String alName[] = {"가금류(계란 등 난류)","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함식품","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
+	String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함식품","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
 	
 	public ShowSearchFilter(String str) { //생성자
 		contentPane = getContentPane();
