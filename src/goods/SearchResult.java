@@ -86,7 +86,7 @@ public class SearchResult{
 			double disrate = product.getProductDisRate();
 			JLabel disrateLabel = new JLabel(Double.toHexString(disrate)+"%");
 			
-			//출력 problem...
+			//출력 how...
 		}
 	}
 }
