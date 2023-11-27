@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import javax.swing.event.*;
 import javax.swing.border.LineBorder;
 import user.SignUp;
 import user.UserInfoDetail;
@@ -8,6 +9,7 @@ import user.UserInfoDetail;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
+import java.util.Vector;
 
 public class MyPage extends JFrame{
 	JPanel mainPanel = new JPanel();
@@ -17,7 +19,9 @@ public class MyPage extends JFrame{
 	JPanel line2Panel = new JPanel();
 	JPanel line3Panel = new JPanel();
 	JPanel newOrderPanel = new JPanel();
-		
+	
+	Vector<String> userAllergy = new Vector<String>(); //사용자가 선택한 알러지
+	
 	// 마이페이지 프레임 구현 내용
 	public MyPage() {}
 	public MyPage(UserInfoDetail myUser) {
@@ -95,11 +99,30 @@ public class MyPage extends JFrame{
 		strList.setSelectionForeground(Color.WHITE);
 		mainPanel.add(strList);
 		
-		// 사용자 이름 및 등급 출력
-		String name = "O O O";
+		// 액션
+		strList.addListSelectionListener(new MyPageActionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				int selectedIndex = strList.getSelectedIndex();
+				String selectedItem = (String)strList.getModel().getElementAt(selectedIndex);
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+			}
+		});
 		
-		JButton userName = new JButton(name + "    님");
-		JButton userRank = new JButton("등급:     밥알");
+		
+		
+		// 사용자 이름 및 등급 출력
+		String[] rankList = {"전설밥알", "영웅밥알", "고급밥알", "중급밥알", "초급밥알", "입문밥알"};
+		String name = "O O O";
+		int rank = 5; 
+		
+		name = myUser.getName();
+		rank = myUser.getUserRank();
+		if (name.equals("")) {
+			name = "O O O";
+		}
+		
+		JButton userName = new JButton(name + "           님");
+		JButton userRank = new JButton("등급:   " + rankList[rank]);
 		userName.setBounds(0, 10, 335, 80);
 		userRank.setBounds(0, 70, 335, 80);
 		
@@ -113,8 +136,15 @@ public class MyPage extends JFrame{
 		userInfoPanel.add(userRank);
 		
 		// 배송 상태 및 배송 개수 정보 출력
+		Vector<String> buyList = new Vector<String>();
+		//buyList = myUser.getBuytList(); 추후 구현
+		int buyListNum;
+		
+		if (buyList.isEmpty()) { buyListNum = 0; }
+		else {buyListNum = buyList.size();}
+		
 		JButton delivery = new JButton("배 송 중");
-		JButton deliveryNum = new JButton("     0 개");
+		JButton deliveryNum = new JButton("     " + buyListNum+ " 개");
 		
 		delivery.setBounds(375, 10, 250, 80);
 		deliveryNum.setBounds(375, 70, 250, 80);
@@ -129,6 +159,7 @@ public class MyPage extends JFrame{
 		userInfoPanel.add(deliveryNum);
 		
 		// 쿠폰 및 포인트 정보 출력
+		// 사용자 정보로 쿠폰 및 포인트를  받아오는 것은 추후 구현
 		JButton userCoupon = new JButton("보유 쿠폰:                 0 장");
 		JButton userPoint = new JButton("보유 포인트:              0 P");
 		
@@ -145,6 +176,7 @@ public class MyPage extends JFrame{
 		userInfoPanel.add(userPoint);
 		
 		// 내가 작성한 리뷰 및 개수 출력
+		// 사용자 정보로 쿠폰 및 포인트를  받아오는 것은 추후 구현
 		JButton userReview = new JButton("내가 작성한 리뷰");
 		JButton userReviewNum = new JButton("                  0 개");
 		
@@ -188,7 +220,7 @@ public class MyPage extends JFrame{
 			if (w == 7) {w = 0; v++;}
 			
 			//이벤트 처리
-			//infoAllergy[i].addItemListener(new signUpListner());
+			infoAllergy[i].addItemListener(new MyPageActionListener());
 		}
 		
 		// 최근 주문 내역
@@ -254,7 +286,7 @@ public class MyPage extends JFrame{
 			
 	}
 	//이벤트 처리 클래스들
-	class MyPageActionListener implements ActionListener{
+	class MyPageActionListener implements ActionListener, ItemListener, ListSelectionListener{
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
 			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
@@ -303,5 +335,17 @@ public class MyPage extends JFrame{
 				break;
 			}
 		}
+		// 체크박스 선택 시
+		public void itemStateChanged(ItemEvent e) {
+			if(e.getStateChange() == ItemEvent.SELECTED) {
+				JCheckBox now = (JCheckBox)(e.getSource());
+				userAllergy.add(now.getText());
+			}
+			else if(e.getStateChange() == ItemEvent.DESELECTED) {
+				JCheckBox now = (JCheckBox)(e.getSource());
+				userAllergy.remove(now.getText());
+			}
+		}
+		public void valueChanged(ListSelectionEvent e) {}
 	}
 }
