@@ -28,6 +28,9 @@ public class UserInfoDetail {
 	protected Vector<String> likeList;
 	protected Vector<String> buyList;
 	
+	// 로그인 확인
+	private boolean logCheck = false;
+	
 	//---생일 쿠폰
 	protected int birthCoupon = 0;
 	
@@ -35,7 +38,7 @@ public class UserInfoDetail {
 	// 생성자
 	public UserInfoDetail() {}
 	public UserInfoDetail(String name, String id, String email, String password, long phoneNum, 
-			int birth, int userRank, Vector<String> allergy, String address, int birthCoupon) {
+			int birth, int userRank, Vector<String> allergy, String address, boolean logCheck, int birthCoupon) {
 		//---회원 이름
 		this.name = name;
 		
@@ -60,6 +63,9 @@ public class UserInfoDetail {
 		this.likeList = new Vector<String>();
 		this.buyList = new Vector<String>();
 		
+		//--- 로그인 확인
+		this.logCheck = logCheck;
+		
 		//---생일 쿠폰
 		this.birthCoupon = birthCoupon;
 	}
@@ -78,6 +84,8 @@ public class UserInfoDetail {
 	public Vector<String> getAllergy() {return this.allergy;}
 	
 	public String getAddress() {return this.address;}
+	
+	public boolean getLogCheck() {return this.logCheck;}
 	
 	public Vector<String> getCartList() {return this.cartList;}
 	public Vector<String> getLiketList() {return this.likeList;}
@@ -98,6 +106,8 @@ public class UserInfoDetail {
 	protected void setAllergy(Vector<String> allergy) {this.allergy = allergy;}
 	
 	protected void setAddress(String address) {this.address = address;}
+	
+	protected void setLogCheck(boolean logCheck) {this.logCheck = logCheck;}
 
 	protected void setCartList(Vector<String> cartList) {this.cartList = cartList;}
 	protected void setLikeList(Vector<String> likeList) {this.likeList = likeList;}

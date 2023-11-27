@@ -1,19 +1,26 @@
 package main;
 
 import javax.swing.*;
+
+import user.UserInfoDetail;
+
 import java.awt.*;
 import java.awt.event.*;
 
 public class Cart extends JFrame {
+	
+	JPanel mainPanel = new JPanel();
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
 	
-	public Cart() {
+	public Cart() {}
+	public Cart(UserInfoDetail myUser) {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
+		mainPanel.setSize(1920, 1080);
 		
 		//---아이콘 설정
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -29,9 +36,29 @@ public class Cart extends JFrame {
 		add(df.commonPanel); //패널 추가
 				
 		//---액션 설정
-		df.login.addActionListener(new MainActionListener());
-		df.my.addActionListener(new MainActionListener()); //마이페이지
-		df.cart.addActionListener(new MainActionListener());
+		df.mainIL.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				new MainFrame(myUser);
+			}
+		});
+		
+		df.login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginPage(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
+		
+		df.my.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MyPage(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
+			
+		df.cart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Cart(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
 						
 		df.newHotGoods.addActionListener(new MainActionListener());
 		df.weekTop10Goods.addActionListener(new MainActionListener());
@@ -42,6 +69,8 @@ public class Cart extends JFrame {
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
+		mainPanel.setBackground(Color.white);
+		add(mainPanel);
 		setVisible(true); // 프레임 출력
 	}
 	

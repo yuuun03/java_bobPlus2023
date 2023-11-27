@@ -11,6 +11,7 @@ public class LoginPage extends JFrame{
 	//기초 설정
 	JPanel memberPanel = new JPanel();
 	JPanel noMemberPanel = new JPanel();
+	JPanel allPanel = new JPanel();
 	
 	// 마이페이지 프레임 구현 내용
 	public LoginPage() {} //기본 생성자
@@ -26,6 +27,7 @@ public class LoginPage extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		
 		this.setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치
+		allPanel.setLayout(null);//배치 관리자 없음 : 개발자 자유 배치
 		memberPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치		
 		noMemberPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		
@@ -34,6 +36,12 @@ public class LoginPage extends JFrame{
 		add(df.commonPanel); //패널 추가
 				
 		//---액션 설정
+		df.mainIL.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				new MainFrame(myUser);
+			}
+		});
+		
 		df.login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new LoginPage(myUser); //로그인 페이지 전환
@@ -46,7 +54,11 @@ public class LoginPage extends JFrame{
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 		
-		df.cart.addActionListener(new MainActionListener());
+		df.cart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Cart(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
 						
 		df.newHotGoods.addActionListener(new MainActionListener());
 		df.weekTop10Goods.addActionListener(new MainActionListener());
@@ -54,7 +66,21 @@ public class LoginPage extends JFrame{
 		df.couponPoint.addActionListener(new MainActionListener());
 		df.communityU.addActionListener(new MainActionListener());
 		df.newMonthGoods.addActionListener(new MainActionListener());
-						
+		
+		//폰트 설정
+		//--- 로그인, 배송 조회 버튼
+		Font buttonFont = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 25);
+		//--- 로그인, 주문 조회 타이틀
+		Font miniTitle = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 23);
+		//--- 일반 라벨
+		Font basic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 17);
+		//--- 회원가입 버튼 전용
+		Font sFont = new Font("G마켓 산스 TTF Light", Font.PLAIN, 15);
+		
+		//기본 패널 설정
+		allPanel.setSize(1920,1080);
+		add(allPanel);
+		
 		//멤버 로그인
 		memberPanel.setSize(500,290); //패널 사이즈 설정
 		memberPanel.setLocation(170, 343);
@@ -62,24 +88,29 @@ public class LoginPage extends JFrame{
 		
 		//---외곽 요소들
 		JLabel mTitle = new JLabel("회원 로그인"); //타이틀
-		mTitle.setBounds(395, 270, 300, 45);
-		add(mTitle);
+		mTitle.setFont(miniTitle);
+		mTitle.setBounds(362, 270, 300, 45);
+		allPanel.add(mTitle);
 		
 		//---아이디
 		JLabel idLabel = new JLabel("아이디 : ");
 		JTextField id = new JTextField(10);
 		idLabel.setBounds(50, 20, 100, 100);
 		id.setBounds(150, 50, 300, 45);
+		idLabel.setFont(basic);
 		
 		//---패스워드
 		JLabel pwLabel = new JLabel("비밀번호 : ");
 		JPasswordField pw = new JPasswordField(10);
 		pwLabel.setBounds(50, 80, 100, 100);
 		pw.setBounds(150, 110, 300, 45);
+		pwLabel.setFont(basic);
 		
 		//---로그인 버튼
-		JButton lgB = new JButton("LOGIN");
+		JButton lgB = new JButton("L O G I N");
 		lgB.setBounds(50, 180, 400, 65);
+		lgB.setFont(buttonFont);
+		lgB.setBackground(new Color(200, 228, 137));
 		
 		lgB.addActionListener(new ActionListener(){ //로그인 액션
 			public void actionPerformed(ActionEvent e) {
@@ -104,7 +135,8 @@ public class LoginPage extends JFrame{
 		//회원가입
 		JLabel sign = new JLabel("회원 가입 >");
 		sign.setBounds(170, 600, 100, 100);
-		add(sign);
+		sign.setFont(sFont);
+		allPanel.add(sign);
 		
 		sign.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
@@ -120,24 +152,29 @@ public class LoginPage extends JFrame{
 				
 		//---외곽 요소들
 		JLabel nmTitle = new JLabel("비회원 주문 조회"); //타이틀
-		nmTitle.setBounds(1080, 270, 300, 45);
-		add(nmTitle);
+		nmTitle.setBounds(1043, 270, 300, 45);
+		nmTitle.setFont(miniTitle);
+		allPanel.add(nmTitle);
 				
 		//---주문번호
 		JLabel odNumLabel = new JLabel("주문번호 : ");
 		JTextField odNum = new JTextField(10);
 		odNumLabel.setBounds(50, 20, 100, 100);
 		odNum.setBounds(150, 50, 300, 45);
-				
+		odNumLabel.setFont(basic);
+		
 		//---패스워드
 		JLabel phoneNumLabel = new JLabel("전화번호 : ");
 		JTextField phoneNum = new JTextField(11);
 		phoneNumLabel.setBounds(50, 80, 100, 100);
 		phoneNum.setBounds(150, 110, 300, 45);
-				
+		phoneNumLabel.setFont(basic);
+		
 		//---주문조회 버튼
-		JButton nmB = new JButton("주문 조회");
+		JButton nmB = new JButton("주 문  조 회");
 		nmB.setBounds(50, 180, 400, 65);
+		nmB.setFont(buttonFont);
+		nmB.setBackground(new Color(255, 206, 90));
 		
 		nmB.addActionListener(new ActionListener(){ //로그인 액션
 			public void actionPerformed(ActionEvent e) {
@@ -159,8 +196,12 @@ public class LoginPage extends JFrame{
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
-		add(memberPanel); //프레임에 패널 추가
-		add(noMemberPanel); //프레임에 패널 추가
+		allPanel.setBackground(Color.white);
+		memberPanel.setBackground(Color.white);
+		noMemberPanel.setBackground(Color.white);
+		
+		allPanel.add(memberPanel); //프레임에 패널 추가
+		allPanel.add(noMemberPanel); //프레임에 패널 추가
 		setVisible(true); // 프레임 출력
 	}
 	
@@ -172,11 +213,6 @@ public class LoginPage extends JFrame{
 			
 			//버튼 종류마다 이벤트 다르게 지정
 			switch(bRefer.getText()) {
-			case "MY": 
-				new MyPage();
-				dispose();
-				break;
-					
 			case "지금 뜨는 상품" : case "금주의 TOP 10" :
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
@@ -200,8 +236,7 @@ public class LoginPage extends JFrame{
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 				
-			default : //장바구니 클릭 시 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+			default :
 				break;
 			}
 		}

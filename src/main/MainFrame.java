@@ -3,6 +3,8 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import user.SignUp;
 import user.UserInfoDetail;
 
 public class MainFrame extends JFrame{
@@ -36,12 +38,17 @@ public class MainFrame extends JFrame{
 		add(df.commonPanel); //패널 추가
 		
 		//---액션 설정
+		df.mainIL.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				new MainFrame(myUser);
+			}
+		});
+		
 		df.login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new LoginPage(myUser); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
-		
 		
 		df.my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -49,7 +56,12 @@ public class MainFrame extends JFrame{
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 			
-		df.cart.addActionListener(new MainActionListener());
+		df.cart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Cart(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
+			
 		
 		df.newHotGoods.addActionListener(new MainActionListener());
 		df.weekTop10Goods.addActionListener(new MainActionListener());
@@ -96,6 +108,7 @@ public class MainFrame extends JFrame{
 		
 		JButton[] downLabel = {popularGoods, todaySPick, sale, hit, communityD};
 		
+		Font dLabelFont = new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 20);
 		for(int j = 0; j < 5; j++) {
 			//폰트 위치 설정
 			downLabel[j].setVerticalTextPosition(JButton.BOTTOM); //수직 설정
@@ -104,10 +117,11 @@ public class MainFrame extends JFrame{
 			//형태 설정
 			downLabel[j].setBorderPainted(false); //외곽선 없앰
 			downLabel[j].setContentAreaFilled(false); //배경색 없앰	
-			downLabel[j].setSize(150, 150); //사이즈 설정
+			downLabel[j].setSize(200, 200); //사이즈 설정
+			downLabel[j].setFont(dLabelFont);
 			
 			//버튼 위치 설정
-			downLabel[j].setLocation(200 + 250 * j, 570); //위치 설정
+			downLabel[j].setLocation(150 + 260 * j, 550); //위치 설정
 			mainPanel.add(downLabel[j]);
 			downLabel[j].addActionListener(new MainActionListener());
 		}
@@ -116,6 +130,8 @@ public class MainFrame extends JFrame{
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
 		add(mainPanel); //프레임에 패널 추가
+		mainPanel.setBackground(Color.white);
+		setBackground(Color.white);
 		setVisible(true); // 프레임 출력
 	}
 
@@ -165,8 +181,6 @@ public class MainFrame extends JFrame{
 				break;
 			
 			default : //장바구니 클릭 시 
-				new Cart();
-				dispose();
 				break;
 			}
 		}

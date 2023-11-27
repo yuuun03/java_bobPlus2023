@@ -49,6 +49,14 @@ public class SignUp extends JFrame{
 		this.setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치	
 		popUp.setLayout(null);
 		
+		//폰트 설정
+		//--- 로그인, 배송 조회 버튼
+		Font buttonFont = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 25);
+		//--- 일반 라벨
+		Font basic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 17);
+		//--- 알러지 폰트
+		Font alFont = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 13);
+		
 		//정보 입력 필드
 		// --- 이름, 아이디 , 이메일, PW(재확인까지), 전화번호, 생일		
 		JLabel nLabel = new JLabel ("이름 : "); JTextField name = new JTextField(20);
@@ -73,6 +81,7 @@ public class SignUp extends JFrame{
 						
 			key.setBounds(15, 15 + 60 * k, 300, 50);
 			val.setBounds(100, 20 + 60 * k, 350, 45);
+			key.setFont(basic);
 			popUp.add(key); popUp.add(val);
 			
 			k++;
@@ -80,6 +89,7 @@ public class SignUp extends JFrame{
 		
 		//---알러지 처리
 		JLabel alInfo = new JLabel("알러지 정보 : "); //알러지 라벨
+		alInfo.setFont(basic);
 		alInfo.setBounds(15, 375, 300, 50);
 		popUp.add(alInfo);
 		
@@ -92,9 +102,13 @@ public class SignUp extends JFrame{
 			infoAllergy[i] = (new JCheckBox(alName[i]));
 			popUp.add(infoAllergy[i]);
 			
+			//디자인 설정
+			infoAllergy[i].setFont(alFont);
+			infoAllergy[i].setBackground(Color.white);
+			
 			//위치 조정
 			infoAllergy[i].setSize(40 + 10 * alName[i].length(), 40);
-			infoAllergy[i].setLocation(100 + 100 * w, 381 + 30 * v);
+			infoAllergy[i].setLocation(110 + 100 * w, 381 + 30 * v);
 			
 			w++;
 			if (w == 4) {w = 0; v++;}
@@ -107,12 +121,15 @@ public class SignUp extends JFrame{
 		JLabel adLabel = new JLabel ("주소 : "); JTextField address = new JTextField(100);
 		adLabel.setBounds(15, 585, 300, 50);
 		address.setBounds(100, 590, 350, 45);
+		adLabel.setFont(basic);
 		popUp.add(adLabel); popUp.add(address);
 		
 		
 		//정보 처리 필드
 		JButton sUp = new JButton("회원 가입");
 		sUp.setBounds(10, 665, 460, 70);
+		sUp.setFont(buttonFont);
+		sUp.setBackground(new Color(200, 228, 137));
 		popUp.add(sUp);
 		
 		sUp.addActionListener(new ActionListener(){ //회원가입 액션
@@ -130,6 +147,8 @@ public class SignUp extends JFrame{
 		
 		//화면 기본 설정 - End
 		setSize(500, 820); //윈도우 사이즈 1920, 1080 고정.
+		setBackground(Color.white);
+		popUp.setBackground(Color.white);
 		add(popUp);
 		setVisible(true); // 프레임 출력
 	}

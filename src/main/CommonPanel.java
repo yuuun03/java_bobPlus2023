@@ -13,6 +13,9 @@ public class CommonPanel extends JFrame{
 	JButton newHotGoods; JButton weekTop10Goods; JButton checkAttendance;
 	JButton couponPoint; JButton communityU; JButton newMonthGoods;
 	
+	//로고
+	JLabel mainIL;
+	
 	//메인 페이지 프레임 구현 내용
 	public CommonPanel() {
 		//화면 버튼 설정
@@ -22,14 +25,15 @@ public class CommonPanel extends JFrame{
 		Image ilImg = new ImageIcon("src/graphics/images/iconAndLogo.png").getImage();
 		ilImg = ilImg.getScaledInstance(230, 120, Image.SCALE_SMOOTH);
 		ImageIcon iconAndLogo = new ImageIcon(ilImg);
-		JLabel mainIL = new JLabel(iconAndLogo);
+		mainIL = new JLabel(iconAndLogo);
 		mainIL.setSize(230,120);
 		mainIL.setLocation(10, 10);
 		commonPanel.add(mainIL);
-			
+		
 		//검색창 설정
 		//검색창 검색 액션 구현 필요 (Search.java)
 		JLabel searchTitle = new JLabel("검색 : ");
+		searchTitle.setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 20));
 		JTextField search = new JTextField(); //한줄 입력창 생성
 			
 		searchTitle.setSize(100, 50);
@@ -61,6 +65,8 @@ public class CommonPanel extends JFrame{
 			userB[i].setLocation(1245 + 85 * i, 40);
 			commonPanel.add(userB[i]); //메인패널에 추가				
 		}
+		userB[0].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 13));
+		userB[1].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 20));
 			
 		//위쪽 레이블 표기
 		newHotGoods = new JButton("지금 뜨는 상품");
@@ -72,19 +78,18 @@ public class CommonPanel extends JFrame{
 			
 		JButton[] upLabel = {newHotGoods, weekTop10Goods, checkAttendance,
 				couponPoint, communityU, newMonthGoods};
-
+		
+		Font uLabelFont = new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17);
 		for(int i = 0; i < 6 ; i++) {
 			upLabel[i].setSize(190,43); //사이즈 설정
 			upLabel[i].setLocation(58 + 245 * i, 160); //위치 설정
-			/*위쪽 라벨 폰트 설정
-			 * G마켓 산스 TTF Medium체, 사이즈 17
-			 * 깃허브와 연동해보고 안되면 해당 주석 사용.
-			*/
-			//upLabel[i].setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 17));
+		
+			upLabel[i].setFont(uLabelFont);
 			commonPanel.add(upLabel[i]); // 메인 페이지에 버튼 추가
 		}
 					
 		//화면 기본 설정 - End
 		commonPanel.setSize(1920, 203); //윈도우 사이즈 1920, 1080 고정.
+		commonPanel.setBackground(Color.white);
 	}
 }
