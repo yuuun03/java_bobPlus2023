@@ -96,10 +96,12 @@ public class MyPage extends JFrame{
 		mainPanel.add(strList);
 		
 		// 사용자 이름 및 등급 출력
-		JButton userName = new JButton("O O O    님");
+		String name = "O O O";
+		
+		JButton userName = new JButton(name + "    님");
 		JButton userRank = new JButton("등급:     밥알");
-		userName.setBounds(0, 10, 340, 80);
-		userRank.setBounds(0, 70, 340, 80);
+		userName.setBounds(0, 10, 335, 80);
+		userRank.setBounds(0, 70, 335, 80);
 		
 		userName.setFont(buttonFont);
 		userRank.setFont(buttonFont);
@@ -112,10 +114,10 @@ public class MyPage extends JFrame{
 		
 		// 배송 상태 및 배송 개수 정보 출력
 		JButton delivery = new JButton("배 송 중");
-		JButton deliveryNum = new JButton("     2 개");
+		JButton deliveryNum = new JButton("     0 개");
 		
-		delivery.setBounds(350, 10, 300, 80);
-		deliveryNum.setBounds(350, 70, 300, 80);
+		delivery.setBounds(375, 10, 250, 80);
+		deliveryNum.setBounds(375, 70, 250, 80);
 		
 		delivery.setFont(buttonFont);
 		deliveryNum.setFont(buttonFont);
@@ -127,11 +129,11 @@ public class MyPage extends JFrame{
 		userInfoPanel.add(deliveryNum);
 		
 		// 쿠폰 및 포인트 정보 출력
-		JButton userCoupon = new JButton("보유 쿠폰:                 3장");
-		JButton userPoint = new JButton("보유 포인트:         790P");
+		JButton userCoupon = new JButton("보유 쿠폰:                 0 장");
+		JButton userPoint = new JButton("보유 포인트:              0 P");
 		
-		userCoupon.setBounds(645, 10, 500, 80);
-		userPoint.setBounds(645, 70, 500, 80);
+		userCoupon.setBounds(645, 10, 493, 79);
+		userPoint.setBounds(645, 70, 493, 79);
 		
 		userCoupon.setFont(buttonFont);
 		userPoint.setFont(buttonFont);
@@ -144,7 +146,7 @@ public class MyPage extends JFrame{
 		
 		// 내가 작성한 리뷰 및 개수 출력
 		JButton userReview = new JButton("내가 작성한 리뷰");
-		JButton userReviewNum = new JButton("                 35개");
+		JButton userReviewNum = new JButton("                  0 개");
 		
 		userReview.setBounds(1175, 10, 330, 80);
 		userReviewNum.setBounds(1175, 70, 330, 80);

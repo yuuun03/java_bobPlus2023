@@ -85,7 +85,7 @@ public class UserInfoDetail {
 	
 	public String getAddress() {return this.address;}
 	
-	public boolean logCheck() {return this.logCheck;}
+	public boolean getLogCheck() {return this.logCheck;}
 	
 	public Vector<String> getCartList() {return this.cartList;}
 	public Vector<String> getLiketList() {return this.likeList;}
