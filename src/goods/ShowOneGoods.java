@@ -2,6 +2,7 @@ package goods;
 
 import admin.*;
 import main.*;
+import user.*;
 
 import java.util.Vector;
 import javax.swing.*;
@@ -13,13 +14,14 @@ public class ShowOneGoods {
 	
 	public static void main(String[] args) {
 		MasterGoods mg = new MasterGoods();
+		UserInfoDetail myUser = new UserInfoDetail();
 		Vector<Product> pList = mg.getPList(); //상품...받아오기...?...??
 		
-		ShowOneGoods g = new ShowOneGoods(mg);
+		ShowOneGoods g = new ShowOneGoods(mg, myUser);
 	}
 	
 	public ShowOneGoods() {}
-	public ShowOneGoods(MasterGoods mg) { //매개변수로 상품을 받아야할 것 같은데 대체 어케 하나요...
+	public ShowOneGoods(MasterGoods mg, UserInfoDetail myUser) { //매개변수로 상품을 받아야할 것 같은데 대체 어케 하나요...
 		JPanel goodsPanel = new JPanel();
 		
 		setTitle("밥심+"); //제목 설정
