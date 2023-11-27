@@ -20,8 +20,6 @@ public class MyPage extends JFrame{
 	JPanel line3Panel = new JPanel();
 	JPanel newOrderPanel = new JPanel();
 	
-	Vector<String> userAllergy = new Vector<String>(); //사용자가 선택한 알러지
-	
 	// 마이페이지 프레임 구현 내용
 	public MyPage() {}
 	public MyPage(UserInfoDetail myUser) {
@@ -203,6 +201,8 @@ public class MyPage extends JFrame{
 		JCheckBox infoAllergy[] = new JCheckBox[22];
 		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
 		
+		Vector<String> userAllergy = new Vector<String>(); //사용자가 선택한 알러지
+		
 		int w = 0; int v = 0; //세부 위치 조정 위한 변수
 		for(int i = 0; i < alName.length; i++) { //알러지 체크 박스 생성
 			infoAllergy[i] = (new JCheckBox(alName[i]));
@@ -220,7 +220,20 @@ public class MyPage extends JFrame{
 			if (w == 7) {w = 0; v++;}
 			
 			//이벤트 처리
-			infoAllergy[i].addItemListener(new MyPageActionListener());
+			infoAllergy[i].addItemListener(new MyPageActionListener() {
+				public void itemStateChanged(ItemEvent e) {
+					if(e.getStateChange() == ItemEvent.SELECTED) {
+						JCheckBox now = (JCheckBox)(e.getSource());
+						userAllergy.add(now.getText());
+					}
+					else if(e.getStateChange() == ItemEvent.DESELECTED) {
+						JCheckBox now = (JCheckBox)(e.getSource());
+						userAllergy.remove(now.getText());
+					}
+					myUser.setAllergy(userAllergy);
+				}
+			});
+			
 		}
 		
 		// 최근 주문 내역
@@ -336,16 +349,7 @@ public class MyPage extends JFrame{
 			}
 		}
 		// 체크박스 선택 시
-		public void itemStateChanged(ItemEvent e) {
-			if(e.getStateChange() == ItemEvent.SELECTED) {
-				JCheckBox now = (JCheckBox)(e.getSource());
-				userAllergy.add(now.getText());
-			}
-			else if(e.getStateChange() == ItemEvent.DESELECTED) {
-				JCheckBox now = (JCheckBox)(e.getSource());
-				userAllergy.remove(now.getText());
-			}
-		}
+		public void itemStateChanged(ItemEvent e) {}
 		public void valueChanged(ListSelectionEvent e) {}
 	}
 }

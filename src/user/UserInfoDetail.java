@@ -103,7 +103,7 @@ public class UserInfoDetail {
 	protected void setBirth(int birth) {this.birth = birth;}
 	protected void setUserRank(int userRank) {this.userRank = userRank;}
 	
-	protected void setAllergy(Vector<String> allergy) {this.allergy = allergy;}
+	public void setAllergy(Vector<String> allergy) {this.allergy = allergy;}
 	
 	protected void setAddress(String address) {this.address = address;}
 	
