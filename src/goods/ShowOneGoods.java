@@ -10,18 +10,19 @@ import java.awt.event.*;
 
 
 public class ShowOneGoods {
-	JPanel goodsPanel = new JPanel();
-	
-	MasterGoods mg = new MasterGoods();
-	Vector<Product> pList = mg.getPList();
 	
 	public static void main(String[] args) {
-		ShowOneGoods onegoods = new ShowOneGoods(); //상품 객체 미리 생성.
-		GoodsFrame g = new GoodsFrame(onegoods);
+		MasterGoods mg = new MasterGoods();
+		Vector<Product> pList = mg.getPList(); //상품...받아오기...?...??
+		
+		ShowOneGoods g = new ShowOneGoods(mg);
 	}
 	
-	public GoodsFrame() {}
-	public GoodsFrame(ShowOneGoods onegoods) {
+	public ShowOneGoods() {}
+	public ShowOneGoods(MasterGoods mg) { //매개변수로 상품을 받아야할 것 같은데 대체 어케 하나요...
+		JPanel goodsPanel = new JPanel();
+		
+		setTitle("밥심+"); //제목 설정
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		goodsPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
@@ -30,29 +31,29 @@ public class ShowOneGoods {
 		add(df.commonPanel); //패널 추가
 		
 		//---액션 설정
-				df.mainIL.addMouseListener(new MouseAdapter() {
-					public void mouseReleased(MouseEvent e) {
-						new MainFrame(myUser);
-					}
-				});
+		df.mainIL.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				new MainFrame(myUser);
+			}
+		});
+	
+		df.login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginPage(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
 				
-				df.login.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						new LoginPage(myUser); //로그인 페이지 전환
-						dispose(); //기존 페이지 안보이게 변경
-					}});
-				
-				df.my.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						new MyPage(myUser); //로그인 페이지 전환
-						dispose(); //기존 페이지 안보이게 변경
-					}});
+		df.my.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MyPage(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
 					
-				df.cart.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						new Cart(myUser); //로그인 페이지 전환
-						dispose(); //기존 페이지 안보이게 변경
-					}});
+		df.cart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Cart(myUser); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
 		df.newHotGoods.addActionListener(new MyPageActionListener());
 		df.weekTop10Goods.addActionListener(new MyPageActionListener());
 		df.checkAttendance.addActionListener(new MyPageActionListener());
