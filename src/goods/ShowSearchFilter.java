@@ -44,7 +44,7 @@ public class ShowSearchFilter extends JFrame {
 			infoAllergy[i].addItemListener(this);
 		}
 		
-		infoAllergy[i].addItemListener(new FilterActionListener() {
+		cookUtensils[i].addItemListener(new FilterActionListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange() == ItemEvent.SELECTED) {
 					JCheckBox now = (JCheckBox)(e.getSource());
@@ -56,7 +56,6 @@ public class ShowSearchFilter extends JFrame {
 				}
 			}
 		});
-		
 	}
 }
 	/*
