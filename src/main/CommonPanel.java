@@ -6,12 +6,12 @@ import java.awt.event.*;
 
 public class CommonPanel extends JFrame{
 	//기초 설정
-	JPanel commonPanel = new JPanel();
-	JButton login; JButton my; JButton cart; //로그인, 마이페이지, 장바구니
+	public JPanel commonPanel = new JPanel();
+	public JButton login; public JButton my; public JButton cart; //로그인, 마이페이지, 장바구니
 	
 	//---위쪽 버튼
-	JButton newHotGoods; JButton weekTop10Goods; JButton checkAttendance;
-	JButton couponPoint; JButton communityU; JButton newMonthGoods;
+	public JButton newHotGoods; public JButton weekTop10Goods; public JButton checkAttendance;
+	public JButton couponPoint; public JButton communityU; public JButton newMonthGoods;
 	
 	//로고
 	JLabel mainIL;
