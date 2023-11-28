@@ -13,6 +13,7 @@ public class MainFrame extends JFrame{
 	
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
+		
 		UserInfoDetail myUser = new UserInfoDetail(); //사용자 객체 미리 생성.
 		MainFrame m = new MainFrame(myUser);
 	}
