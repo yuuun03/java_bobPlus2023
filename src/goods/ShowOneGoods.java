@@ -19,10 +19,65 @@ public class ShowOneGoods {
             new ShowOneGoods(); // SearchResult 객체 생성
         });
     }
-	//알러지 일치하면 이미지 진동 구현
-		//
 	
-	public ShowOneGoods() {}
+	JPanel oneGoodsPannel = new JPanel();
+	
+	public ShowOneGoods() {
+		MasterGoods mg = new MasterGoods();
+		UserInfoDetail user = new UserInfoDetail();
+		
+		int productNum = 0;
+		//index가 몇 번째인지 아는 함수 필요?? 아니면 SearchResult에서 패널 클릭 시 이벤트처리로 상품 정보 받아오기
+		
+		for(String CU:user.getAllergy()) { //알러지 정보 필터링
+			if(mg.getProductAtIndex(productNum).getContainAllergy().contains(CU)) {
+				Image warn = new ImageIcon("src/graphics/images/warning.png").getImage();
+				warn = warn.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+				ImageIcon iconWarn = new ImageIcon(warn);
+				JLabel warnAl = new JLabel(iconWarn);
+				warnAl.setSize(30,30);
+				warnAl.setLocation(20, 20); //위치 다시 잡아야함
+				oneGoodsPannel.add(warnAl); //진동하는거 추가...? (교재 참고)
+			}
+		}
+	}
+	private void displayOneProduct(JPanel resultPanel, Product product, String searchName) { //상품 패널을 표시하는 함수
+		if(product != null) { //상품 정보가 null이 아니면
+			resultPanel.setLayout(null);
+				
+			JLabel nameLabel = new JLabel(product.getName());
+				
+			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞는지...?
+			ImageIcon productIcon = new ImageIcon(productImg);
+			JLabel proImg = new JLabel(productIcon);
+			proImg.setSize(260, 260); //사진 사이즈 설정
+				
+			double star = product.getProductStar();
+			JLabel starLabel = new JLabel ("별점:" + Double.toString(star));
+				
+			int price = product.getPrice();
+			JLabel priceLabel = new JLabel(Integer.toString(price));
+				
+			double onePrice = product.getOnePersonPrice();
+			JLabel onePriceLabel = new JLabel ("1인분당 " + Double.toString(onePrice)+"원");
+				
+			double disrate = product.getProductDisRate();
+			JLabel disrateLabel = new JLabel(Double.toHexString(disrate)+"%");
+				
+			oneGoodsPannel.add(nameLabel);
+			oneGoodsPannel.add(proImg);
+			oneGoodsPannel.add(starLabel);
+			oneGoodsPannel.add(priceLabel);
+			oneGoodsPannel.add(onePriceLabel);
+			oneGoodsPannel.add(disrateLabel);
+		}
+		else {
+			JLabel noProduct = new JLabel("상품이 조회되지 않습니다.");
+			oneGoodsPannel.add(noProduct);
+		}
+	}
+	
+	/* //SearchResult 때랑 똑같이 빨간 줄 뜨는데 해결 어떻게 하는지 모르겠어서 주석처리 했어...
 	public ShowOneGoods(UserInfoDetail myUser) {
 		JPanel mainPanel = new JPanel();
 		setTitle("밥심+"); //제목 설정
@@ -82,7 +137,7 @@ public class ShowOneGoods {
 			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
 						/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 						지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
-						이는 추후 구현 예정*/
+						이는 추후 구현 예정 
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 					
@@ -119,4 +174,5 @@ public class ShowOneGoods {
 			}
 		}
 	}
+	*/
 }
