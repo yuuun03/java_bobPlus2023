@@ -37,8 +37,10 @@ public class ShowSearchFilter extends JFrame implements ItemListener{
 		}
 	
 		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함식품","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
-
-
+		
+		JLabel blank = new JLabel("");
+		filterPanel.add(blank);
+		
 		JLabel titleAl = new JLabel(" < 알러지 필터링 > ");
 		filterPanel.add(titleAl);
 		
@@ -47,12 +49,29 @@ public class ShowSearchFilter extends JFrame implements ItemListener{
 			filterPanel.add(infoAllergy[i]);
 			infoAllergy[i].addItemListener(this);
 		}
+		
+		Font customFont = new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 13);
+		setFonts(filterPanel, customFont);
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Filter Settings");
 		
 		getContentPane().add(filterPanel);
 		setSize(200,600);
 		setVisible(true);
+	}
+	
+	private void setFonts(Container container, Font font) {
+		Component[] components = container.getComponents();
+
+        for (Component comp : components) {
+            if (comp instanceof JComponent) {
+                ((JComponent) comp).setFont(font);
+            }
+            if (comp instanceof Container) {
+                setFonts((Container) comp, font);
+            }
+        }
 	}
 	
 	public Vector<String> getFilterCU() {return this.filterCU;}
