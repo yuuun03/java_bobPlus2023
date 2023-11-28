@@ -34,6 +34,7 @@ public class ShowSearchFilter extends JFrame implements ItemListener{
 			cookUtensils[i] = new JCheckBox(cuName[i]);
 			filterPanel.add(cookUtensils[i]);
 			cookUtensils[i].addItemListener(this);
+			cookUtensils[i].setContentAreaFilled(false);
 		}
 	
 		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함식품","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
@@ -48,7 +49,10 @@ public class ShowSearchFilter extends JFrame implements ItemListener{
 			infoAllergy[i] = new JCheckBox(alName[i]);
 			filterPanel.add(infoAllergy[i]);
 			infoAllergy[i].addItemListener(this);
+			infoAllergy[i].setContentAreaFilled(false);
 		}
+		
+		filterPanel.setBackground(new Color(200, 228, 137));
 		
 		Font customFont = new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 13);
 		setFonts(filterPanel, customFont);
