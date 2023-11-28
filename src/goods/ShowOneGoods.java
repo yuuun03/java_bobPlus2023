@@ -15,12 +15,15 @@ import user.*;
 public class ShowOneGoods {
 	
 	public static void main(String[] args) {
-		
-	}
+        SwingUtilities.invokeLater(() -> {
+            new ShowOneGoods(); // SearchResult 객체 생성
+        });
+    }
+	//알러지 일치하면 이미지 진동 구현
+		//
 	
 	public ShowOneGoods() {}
 	public ShowOneGoods(UserInfoDetail myUser) {
-		
 		JPanel mainPanel = new JPanel();
 		setTitle("밥심+"); //제목 설정
 		

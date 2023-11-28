@@ -17,9 +17,11 @@ public class SearchResult extends JFrame{
         });
     }
 	
-	JPanel resultPanel = new JPanel();
+	JPanel searchResultPanel = new JPanel();
+	//큰 패널
 	
 	private JPanel product1, product2, product3, product4, product5, product6, product7, product8;
+	//화면에 표시할 8개의 상품 패널
 	
 	public SearchResult() {
 		MasterGoods mg = new MasterGoods();
@@ -48,8 +50,11 @@ public class SearchResult extends JFrame{
 		
 		for(int i=0;i<8;i++) {
 			for(String CU:filter.getFilterCU()) { //조리도구 필터링
-				if(mg.getProductAtIndex(i).getCookingUtensils().contains(CU)) {
-					hideProductionAtIndex(i);
+				if (mg.getProductAtIndex(i).getCookingUtensils().contains(CU)) { //조리도구가 일치하면
+					continue;
+				}
+				else {
+					hideProductionAtIndex(i); //일치하지 않으면 숨기기
 				}
 			}
 		}
@@ -57,13 +62,13 @@ public class SearchResult extends JFrame{
 		for(int i=0;i<8;i++) {
 			for(String CU:filter.getFilterAl()) { //알러지 정보 필터링
 				if(mg.getProductAtIndex(i).getContainAllergy().contains(CU)) {
-					hideProductionAtIndex(i);
+					hideProductionAtIndex(i); //일치하면 숨기기
 				}
 			}
 		}
 	}
 	
-	public void hideProductionAtIndex(int index) {
+	public void hideProductionAtIndex(int index) { //index 번째 상품 숨기기
 		if(index>=0 && index < 8) {
 			switch (index) {
 	        case 0:
@@ -94,23 +99,26 @@ public class SearchResult extends JFrame{
 		}
 	}
 	
-	private void displayProduct(JPanel resultPanel, Product product, String searchName) {
-		if(product != null) {
+	private void displayProduct(JPanel resultPanel, Product product, String searchName) { //상품 패널을 표시하는 함수
+		if(product != null) { //상품 정보가 null이 아니면
 			resultPanel.setLayout(null);
 			
 			JLabel nameLabel = new JLabel(product.getName());
 			
-			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞는지..
+			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞는지...?
 			ImageIcon productIcon = new ImageIcon(productImg);
 			JLabel proImg = new JLabel(productIcon);
-			proImg.setSize(260, 260);
+			proImg.setSize(260, 260); //사진 사이즈 설정
 			
 			double star = product.getProductStar();
 			JLabel starLabel = new JLabel ("별점:" + Double.toString(star));
+			
 			int price = product.getPrice();
 			JLabel priceLabel = new JLabel(Integer.toString(price));
+			
 			double onePrice = product.getOnePersonPrice();
 			JLabel onePriceLabel = new JLabel ("1인분당 " + Double.toString(onePrice)+"원");
+			
 			double disrate = product.getProductDisRate();
 			JLabel disrateLabel = new JLabel(Double.toHexString(disrate)+"%");
 			
@@ -122,23 +130,24 @@ public class SearchResult extends JFrame{
 			resultPanel.add(disrateLabel);
 			
 			if(searchName != null && !searchName.isEmpty() && product.getName().contains(searchName)) {
-				resultPanel.setVisible(true);
+				//검색어가 빈칸이 아니고, 검색어가 상품명에 속해있으면
+				resultPanel.setVisible(true); //상품 보이기
 			} else {
-				resultPanel.setVisible(false);
+				resultPanel.setVisible(false); //아니면 상품을 보이지 않음
 			}
 		} else {
 			System.out.println("Product is null"); //디버깅 목적
 		}
-		resultPanel.setLayout(new GridLayout(2,4));
+		searchResultPanel.setLayout(new GridLayout(2,4)); //8개 상품 패널 띄우기
 		
-		resultPanel.add(product1);
-		resultPanel.add(product2);
-		resultPanel.add(product3);
-		resultPanel.add(product4);
-		resultPanel.add(product5);
-		resultPanel.add(product6);
-		resultPanel.add(product7);
-		resultPanel.add(product8);
+		searchResultPanel.add(product1);
+		searchResultPanel.add(product2);
+		searchResultPanel.add(product3);
+		searchResultPanel.add(product4);
+		searchResultPanel.add(product5);
+		searchResultPanel.add(product6);
+		searchResultPanel.add(product7);
+		searchResultPanel.add(product8);
 		
 		setTitle("Search Result");
         setSize(800, 600); // 적절한 크기로 설정
