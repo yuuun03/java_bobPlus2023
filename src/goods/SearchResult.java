@@ -23,6 +23,8 @@ public class SearchResult extends JFrame{
 	
 	public SearchResult() {
 		MasterGoods mg = new MasterGoods();
+		Search search = new Search();
+		String searchName = search.getSearch();
 		
 		product1 = new JPanel();
 		product2 = new JPanel();
@@ -33,20 +35,28 @@ public class SearchResult extends JFrame{
 		product7 = new JPanel();
 		product8 = new JPanel();
 		
-		displayProduct(product1, mg.getProductAtIndex(0));
-		displayProduct(product2, mg.getProductAtIndex(1));
-		displayProduct(product3, mg.getProductAtIndex(2));
-		displayProduct(product4, mg.getProductAtIndex(3));
-		displayProduct(product5, mg.getProductAtIndex(4));
-		displayProduct(product6, mg.getProductAtIndex(5));
-		displayProduct(product7, mg.getProductAtIndex(6));
-		displayProduct(product8, mg.getProductAtIndex(7));
+		displayProduct(product1, mg.getProductAtIndex(0), searchName);
+		displayProduct(product2, mg.getProductAtIndex(1), searchName);
+		displayProduct(product3, mg.getProductAtIndex(2), searchName);
+		displayProduct(product4, mg.getProductAtIndex(3), searchName);
+		displayProduct(product5, mg.getProductAtIndex(4), searchName);
+		displayProduct(product6, mg.getProductAtIndex(5), searchName);
+		displayProduct(product7, mg.getProductAtIndex(6), searchName);
+		displayProduct(product8, mg.getProductAtIndex(7), searchName);
 		
 		ShowSearchFilter filter = new ShowSearchFilter();
 		
 		for(int i=0;i<8;i++) {
-			for(String CU:filter.getFilterCU()) {
+			for(String CU:filter.getFilterCU()) { //조리도구 필터링
 				if(mg.getProductAtIndex(i).getCookingUtensils().contains(CU)) {
+					hideProductionAtIndex(i);
+				}
+			}
+		}
+		
+		for(int i=0;i<8;i++) {
+			for(String CU:filter.getFilterAl()) { //알러지 정보 필터링
+				if(mg.getProductAtIndex(i).getContainAllergy().contains(CU)) {
 					hideProductionAtIndex(i);
 				}
 			}
@@ -84,7 +94,7 @@ public class SearchResult extends JFrame{
 		}
 	}
 	
-	private void displayProduct(JPanel resultPanel, Product product) {
+	private void displayProduct(JPanel resultPanel, Product product, String searchName) {
 		if(product != null) {
 			resultPanel.setLayout(null);
 			
@@ -110,6 +120,12 @@ public class SearchResult extends JFrame{
 			resultPanel.add(priceLabel);
 			resultPanel.add(onePriceLabel);
 			resultPanel.add(disrateLabel);
+			
+			if(searchName != null && !searchName.isEmpty() && product.getName().contains(searchName)) {
+				resultPanel.setVisible(true);
+			} else {
+				resultPanel.setVisible(false);
+			}
 		} else {
 			System.out.println("Product is null"); //디버깅 목적
 		}

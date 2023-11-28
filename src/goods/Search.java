@@ -14,11 +14,16 @@ public class Search extends JFrame implements ActionListener{
 		}
 	}
 	
+	public String getSearch() {
+		return goodsName;
+	}
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(()->{
 			new Search();
 		});
 	}
+}
 	
 	/*
 	public void Search() {
@@ -38,5 +43,3 @@ public class Search extends JFrame implements ActionListener{
 		setVisible(true);
 	}
 	*/ //검색창 띄우는거 (CommonPanel이랑 겹침)
-	
-}
