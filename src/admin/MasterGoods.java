@@ -10,8 +10,8 @@ public class MasterGoods {
 	//생성자
 	public MasterGoods() {}
 	
-	//상품 추가(생성자 아님 주의!!!)
-	private void productAdd(String name, String image, double productStar,
+	//상품 추가(생성자 아님 주의!!!) //test상품 추가를 위해 public으로 변경
+	public void productAdd(String name, String image, double productStar,
 			int serving, int productCount, int price,
 			double productDisRate, Vector<String> cookingUtensils,
 			Vector<String> containAllergy) {
@@ -46,8 +46,8 @@ public class MasterGoods {
 		System.out.println("찾으시는 상품이 없습니다.");
 	}
 	
-	//상품 리스트 전체 출력
-	private void checkProduct() {
+	//상품 리스트 전체 출력 //확인을 위해 public으로 변경
+	public void checkProduct() {
 		if (pList.isEmpty()) {System.out.println("등록되어 있는 상품이 없습니다.");} 
 		else {
 			for(Product i : pList) { /* 메모장 형식 */ System.out.println(i.toString());}
@@ -82,10 +82,6 @@ public class MasterGoods {
 	
 	public String productPopular() {
 		return "추후 구현 예정";
-	}
-	
-	public Vector<Product> getPList(){ //Getter >> goods에서 받아오려고 추가
-		return pList;
 	}
 	
 	//scrollPage - 메인 UI/UX에서 실행 예정

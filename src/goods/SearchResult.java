@@ -10,6 +10,15 @@ import main.*;
 import user.UserInfoDetail;
 
 public class SearchResult extends JFrame{
+	
+	public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new SearchResult(); // SearchResult 객체 생성
+        });
+    }
+	
+	JPanel resultPanel = new JPanel();
+	
 	private JPanel product1, product2, product3, product4, product5, product6, product7, product8;
 	
 	public SearchResult() {
@@ -91,7 +100,7 @@ public class SearchResult extends JFrame{
 			
 			JLabel nameLabel = new JLabel(product.getName());
 			
-			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞나요
+			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞는지..
 			ImageIcon productIcon = new ImageIcon(productImg);
 			JLabel proImg = new JLabel(productIcon);
 			proImg.setSize(260, 260);
@@ -120,6 +129,21 @@ public class SearchResult extends JFrame{
 		} else {
 			System.out.println("Product is null"); //디버깅 목적
 		}
+		resultPanel.setLayout(new GridLayout(2,4));
+		
+		resultPanel.add(product1);
+		resultPanel.add(product2);
+		resultPanel.add(product3);
+		resultPanel.add(product4);
+		resultPanel.add(product5);
+		resultPanel.add(product6);
+		resultPanel.add(product7);
+		resultPanel.add(product8);
+		
+		setTitle("Search Result");
+        setSize(800, 600); // 적절한 크기로 설정
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true); // 프레임을 보이도록 설정
 	}
 	
 	public SearchResult(UserInfoDetail myUser) {
