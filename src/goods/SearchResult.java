@@ -6,12 +6,11 @@ import javax.swing.*;
 
 import java.util.Vector;
 import admin.*;
-import main.Cart;
-import main.CommonPanel;
+import main.*;
 import user.UserInfoDetail;
 
 
-public class SearchResult{
+public class SearchResult extends JFrame{
 	JFrame resultFrame = new JFrame("Search Result");
 	JPanel resultPanel = new JPanel ();
 	
@@ -76,7 +75,11 @@ public class SearchResult{
 			Product product = productList.get(i);
 			
 			JLabel name = new JLabel(product.getName());
-			Image bImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞나요
+			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞나요
+			ImageIcon productIcon = new ImageIcon(productImg);
+			JLabel proIng = new JLabel(productIcon);
+			proIng.setSize(260, 260);
+			proIng.setLocation(0, 240*i); //사진별로 위치 바꿔야함
 			double star = product.getProductStar();
 			JLabel starLabel = new JLabel ("별점:" + Double.toString(star));
 			int price = product.getPrice();
@@ -86,7 +89,61 @@ public class SearchResult{
 			double disrate = product.getProductDisRate();
 			JLabel disrateLabel = new JLabel(Double.toHexString(disrate)+"%");
 			
-			//출력 how...
+			resultPanel.add(name);
+			resultPanel.add(proIng);
+			resultPanel.add(starLabel);
+			resultPanel.add(priceLabel);
+			resultPanel.add(disrateLabel);
+		}
+		
+		//이벤트 처리 클래스들
+		class MainActionListener implements ActionListener{
+			//Action : 버튼 클릭 
+			public void actionPerformed(ActionEvent e) {
+				JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
+				
+				//버튼 종류마다 이벤트 다르게 지정
+				switch(bRefer.getText()) {
+					
+				case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
+					/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
+					지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
+					이는 추후 구현 예정*/
+					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+					break;
+				
+				case "출석 체크": 
+					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+					break;
+				
+				case "쿠폰/포인트": 
+					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+					break;
+					
+				case "커뮤니티": 
+					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+					break;
+				
+				case "이달의 신상품": 
+					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+					break;
+				
+				case "오늘 뭐 먹지?": 
+					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+					break;
+
+				case "지금 할인 중": 
+					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+					break;
+
+				case "인기 급상승": 
+					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+					break;
+				
+				default : //장바구니 클릭 시 
+					break;
+				}
+			}
 		}
 	}
 }
