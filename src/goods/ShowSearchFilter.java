@@ -1,51 +1,65 @@
 package goods;
 
+import java.awt.event.*;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import javax.swing.event.*;
 import java.util.Arrays;
+import java.util.Vector;
 
-public class ShowSearchFilter extends JFrame implements ItemListener {
-	Container contentPane;
-	JCheckBox cookUtensils[] = new JCheckBox[7];
-	String cuName[] = {"가스레인지","뚝배기","오븐","에어프라이기","인덕션(전기레인지)","전자레인지"
-	,"조리기구 미필요"};
+public class ShowSearchFilter extends JFrame {
+	JPanel filterPanel = new JPanel();
 	
-	JCheckBox storage[] = new JCheckBox[3];
-	String stName[] = {"냉장보관","냉동보관","실온보관"};
+	public ShowSearchFilter() {
+		filterPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 	
-	JCheckBox infoAllergy[] = new JCheckBox[22];
-	String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함식품","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
+		JCheckBox cookUtensils[] = new JCheckBox[7];
+		String cuName[] = {"가스레인지","뚝배기","오븐","에어프라이기","인덕션(전기레인지)","전자레인지"	,"조리기구 미필요"};
+		Vector<String> filterCU = new Vector<String>(); //사용자가 선택한 조리기구
 	
-	public ShowSearchFilter(String str) { //생성자
-		contentPane = getContentPane();
-		contentPane.setLayout(new GridLayout(36,0));
+		JCheckBox storage[] = new JCheckBox[3];
+		String stName[] = {"냉장보관","냉동보관","실온보관"};
+		Vector<String> filterST = new Vector<String>(); //사용자가 선택한 보관 방식
+	
+		JCheckBox infoAllergy[] = new JCheckBox[22];
+		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함식품","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
+		Vector<String> filterAl = new Vector<String>(); //사용자가 선택한 알러지
 		
-		contentPane.add(new JLabel(" < 필요 조리기구 > "));
+		JLabel titleCU = new JLabel(" < 필요 조리기구 > ");
+		JLabel titleST = new JLabel(" <보관 방식 > ");
+		JLabel titleAl = new JLabel(" < 알러지 필터링 > ");
+		
 		for(int i=0; i<cookUtensils.length;i++) {
 			cookUtensils[i] = new JCheckBox(cuName[i]);
-			contentPane.add(cookUtensils[i]);
-			cookUtensils[i].addItemListener(this);
+			filterPanel.add(cookUtensils[i]);
+			cookUtensils[i].addItemListener(this); //왜 이벤트 처리가 안될까요 ㅜㅜ,,,
 		}
-		
-		//배치할 때 이 사이에 띄어쓰기 한 줄 넣거나 좌표로 간격 조정해서 배치하기
-		
-		contentPane.add(new JLabel (" < 보관 방식 > "));
 		for(int i=0;i<stName.length;i++) {
 			storage[i] = new JCheckBox(stName[i]);
-			contentPane.add(storage[i]);
+			filterPanel.add(storage[i]);
 			storage[i].addItemListener(this);
 		}
-		
-		contentPane.add(new JLabel(" < 알러지 필터링 > "));
 		for(int i=0;i<alName.length;i++) {
 			infoAllergy[i] = new JCheckBox(alName[i]);
-			contentPane.add(infoAllergy[i]);
+			filterPanel.add(infoAllergy[i]);
 			infoAllergy[i].addItemListener(this);
 		}
+		
+		infoAllergy[i].addItemListener(new FilterActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					filterAl.add(now.getText());
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					filterAl.remove(now.getText());
+				}
+			}
+		});
+		
 	}
-	
+}
+	/*
 	private int[] selectedStatusCookUtensils = new int[7];
     private int[] selectedStatusStorage = new int[3];
     private int[] selectedStatusInfoAllergy = new int[22];
@@ -104,4 +118,4 @@ public class ShowSearchFilter extends JFrame implements ItemListener {
             filter.setVisible(true); //보이게 하기
         });
     }
-}
+*/
