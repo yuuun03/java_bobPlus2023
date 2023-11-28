@@ -35,7 +35,7 @@ public class SearchResult extends JFrame{
 		product7 = new JPanel();
 		product8 = new JPanel();
 		
-		displayProduct(product1, mg.getProductAtIndex(0), searchName);
+		displayProduct(product1, mg.getProductAtIndex(0), searchName); //product가 null로 떠서 오류가 생김
 		displayProduct(product2, mg.getProductAtIndex(1), searchName);
 		displayProduct(product3, mg.getProductAtIndex(2), searchName);
 		displayProduct(product4, mg.getProductAtIndex(3), searchName);
