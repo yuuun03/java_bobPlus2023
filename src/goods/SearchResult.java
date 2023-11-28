@@ -9,16 +9,7 @@ import admin.*;
 import main.*;
 import user.UserInfoDetail;
 
-//상품 패널 단위로 묶어서 만들기 > Vector 비교 for 문에서 contain 이 아닌 경우 Panel을 끄도록 해도 됨 (이동은 어케하지...)
-
 public class SearchResult extends JFrame{
-	
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(()-> {
-			new SearchResult();
-		});
-	}
-	
 	private JPanel product1, product2, product3, product4, product5, product6, product7, product8;
 	
 	public SearchResult() {

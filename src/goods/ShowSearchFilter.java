@@ -1,5 +1,6 @@
 package goods;
 
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -7,6 +8,12 @@ import java.util.Arrays;
 import java.util.Vector;
 
 public class ShowSearchFilter extends JFrame implements ItemListener{
+	
+	public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new ShowSearchFilter(); // ShowSearchFilter 객체 생성
+        });
+	}
 	JPanel filterPanel = new JPanel();
 	
 	private Vector<String> filterCU = new Vector<>();
@@ -14,14 +21,13 @@ public class ShowSearchFilter extends JFrame implements ItemListener{
     
     JCheckBox cookUtensils[] = new JCheckBox[7];
     JCheckBox infoAllergy[] = new JCheckBox[22];
-	
-    public static void main(String[] args) {
-    	ShowSearchFilter filter = new ShowSearchFilter();
-    }
     
 	public ShowSearchFilter() {
-		filterPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
-	
+		filterPanel.setLayout(new GridLayout(0,1));
+		
+		JLabel titleCU = new JLabel(" < 필요 조리기구 > ");
+		filterPanel.add(titleCU);
+		
 		String cuName[] = {"가스레인지","뚝배기","오븐","에어프라이기","인덕션(전기레인지)","전자레인지"	,"조리기구 미필요"};
 		
 		for(int i=0; i<cookUtensils.length;i++) {
@@ -32,14 +38,21 @@ public class ShowSearchFilter extends JFrame implements ItemListener{
 	
 		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함식품","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
 
-		JLabel titleCU = new JLabel(" < 필요 조리기구 > ");
+
 		JLabel titleAl = new JLabel(" < 알러지 필터링 > ");
+		filterPanel.add(titleAl);
 		
 		for(int i=0;i<alName.length;i++) {
 			infoAllergy[i] = new JCheckBox(alName[i]);
 			filterPanel.add(infoAllergy[i]);
 			infoAllergy[i].addItemListener(this);
 		}
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle("Filter Settings");
+		
+		getContentPane().add(filterPanel);
+		setSize(200,600);
+		setVisible(true);
 	}
 	
 	public Vector<String> getFilterCU() {return this.filterCU;}
