@@ -34,11 +34,11 @@ public class testProduct{
 		bdCU.add("인덕션");
 		budae.setCookingUtensils(bdCU);
 		
-		Vector<String> bdAl = soondooboo.getContainAllergy();
+		Vector<String> bdAl = budae.getContainAllergy();
 		bdAl.add("가금류");
 		bdAl.add("콩");
 		bdAl.add("돼지고기");
-		soondooboo.setContainAllergy(bdAl);
+		budae.setContainAllergy(bdAl);
 		
 		
 		Product kimchi = new Product ("김치찌개", "kch",4.0,3,5,15000,12.0,new Vector<>(),new Vector<>());
@@ -48,10 +48,10 @@ public class testProduct{
 		kchCU.add("인덕션");
 		kimchi.setCookingUtensils(kchCU);
 		
-		Vector<String> kchAl = soondooboo.getContainAllergy();
+		Vector<String> kchAl = kimchi.getContainAllergy();
 		kchAl.add("돼지고기");
 		bdAl.add("콩");
-		soondooboo.setContainAllergy(kchAl);
+		kimchi.setContainAllergy(kchAl);
 		
 		mg.getPList().add(soondooboo);
 		mg.getPList().add(budae);

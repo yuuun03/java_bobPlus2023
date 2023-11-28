@@ -12,21 +12,109 @@ import user.UserInfoDetail;
 //상품 패널 단위로 묶어서 만들기 > Vector 비교 for 문에서 contain 이 아닌 경우 Panel을 끄도록 해도 됨 (이동은 어케하지...)
 
 public class SearchResult extends JFrame{
-	JFrame resultFrame = new JFrame("Search Result");
-	JPanel resultPanel = new JPanel ();
-	
-	/*
-	 * for(Stirng i : selectAllergy){
-	 *  i in budae.allery
-	 * } 
-	 * */
 	
 	public static void main(String[] args) {
-		UserInfoDetail myUser = new UserInfoDetail(); //사용자 객체 미리 생성.
-		SearchResult sr = new SearchResult(myUser);
+		SwingUtilities.invokeLater(()-> {
+			new SearchResult();
+		});
 	}
 	
-	public SearchResult() {}
+	private JPanel product1, product2, product3, product4, product5, product6, product7, product8;
+	
+	public SearchResult() {
+		MasterGoods mg = new MasterGoods();
+		
+		product1 = new JPanel();
+		product2 = new JPanel();
+		product3 = new JPanel();
+		product4 = new JPanel();
+		product5 = new JPanel();
+		product6 = new JPanel();
+		product7 = new JPanel();
+		product8 = new JPanel();
+		
+		displayProduct(product1, mg.getProductAtIndex(0));
+		displayProduct(product2, mg.getProductAtIndex(1));
+		displayProduct(product3, mg.getProductAtIndex(2));
+		displayProduct(product4, mg.getProductAtIndex(3));
+		displayProduct(product5, mg.getProductAtIndex(4));
+		displayProduct(product6, mg.getProductAtIndex(5));
+		displayProduct(product7, mg.getProductAtIndex(6));
+		displayProduct(product8, mg.getProductAtIndex(7));
+		
+		ShowSearchFilter filter = new ShowSearchFilter();
+		
+		for(int i=0;i<8;i++) {
+			for(String CU:filter.getFilterCU()) {
+				if(mg.getProductAtIndex(i).getCookingUtensils().contains(CU)) {
+					hideProductionAtIndex(i);
+				}
+			}
+		}
+	}
+	
+	public void hideProductionAtIndex(int index) {
+		if(index>=0 && index < 8) {
+			switch (index) {
+	        case 0:
+	            product1.setVisible(false);
+	            break;
+	        case 1:
+	            product2.setVisible(false);
+	            break;
+	        case 2:
+	            product3.setVisible(false);
+	            break;
+	        case 3:
+	            product4.setVisible(false);
+	            break;
+	        case 4:
+	            product5.setVisible(false);
+	            break;
+	        case 5:
+	            product6.setVisible(false);
+	            break;
+	        case 6:
+	            product7.setVisible(false);
+	            break;
+	        case 7:
+	            product8.setVisible(false);
+	            break;
+			}
+		}
+	}
+	
+	private void displayProduct(JPanel resultPanel, Product product) {
+		if(product != null) {
+			resultPanel.setLayout(null);
+			
+			JLabel nameLabel = new JLabel(product.getName());
+			
+			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞나요
+			ImageIcon productIcon = new ImageIcon(productImg);
+			JLabel proImg = new JLabel(productIcon);
+			proImg.setSize(260, 260);
+			
+			double star = product.getProductStar();
+			JLabel starLabel = new JLabel ("별점:" + Double.toString(star));
+			int price = product.getPrice();
+			JLabel priceLabel = new JLabel(Integer.toString(price));
+			double onePrice = product.getOnePersonPrice();
+			JLabel onePriceLabel = new JLabel ("1인분당 " + Double.toString(onePrice)+"원");
+			double disrate = product.getProductDisRate();
+			JLabel disrateLabel = new JLabel(Double.toHexString(disrate)+"%");
+			
+			resultPanel.add(nameLabel);
+			resultPanel.add(proImg);
+			resultPanel.add(starLabel);
+			resultPanel.add(priceLabel);
+			resultPanel.add(onePriceLabel);
+			resultPanel.add(disrateLabel);
+		} else {
+			System.out.println("Product is null"); //디버깅 목적
+		}
+	}
+	
 	public SearchResult(UserInfoDetail myUser) {
 		
 		JPanel mainPanel = new JPanel();
@@ -40,7 +128,6 @@ public class SearchResult extends JFrame{
 		
 		setLayout(null);
 		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
-		resultPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
 		
 		//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가 -> MainFrame.java 복붙
 		CommonPanel df = new CommonPanel(); //패널 객체 생성
@@ -75,33 +162,6 @@ public class SearchResult extends JFrame{
 		df.communityU.addActionListener(new MainActionListener());
 		df.newMonthGoods.addActionListener(new MainActionListener());
 		
-		MasterGoods mg = new MasterGoods();
-		Vector<Product> productList = mg.getPList(); //상품...받아오기...?...??
-		
-		for (int i=0;i<3;i++) {
-			Product product = productList.get(i);
-			
-			JLabel name = new JLabel(product.getName());
-			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞나요
-			ImageIcon productIcon = new ImageIcon(productImg);
-			JLabel proIng = new JLabel(productIcon);
-			proIng.setSize(260, 260);
-			proIng.setLocation(0, 240*i); //사진별로 위치 바꿔야함
-			double star = product.getProductStar();
-			JLabel starLabel = new JLabel ("별점:" + Double.toString(star));
-			int price = product.getPrice();
-			JLabel priceLabel = new JLabel(Integer.toString(price));
-			double onePrice = product.getOnePersonPrice();
-			JLabel onePriceLabel = new JLabel ("1인분당 " + Double.toString(onePrice)+"원");
-			double disrate = product.getProductDisRate();
-			JLabel disrateLabel = new JLabel(Double.toHexString(disrate)+"%");
-			
-			resultPanel.add(name);
-			resultPanel.add(proIng);
-			resultPanel.add(starLabel);
-			resultPanel.add(priceLabel);
-			resultPanel.add(disrateLabel);
-		}
 	}
 	//이벤트 처리 클래스들
 	class MainActionListener implements ActionListener{
@@ -119,37 +179,37 @@ public class SearchResult extends JFrame{
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 					
-					case "출석 체크": 
-						JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-						break;
+			case "출석 체크": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 					
-					case "쿠폰/포인트": 
-						JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-						break;
+			case "쿠폰/포인트": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 						
-					case "커뮤니티": 
-						JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-						break;
+			case "커뮤니티": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 					
-					case "이달의 신상품": 
-						JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-						break;
+			case "이달의 신상품": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 					
-					case "오늘 뭐 먹지?": 
-						JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-						break;
+			case "오늘 뭐 먹지?": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 
-					case "지금 할인 중": 
-						JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-						break;
+			case "지금 할인 중": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 
-					case "인기 급상승": 
-						JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-						break;
+			case "인기 급상승": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 					
-					default : //장바구니 클릭 시 
-						break;
-					}
-				}
+			default : //장바구니 클릭 시 
+				break;
+			}
+		}
 	}
 }

@@ -25,6 +25,13 @@ public class MasterGoods {
 		pList.add(p);
 	}
 	
+	public Product getProductAtIndex(int index) { //특정 인덱스의 Product 반환하는 코드 > 양희정 작성
+		if(index>=0 && index < pList.size()) {
+			return pList.get(index);
+		}
+		return null; //유효하지 않은 인덱스인 경우
+	}
+	
 	//상품 삭제 : 이름 입력 받으면 삭제.
 	private void productDelete(String name) {
 		if (pList.isEmpty()) {System.out.println("등록되어 있는 상품이 없습니다.");} 
