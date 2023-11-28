@@ -25,6 +25,8 @@ public class MasterGoods {
 		pList.add(p);
 	}
 	
+	public Vector<Product> getPList(){return this.pList;}
+	
 	public Product getProductAtIndex(int index) { //특정 인덱스의 Product 반환하는 코드 > 양희정 작성
 		if(index>=0 && index < pList.size()) {
 			return pList.get(index);

@@ -16,6 +16,9 @@ public class CommonPanel extends JFrame{
 	//로고
 	public JLabel mainIL;
 	
+	//검색창
+	public JTextField search;
+	
 	//메인 페이지 프레임 구현 내용
 	public CommonPanel() {
 		//화면 버튼 설정
@@ -34,7 +37,7 @@ public class CommonPanel extends JFrame{
 		//검색창 검색 액션 구현 필요 (Search.java)
 		JLabel searchTitle = new JLabel("검색 : ");
 		searchTitle.setFont(new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 20));
-		JTextField search = new JTextField(); //한줄 입력창 생성
+		search = new JTextField(); //한줄 입력창 생성
 			
 		searchTitle.setSize(100, 50);
 		search.setSize(900, 50);

@@ -1,8 +1,13 @@
 package main;
 
 import javax.swing.*;
+
+import admin.MasterGoods;
+import goods.SearchResult;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
 
 import user.SignUp;
 import user.UserInfoDetail;
@@ -13,7 +18,19 @@ public class MainFrame extends JFrame{
 	
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
-		
+		//상품 시작 전 미리 설정
+		MasterGoods mg = new MasterGoods();
+		/*
+		 * mg.productAdd(String name, String image, double productStar,
+			int serving, int productCount, int price,
+			double productDisRate, Vector<String> cookingUtensils,
+			Vector<String> containAllergy) 메소드 이용해서 상품 여러개 추가함.
+			
+			pList = mg.getPList();로 받아오고 pList를 생성자의 매개변수로 전달해주면
+			pList 요소들은 product 클래스의 getter을 이용해서 정보를 읽어올 수 있음.
+			pList.isEmpty();역시 사용 가능
+		 * */
+				
 		UserInfoDetail myUser = new UserInfoDetail(); //사용자 객체 미리 생성.
 		MainFrame m = new MainFrame(myUser);
 	}
@@ -62,7 +79,15 @@ public class MainFrame extends JFrame{
 				new Cart(myUser); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
-			
+		
+		df.search.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String pName = e.getActionCommand();
+				//상품 객체까지 매개변수로 받아와야하나 지금 일시적으로 미지정함.
+				new SearchResult(myUser, pName);
+				dispose();
+			}
+		});
 		
 		df.newHotGoods.addActionListener(new MainActionListener());
 		df.weekTop10Goods.addActionListener(new MainActionListener());

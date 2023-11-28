@@ -9,21 +9,17 @@ import admin.*;
 import main.*;
 import user.UserInfoDetail;
 
-public class SearchResult extends JFrame{
-	
-	public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new SearchResult(); // SearchResult 객체 생성
-        });
-    }
-	
+public class SearchResult extends JFrame{	
 	JPanel searchResultPanel = new JPanel();
 	//큰 패널
 	
 	private JPanel product1, product2, product3, product4, product5, product6, product7, product8;
 	//화면에 표시할 8개의 상품 패널
 	
-	public SearchResult() {
+	public SearchResult() {}
+	public SearchResult(UserInfoDetail myUser, String pName) {
+		//공통 패널 추가 요망.
+		
 		MasterGoods mg = new MasterGoods();
 		Search search = new Search();
 		String searchName = search.getSearch();
