@@ -14,7 +14,7 @@ public class CommonPanel extends JFrame{
 	public JButton couponPoint; public JButton communityU; public JButton newMonthGoods;
 	
 	//로고
-	JLabel mainIL;
+	public JLabel mainIL;
 	
 	//메인 페이지 프레임 구현 내용
 	public CommonPanel() {
