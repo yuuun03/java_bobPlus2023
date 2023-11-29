@@ -124,6 +124,9 @@ public class SearchResult extends JFrame{
 		searchResultPanel.add(product7);
 		searchResultPanel.add(product8);
 		
+		searchResultPanel.setSize(1920, 1080);
+		searchResultPanel.setBackground(new Color(151, 192, 48));
+		
 		add(searchResultPanel);
 		setTitle("Search Result");
 		setSize(1920, 1080); // 적절한 크기로 설정
@@ -192,6 +195,9 @@ public class SearchResult extends JFrame{
 			resultPanel.add(onePriceLabel);
 			resultPanel.add(disrateLabel);
 			
+			resultPanel.setBounds(400,400, 100, 100);
+			resultPanel.setBackground(new Color(42, 192, 48));
+			
 			if(searchName != null && !searchName.isEmpty() && product.getName().contains(searchName)) {
 				//검색어가 빈칸이 아니고, 검색어가 상품명에 속해있으면
 				resultPanel.setVisible(true); //상품 보이기
@@ -201,12 +207,6 @@ public class SearchResult extends JFrame{
 		} else {
 			System.out.println("Product is null"); //디버깅 목적
 		}
-	}
-	
-	public SearchResult(UserInfoDetail myUser) {
-		
-		
-		
 	}
 	//이벤트 처리 클래스들
 	class MainActionListener implements ActionListener{
