@@ -58,7 +58,7 @@ public class ShowOneGoods {
 		oneGoodsPannel.setBackground(Color.white);
 		oneGoodsPannel.setBounds(240, 240, 1260, 700);
 		
-		mainPanel.add(oneGoodsPannel);
+		mainPanel.add(oneGoodsPannel); //아래 주석 부분 (CommonPanel, frame) 추가하면 해결될 듯
 		
 		setTitle("One Product");
 		setSize(1920, 1080); // 적절한 크기로 설정
