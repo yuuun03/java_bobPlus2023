@@ -113,6 +113,25 @@ public class SearchResult extends JFrame{
 				}
 			}
 		}
+		searchResultPanel.setLayout(new GridLayout(2,4)); //8개 상품 패널 띄우기
+		
+		searchResultPanel.add(product1);
+		searchResultPanel.add(product2);
+		searchResultPanel.add(product3);
+		searchResultPanel.add(product4);
+		searchResultPanel.add(product5);
+		searchResultPanel.add(product6);
+		searchResultPanel.add(product7);
+		searchResultPanel.add(product8);
+		
+		searchResultPanel.setSize(1920, 1080);
+		searchResultPanel.setBackground(new Color(151, 192, 48));
+		
+		add(searchResultPanel);
+		setTitle("Search Result");
+		setSize(1920, 1080); // 적절한 크기로 설정
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true); // 프레임을 보이도록 설정
 	}
 	
 	public void hideProductionAtIndex(int index) { //index 번째 상품 숨기기
@@ -176,39 +195,18 @@ public class SearchResult extends JFrame{
 			resultPanel.add(onePriceLabel);
 			resultPanel.add(disrateLabel);
 			
+			resultPanel.setBounds(400,400, 100, 100);
+			resultPanel.setBackground(new Color(42, 192, 48));
 			
-			
+			if(searchName != null && !searchName.isEmpty() && product.getName().contains(searchName)) {
+				//검색어가 빈칸이 아니고, 검색어가 상품명에 속해있으면
+				resultPanel.setVisible(true); //상품 보이기
+			} else {
+				resultPanel.setVisible(false); //아니면 상품을 보이지 않음
+			}
 		} else {
 			System.out.println("Product is null"); //디버깅 목적
 		}
-		searchResultPanel.setLayout(new GridLayout(2,4)); //8개 상품 패널 띄우기
-		
-		searchResultPanel.add(product1);
-		searchResultPanel.add(product2);
-		searchResultPanel.add(product3);
-		searchResultPanel.add(product4);
-		searchResultPanel.add(product5);
-		searchResultPanel.add(product6);
-		searchResultPanel.add(product7);
-		searchResultPanel.add(product8);
-		
-		if(searchName != null && !searchName.isEmpty() && product.getName().contains(searchName)) {
-			//검색어가 빈칸이 아니고, 검색어가 상품명에 속해있으면
-			resultPanel.setVisible(true); //상품 보이기
-		} else {
-			resultPanel.setVisible(false); //아니면 상품을 보이지 않음
-		}
-		
-		setTitle("Search Result");
-		setSize(1920, 1080); // 적절한 크기로 설정
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true); // 프레임을 보이도록 설정
-	}
-	
-	public SearchResult(UserInfoDetail myUser) {
-		
-		
-		
 	}
 	//이벤트 처리 클래스들
 	class MainActionListener implements ActionListener{
