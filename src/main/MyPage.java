@@ -211,43 +211,349 @@ public class MyPage extends JFrame{
 		mainAll.setSize(100,100);
 		mainAll.setLocation(20, 20);
 		allergyPanel.add(mainAll);
+		
 		JCheckBox infoAllergy[] = new JCheckBox[22];
-		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기","아황산포함","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
+		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기",
+				"아황산포함","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
 		
 		Vector<String> userAllergy = new Vector<String>(); //사용자가 선택한 알러지
 		
 		int w = 0; int v = 0; //세부 위치 조정 위한 변수
 		for(int i = 0; i < alName.length; i++) { //알러지 체크 박스 생성
-			infoAllergy[i] = (new JCheckBox(alName[i]));
+			if (myUser.getAllergy().isEmpty() == false) {
+				for (int j = 0; j < myUser.getAllergy().size(); j++) { // 사용자의 알러지 정보 반영
+					if (alName[i].equals(myUser.getAllergy().get(j))) {
+						infoAllergy[i] = (new JCheckBox(alName[i], true));
+					}
+					else {
+						infoAllergy[i] = (new JCheckBox(alName[i]));
+					}
+				}
+			}
+			else {
+				infoAllergy[i] = (new JCheckBox(alName[i]));
+			}
 			allergyPanel.add(infoAllergy[i]);
-			
 			//위치 조정
 			infoAllergy[i].setSize(40 + 20 * alName[i].length(), 40);
 			infoAllergy[i].setLocation( 140 + 147 * w, 10+ 35 * v);
 			
-			// 배경색 제거
+			// 배경색 제거 및 폰트 설정
 			infoAllergy[i].setContentAreaFilled(false);
 			infoAllergy[i].setFont(basic);
 			
 			w++;
 			if (w == 7) {w = 0; v++;}
-			
-			//이벤트 처리
-			infoAllergy[i].addItemListener(new MyPageActionListener() {
-				public void itemStateChanged(ItemEvent e) {
-					if(e.getStateChange() == ItemEvent.SELECTED) {
-						JCheckBox now = (JCheckBox)(e.getSource());
-						userAllergy.add(now.getText());
-					}
-					else if(e.getStateChange() == ItemEvent.DESELECTED) {
-						JCheckBox now = (JCheckBox)(e.getSource());
-						userAllergy.remove(now.getText());
-					}
-					myUser.setAllergy(userAllergy);
-				}
-			});
-			
 		}
+		//이벤트 처리
+		//---가금류
+		infoAllergy[0].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());			
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---게
+		infoAllergy[1].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());			
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---고등어
+		infoAllergy[2].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());			
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---굴
+		infoAllergy[3].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---닭고기
+		infoAllergy[4].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---대두
+		infoAllergy[5].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---돼지고기
+		infoAllergy[6].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());			
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---땅콩
+		infoAllergy[7].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());			
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---메밀
+		infoAllergy[8].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---밀
+		infoAllergy[9].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---복숭아
+		infoAllergy[10].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---새우
+		infoAllergy[11].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---쇠고기
+		infoAllergy[12].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---아황산포함
+		infoAllergy[13].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---오징어
+		infoAllergy[14].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---우유
+		infoAllergy[15].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());					
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---잣
+		infoAllergy[16].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---전복
+		infoAllergy[17].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---조개류
+		infoAllergy[18].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---토마토
+		infoAllergy[19].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());			
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---호두
+		infoAllergy[20].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());			
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
+		//---홍합
+		infoAllergy[21].addItemListener(new MyPageActionListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.add(now.getText());				
+				}
+				else if(e.getStateChange() == ItemEvent.DESELECTED) {
+					JCheckBox now = (JCheckBox)(e.getSource());
+					userAllergy.remove(now.getText());
+				}
+				myUser.setAllergy(userAllergy);
+			}
+		});
 		
 		// 최근 주문 내역
 		JLabel newOrder = new JLabel("최근 주문내역");
