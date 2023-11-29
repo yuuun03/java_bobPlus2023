@@ -32,7 +32,7 @@ public class ShowOneGoods {
 		for(String CU:user.getAllergy()) { //알러지 정보 필터링
 			if(oneProduct.getContainAllergy().contains(CU)) {
 				Image warn = new ImageIcon("src/graphics/images/warning.png").getImage();
-				warn = warn.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+				warn = warn.getScaledInstance(100, 100, Image.SCALE_SMOOTH); //이미지 크기 더 크게 잡아야함)
 				ImageIcon iconWarn = new ImageIcon(warn);
 				JLabel warnAl = new JLabel(iconWarn);
 				warnAl.setSize(30,30); //사이즈 다시 잡아야함
@@ -42,6 +42,28 @@ public class ShowOneGoods {
 			}
 		}
 		displayOneProduct(oneGoodsPannel, oneProduct);
+		
+		JButton productDetail = new JButton("상품 상세 정보 더보기");
+		JButton showReview = new JButton("리뷰");
+		JButton inCart = new JButton("장바구니 담기");
+		JButton goBuy = new JButton("구매하기");
+		
+		df.productDetail.addActionListener(new OneProductActionListener());
+		df.showReview.addActionListener(new OneProductActionListener());
+		df.inCart.addActionListener(new OneProductActionListener());
+		df.goBuy.addActionListener(new OneProductActionListener());
+		
+		oneGoodsPannel.setLayout(null);
+		
+		oneGoodsPannel.setBackground(Color.white);
+		oneGoodsPannel.setBounds(240, 240, 1260, 700);
+		
+		mainPanel.add(oneGoodsPannel);
+		
+		setTitle("One Product");
+		setSize(1920, 1080); // 적절한 크기로 설정
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true); // 프레임을 보이도록 설정
 	}
 	
 	private void displayOneProduct(JPanel oneGoodsPannel, Product product) { //상품 패널을 표시하는 함수
@@ -75,6 +97,33 @@ public class ShowOneGoods {
 		else {
 			JLabel noProduct = new JLabel("상품이 조회되지 않습니다.");
 			oneGoodsPannel.add(noProduct);
+		}
+	}
+	class OneProductActionListener implements ActionListener{
+		//Action : 버튼 클릭 
+		public void actionPerformed(ActionEvent e) {
+			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
+			
+			//버튼 종류마다 이벤트 다르게 지정
+			switch(bRefer.getText()) {
+						
+			case "상품 상세 정보 더보기":
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
+					
+			case "리뷰": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
+					
+			case "장바구니 담기": 
+				JOptionPane.showMessageDialog(null, "장바구니에 담겼습니다.");
+				//장바구니 기능 추가하는 경우 추가적인 코드 필요 (상품 객체 넘기는 코드 필요)
+				break;
+						
+			case "구매하기": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
+			}
 		}
 	}
 	
