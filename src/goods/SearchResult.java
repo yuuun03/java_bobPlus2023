@@ -113,6 +113,22 @@ public class SearchResult extends JFrame{
 				}
 			}
 		}
+		searchResultPanel.setLayout(new GridLayout(2,4)); //8개 상품 패널 띄우기
+		
+		searchResultPanel.add(product1);
+		searchResultPanel.add(product2);
+		searchResultPanel.add(product3);
+		searchResultPanel.add(product4);
+		searchResultPanel.add(product5);
+		searchResultPanel.add(product6);
+		searchResultPanel.add(product7);
+		searchResultPanel.add(product8);
+		
+		add(searchResultPanel);
+		setTitle("Search Result");
+		setSize(1920, 1080); // 적절한 크기로 설정
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true); // 프레임을 보이도록 설정
 	}
 	
 	public void hideProductionAtIndex(int index) { //index 번째 상품 숨기기
@@ -185,22 +201,6 @@ public class SearchResult extends JFrame{
 		} else {
 			System.out.println("Product is null"); //디버깅 목적
 		}
-		searchResultPanel.setLayout(new GridLayout(2,4)); //8개 상품 패널 띄우기
-		
-		searchResultPanel.add(product1);
-		searchResultPanel.add(product2);
-		searchResultPanel.add(product3);
-		searchResultPanel.add(product4);
-		searchResultPanel.add(product5);
-		searchResultPanel.add(product6);
-		searchResultPanel.add(product7);
-		searchResultPanel.add(product8);
-		
-		add(searchResultPanel);
-		setTitle("Search Result");
-		setSize(1920, 1080); // 적절한 크기로 설정
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true); // 프레임을 보이도록 설정
 	}
 	
 	public SearchResult(UserInfoDetail myUser) {
