@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import java.util.Arrays;
 import java.util.Vector;
 import admin.*;
 import main.*;
@@ -72,9 +73,71 @@ public class SearchResult extends JFrame{
 		df.newMonthGoods.addActionListener(new MainActionListener());
 		
 		//검색 부분
+		add(mainPanel);
+		mainPanel.setSize(1920, 1080);
+		mainPanel.setBackground(Color.white);
+				
 		Search search = new Search();
 		String searchName = search.getSearch();
 		
+		//필터패널
+		ShowSearchFilter filter = new ShowSearchFilter();
+		
+		mainPanel.add(filter.filterPanel);
+		
+		// --- 액션 추가
+		for(int i=0; i< filter.cookUtensils.length;i++) {
+			filter.cookUtensils[i].addItemListener(new ItemListener(){
+				public void itemStateChanged(ItemEvent e) {
+					Object source = e.getItemSelectable();
+					if (source instanceof JCheckBox) {
+						JCheckBox checkBox = (JCheckBox) source;
+						
+				    // 선택 상태에 따라 해당하는 Vector를 업데이트
+					if (checkBox.isSelected()) {
+						if (Arrays.asList(filter.cookUtensils).contains(checkBox)) {
+							filter.filterCU.add(checkBox.getText());
+				            } else if (Arrays.asList(filter.infoAllergy).contains(checkBox)) {
+				            	filter.filterAl.add(checkBox.getText());
+				            }
+				        } else {
+				            if (Arrays.asList(filter.cookUtensils).contains(checkBox)) {
+				            	filter.filterCU.remove(checkBox.getText());
+				            } else if (Arrays.asList(filter.infoAllergy).contains(checkBox)) {
+				            	filter.filterAl.remove(checkBox.getText());
+				            }
+				        }
+					}
+				}
+			});
+		}
+		for(int i=0;i<filter.alName.length;i++) {
+			filter.infoAllergy[i].addItemListener(new ItemListener(){
+				public void itemStateChanged(ItemEvent e) {
+					Object source = e.getItemSelectable();
+					if (source instanceof JCheckBox) {
+						JCheckBox checkBox = (JCheckBox) source;
+						
+				    // 선택 상태에 따라 해당하는 Vector를 업데이트
+					if (checkBox.isSelected()) {
+						if (Arrays.asList(filter.cookUtensils).contains(checkBox)) {
+							filter.filterCU.add(checkBox.getText());
+				            } else if (Arrays.asList(filter.infoAllergy).contains(checkBox)) {
+				            	filter.filterAl.add(checkBox.getText());
+				            }
+				        } else {
+				            if (Arrays.asList(filter.cookUtensils).contains(checkBox)) {
+				            	filter.filterCU.remove(checkBox.getText());
+				            } else if (Arrays.asList(filter.infoAllergy).contains(checkBox)) {
+				            	filter.filterAl.remove(checkBox.getText());
+				            }
+				        }
+					}
+				}
+			});
+		}
+		
+		//검색 결과 출력 부분
 		product1 = new JPanel();
 		product2 = new JPanel();
 		product3 = new JPanel();
@@ -84,16 +147,20 @@ public class SearchResult extends JFrame{
 		product7 = new JPanel();
 		product8 = new JPanel();
 
-		displayProduct(product1, pList.get(0), searchName); //product가 null로 떠서 오류가 생김
-		displayProduct(product2, pList.get(1), searchName);
-		displayProduct(product3, pList.get(2), searchName);
-		//displayProduct(product4, pList.get(3), searchName);
-		//displayProduct(product5, pList.get(4), searchName);
-		//displayProduct(product6, pList.get(5), searchName);
-		//displayProduct(product7, pList.get(6), searchName);
-		//displayProduct(product8, pList.get(7), searchName);
+		JPanel[] pBundle = {product1, product2, product3, product4, product5, product6, product7, product8};
 		
-		ShowSearchFilter filter = new ShowSearchFilter();
+		int emptyCnt = 0;
+		for(int i = 0; i < pBundle.length; i++) {
+			if(i < pList.size()) {
+				displayProduct(pBundle[i], pList.get(i), searchName);
+			}
+			else {
+				emptyCnt++;
+			}
+		}
+		for(int i = 0; i < emptyCnt; i++) {
+			displayProduct(pBundle[8-emptyCnt + i], null, searchName);
+		}
 		
 		for(int i=0;i<8;i++) {
 			for(String CU:filter.getFilterCU()) { //조리도구 필터링
@@ -113,6 +180,8 @@ public class SearchResult extends JFrame{
 				}
 			}
 		}
+		
+		searchResultPanel.setBackground(Color.white);
 		searchResultPanel.setLayout(new GridLayout(2,4)); //8개 상품 패널 띄우기
 		
 		searchResultPanel.add(product1);
@@ -124,10 +193,10 @@ public class SearchResult extends JFrame{
 		searchResultPanel.add(product7);
 		searchResultPanel.add(product8);
 		
-		searchResultPanel.setSize(1920, 1080);
-		searchResultPanel.setBackground(new Color(151, 192, 48));
+		searchResultPanel.setBounds(240, 240, 1260, 700);
+				
+		mainPanel.add(searchResultPanel);
 		
-		add(searchResultPanel);
 		setTitle("Search Result");
 		setSize(1920, 1080); // 적절한 크기로 설정
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,7 +243,19 @@ public class SearchResult extends JFrame{
 			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞는지...?
 			ImageIcon productIcon = new ImageIcon(productImg);
 			JLabel proImg = new JLabel(productIcon);
-			proImg.setSize(260, 260); //사진 사이즈 설정
+			proImg.setBounds(10, 10, 100, 100); //사진 사이즈 설정
+			
+			/*
+			//폰트 설정
+			//--- 로그인, 배송 조회 버튼
+			Font buttonFont = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 25);
+			//--- 로그인, 주문 조회 타이틀
+			Font miniTitle = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 23);
+			//--- 일반 라벨
+			Font basic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 17);
+			//--- 회원가입 버튼 전용
+			Font sFont = new Font("G마켓 산스 TTF Light", Font.PLAIN, 15);
+			*/
 			
 			double star = product.getProductStar();
 			JLabel starLabel = new JLabel ("별점:" + Double.toString(star));
@@ -188,23 +269,30 @@ public class SearchResult extends JFrame{
 			double disrate = product.getProductDisRate();
 			JLabel disrateLabel = new JLabel(Double.toHexString(disrate)+"%");
 			
-			resultPanel.add(nameLabel);
+			nameLabel.setBounds(0, 0, 50, 50);
+			nameLabel.setFont(new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 25));
+			
+			
 			resultPanel.add(proImg);
+			resultPanel.add(nameLabel);
 			resultPanel.add(starLabel);
 			resultPanel.add(priceLabel);
 			resultPanel.add(onePriceLabel);
 			resultPanel.add(disrateLabel);
 			
-			resultPanel.setBounds(400,400, 100, 100);
-			resultPanel.setBackground(new Color(42, 192, 48));
+			resultPanel.setBackground(new Color(200, 228, 137));
 			
-			if(searchName != null && !searchName.isEmpty() && product.getName().contains(searchName)) {
+			
+			if(searchName != null && !(searchName.isEmpty()) && product.getName().contains(searchName)) {
 				//검색어가 빈칸이 아니고, 검색어가 상품명에 속해있으면
-				resultPanel.setVisible(true); //상품 보이기
-			} else {
-				resultPanel.setVisible(false); //아니면 상품을 보이지 않음
+				searchResultPanel.add(resultPanel);
 			}
-		} else {
+		}
+		else {
+			resultPanel.setSize(50, 50);
+			resultPanel.setBackground(Color.white);
+			
+			searchResultPanel.add(resultPanel);
 			System.out.println("Product is null"); //디버깅 목적
 		}
 	}
