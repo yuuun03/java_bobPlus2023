@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 import admin.Product;
+import goods.SearchResult;
 
 import javax.swing.border.LineBorder;
 import user.SignUp;
@@ -74,6 +75,14 @@ public class MyPage extends JFrame{
 						new Cart(myUser, pList); //장바구니 페이지 전환
 						dispose(); //기존 페이지 안보이게 변경
 					}});
+				
+				df.search.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String pName = e.getActionCommand();
+						new SearchResult(myUser, pList, pName);
+						dispose();
+					}
+				});
 				
 		df.newHotGoods.addActionListener(new MyPageActionListener());
 		df.weekTop10Goods.addActionListener(new MyPageActionListener());

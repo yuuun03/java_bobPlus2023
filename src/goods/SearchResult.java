@@ -56,6 +56,13 @@ public class SearchResult extends JFrame{
 				new Cart(myUser, pList); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
+		df.search.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String pName = e.getActionCommand();
+				new SearchResult(myUser, pList, pName);
+				dispose();
+			}
+		});
 		
 		df.newHotGoods.addActionListener(new MainActionListener());
 		df.weekTop10Goods.addActionListener(new MainActionListener());
