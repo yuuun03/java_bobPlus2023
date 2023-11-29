@@ -132,6 +132,7 @@ public class LoginPage extends JFrame{
 				//myUser.setId("test"); myUser.setPassword("1234");
 				if (myUser.getId().equals(id.getText()) && myUser.getPassword().equals(pw.getText())){
 					//로그인하기 버튼을 없애고 MY페이지로 변환할 필요 있음.
+					myUser.setLogCheck(true);
 					new MainFrame(myUser, pList);
 					dispose();
 				}

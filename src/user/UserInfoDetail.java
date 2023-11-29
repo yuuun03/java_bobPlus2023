@@ -107,7 +107,7 @@ public class UserInfoDetail {
 	
 	protected void setAddress(String address) {this.address = address;}
 	
-	protected void setLogCheck(boolean logCheck) {this.logCheck = logCheck;}
+	public void setLogCheck(boolean logCheck) {this.logCheck = logCheck;}
 
 	protected void setCartList(Vector<String> cartList) {this.cartList = cartList;}
 	protected void setLikeList(Vector<String> likeList) {this.likeList = likeList;}

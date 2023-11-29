@@ -136,7 +136,7 @@ public class SignUp extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				UserInfo user = new UserInfo();
 				user.newUser(name.getText(), id.getText(), email.getText(), pw.getText(), Long.parseLong(phoneNum.getText()),
-						Integer.parseInt(birth.getText()), 5, userAllergy, address.getText(), 0);
+						Integer.parseInt(birth.getText()), 5, userAllergy, address.getText(), false, 0);
 				
 				Vector<UserInfoDetail> temp = user.getUserList(); //저장용 임시 배열
 				setUser(myUser, temp.lastElement());

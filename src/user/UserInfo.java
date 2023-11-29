@@ -12,11 +12,11 @@ public class UserInfo {
 	
 	//신규 회원(생성자 아님 주의!!!)
 	void newUser(String name, String id, String email, String password, long phoneNum, int birth, 
-			int userRank, Vector<String> allergy, String address, int birthCoupon) {
+			int userRank, Vector<String> allergy, String address, boolean isLogin, int birthCoupon) {
 		
 		//새 회원 정보 객체 생성.
 		UserInfoDetail user = new UserInfoDetail(name, id, email, password, phoneNum, birth, 
-				userRank, allergy, address, birthCoupon);
+				userRank, allergy, address, isLogin, birthCoupon);
 
 		//기존 회원 정보 리스트에 추가
 		userList.add(user);
