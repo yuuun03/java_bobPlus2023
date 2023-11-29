@@ -196,6 +196,7 @@ public class SearchResult extends JFrame{
 		searchResultPanel.add(product7);
 		searchResultPanel.add(product8);
 		
+		add(searchResultPanel);
 		setTitle("Search Result");
 		setSize(1920, 1080); // 적절한 크기로 설정
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
