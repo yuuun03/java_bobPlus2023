@@ -216,17 +216,14 @@ public class MyPage extends JFrame{
 		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기",
 				"아황산포함","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
 		
-		Vector<String> userAllergy = new Vector<String>(); //사용자가 선택한 알러지
+		Vector<String> userAllergy = myUser.getAllergy(); //사용자가 선택한 알러지
 		
 		int w = 0; int v = 0; //세부 위치 조정 위한 변수
 		for(int i = 0; i < alName.length; i++) { //알러지 체크 박스 생성
 			boolean isUserAllergy = false;
-			if (myUser.getAllergy().isEmpty() == false) {
-				for (int j = 0; j < myUser.getAllergy().size(); j++) { // 사용자의 알러지 정보 반영
-					if (alName[i].equals(myUser.getAllergy().get(j))) {
-						isUserAllergy = true;
-						break;
-					}
+			if (userAllergy.isEmpty() == false) {
+				if (userAllergy.contains(alName[i])) {
+					isUserAllergy = true;
 				}
 			}
 			else {isUserAllergy = false;}
