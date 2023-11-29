@@ -220,19 +220,17 @@ public class MyPage extends JFrame{
 		
 		int w = 0; int v = 0; //세부 위치 조정 위한 변수
 		for(int i = 0; i < alName.length; i++) { //알러지 체크 박스 생성
+			boolean isUserAllergy = false;
 			if (myUser.getAllergy().isEmpty() == false) {
 				for (int j = 0; j < myUser.getAllergy().size(); j++) { // 사용자의 알러지 정보 반영
 					if (alName[i].equals(myUser.getAllergy().get(j))) {
-						infoAllergy[i] = (new JCheckBox(alName[i], true));
-					}
-					else {
-						infoAllergy[i] = (new JCheckBox(alName[i]));
+						isUserAllergy = true;
+						break;
 					}
 				}
 			}
-			else {
-				infoAllergy[i] = (new JCheckBox(alName[i]));
-			}
+			else {isUserAllergy = false;}
+			infoAllergy[i] = (new JCheckBox(alName[i], isUserAllergy));
 			allergyPanel.add(infoAllergy[i]);
 			//위치 조정
 			infoAllergy[i].setSize(40 + 20 * alName[i].length(), 40);
