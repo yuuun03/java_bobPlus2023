@@ -47,8 +47,6 @@ public class MakeProducts{
 				
 		mg.productAdd("김치 찌개", kchImg,4.0,3,5,15000,12.0, kchCU, kchAl);
 		
-		
-		mg.checkProduct(); //확인용 출력
 		return mg.getPList();
 	}
 }

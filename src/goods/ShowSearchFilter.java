@@ -87,7 +87,7 @@ public class ShowSearchFilter extends JFrame implements ItemListener{
 		if (source instanceof JCheckBox) {
 			JCheckBox checkBox = (JCheckBox) source;
 			
-	            // 선택 상태에 따라 해당하는 Vector를 업데이트
+	    // 선택 상태에 따라 해당하는 Vector를 업데이트
 		if (checkBox.isSelected()) {
 			if (Arrays.asList(cookUtensils).contains(checkBox)) {
 				filterCU.add(checkBox.getText());
