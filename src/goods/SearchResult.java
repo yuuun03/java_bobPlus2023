@@ -83,24 +83,21 @@ public class SearchResult extends JFrame{
 		product6 = new JPanel();
 		product7 = new JPanel();
 		product8 = new JPanel();
-		
-		/*
-		displayProduct(product1, mg.getProductAtIndex(0), searchName); //product가 null로 떠서 오류가 생김
-		displayProduct(product2, mg.getProductAtIndex(1), searchName);
-		displayProduct(product3, mg.getProductAtIndex(2), searchName);
-		displayProduct(product4, mg.getProductAtIndex(3), searchName);
-		displayProduct(product5, mg.getProductAtIndex(4), searchName);
-		displayProduct(product6, mg.getProductAtIndex(5), searchName);
-		displayProduct(product7, mg.getProductAtIndex(6), searchName);
-		displayProduct(product8, mg.getProductAtIndex(7), searchName);
-		*/
+
+		displayProduct(product1, pList.get(0), searchName); //product가 null로 떠서 오류가 생김
+		displayProduct(product2, pList.get(1), searchName);
+		displayProduct(product3, pList.get(2), searchName);
+		displayProduct(product4, pList.get(3), searchName);
+		displayProduct(product5, pList.get(4), searchName);
+		displayProduct(product6, pList.get(5), searchName);
+		displayProduct(product7, pList.get(6), searchName);
+		displayProduct(product8, pList.get(7), searchName);
 		
 		ShowSearchFilter filter = new ShowSearchFilter();
 		
-		/*
 		for(int i=0;i<8;i++) {
 			for(String CU:filter.getFilterCU()) { //조리도구 필터링
-				if (mg.getProductAtIndex(i).getCookingUtensils().contains(CU)) { //조리도구가 일치하면
+				if (pList.get(i).getCookingUtensils().contains(CU)) { //조리도구가 일치하면
 					continue;
 				}
 				else {
@@ -109,14 +106,13 @@ public class SearchResult extends JFrame{
 			}
 		}
 		
-		
 		for(int i=0;i<8;i++) {
 			for(String CU:filter.getFilterAl()) { //알러지 정보 필터링
-				if(mg.getProductAtIndex(i).getContainAllergy().contains(CU)) {
+				if(pList.get(i).getContainAllergy().contains(CU)) {
 					hideProductionAtIndex(i); //일치하면 숨기기
 				}
 			}
-		}*/
+		}
 	}
 	
 	public void hideProductionAtIndex(int index) { //index 번째 상품 숨기기
@@ -180,6 +176,8 @@ public class SearchResult extends JFrame{
 			resultPanel.add(onePriceLabel);
 			resultPanel.add(disrateLabel);
 			
+			searchResultPanel.add(resultPanel);
+			
 			if(searchName != null && !searchName.isEmpty() && product.getName().contains(searchName)) {
 				//검색어가 빈칸이 아니고, 검색어가 상품명에 속해있으면
 				resultPanel.setVisible(true); //상품 보이기
@@ -201,7 +199,7 @@ public class SearchResult extends JFrame{
 		searchResultPanel.add(product8);
 		
 		setTitle("Search Result");
-        setSize(800, 600); // 적절한 크기로 설정
+		setSize(1920, 1080); // 적절한 크기로 설정
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true); // 프레임을 보이도록 설정
 	}
