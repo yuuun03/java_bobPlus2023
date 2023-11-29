@@ -9,7 +9,6 @@ public class Coupon{
 
 	// 변수 선언 
 	static int couponNum;
-	static String couponName;
 	static double couponDisRate;
 	static double couponDue;
 	static int couponDisPrice;
@@ -24,6 +23,7 @@ public class Coupon{
         	int couponNum = random.nextInt(maxRange - minRange + 1) + minRange;
 
         	return randomNumber;
+		couponDisRate = 0.8;
 	}
 
 	public static void couponPrint(String message, String title) {
@@ -33,7 +33,10 @@ public class Coupon{
 	}
 
 	public static void couponUse(int) {
+		
 		// 가격 할인해주는 코드 써야 함 
+		couponDisPrice = price * couponDisRate;
+		
 	}
 
 	public static void couponDelete(int) {
@@ -53,7 +56,10 @@ public class Coupon{
 		}
 		if (couponNum != 0) {
 			// 결제 창에서 쿠폰이 존재한다는 사실 보여주기 
-			couponUse(int);
+			// 결제 창 x
+			
+			couponUse(couponNum);
+			couponDelete(couponNum);
 		}
 	}
 }
