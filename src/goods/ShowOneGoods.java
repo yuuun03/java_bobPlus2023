@@ -32,7 +32,7 @@ public class ShowOneGoods {
 		for(String CU:user.getAllergy()) { //알러지 정보 필터링
 			if(oneProduct.getContainAllergy().contains(CU)) {
 				Image warn = new ImageIcon("src/graphics/images/warning.png").getImage();
-				warn = warn.getScaledInstance(100, 100, Image.SCALE_SMOOTH); //이미지 크기 더 크게 잡아야함)
+				warn = warn.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 				ImageIcon iconWarn = new ImageIcon(warn);
 				JLabel warnAl = new JLabel(iconWarn);
 				warnAl.setSize(30,30); //사이즈 다시 잡아야함
@@ -73,7 +73,7 @@ public class ShowOneGoods {
 			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞는지...?
 			ImageIcon productIcon = new ImageIcon(productImg);
 			JLabel proImg = new JLabel(productIcon);
-			proImg.setSize(260, 260); //사진 사이즈 설정
+			proImg.setSize(500,500); //사진 사이즈 설정
 				
 			double star = product.getProductStar();
 			JLabel starLabel = new JLabel ("별점:" + Double.toString(star));
