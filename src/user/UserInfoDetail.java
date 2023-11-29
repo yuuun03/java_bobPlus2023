@@ -95,8 +95,8 @@ public class UserInfoDetail {
 	protected void setName(String name) {this.name = name;}
 	
 	//테스트 위해 아이디와 패스워드만 임의로 퍼블릭 변경(테스트 이후 복구 예정)
-	public void setId(String id) {this.id = id;}
-	public void setPassword(String password) {this.password = password;}
+	protected void setId(String id) {this.id = id;}
+	protected void setPassword(String password) {this.password = password;}
 	
 	protected void setEmail(String email) {this.email = email;}
 	protected void setPhoneNum(long phoneNum) {this.phoneNum = phoneNum;}

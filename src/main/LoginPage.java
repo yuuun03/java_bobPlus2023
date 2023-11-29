@@ -2,8 +2,13 @@ package main;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+
+import admin.Product;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
+
 import user.SignUp; //회원가입 팝업창
 import user.UserInfoDetail;
 
@@ -15,7 +20,7 @@ public class LoginPage extends JFrame{
 	
 	// 마이페이지 프레임 구현 내용
 	public LoginPage() {} //기본 생성자
-	public LoginPage(UserInfoDetail myUser) {
+	public LoginPage(UserInfoDetail myUser, Vector<Product> pList) {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
 		
@@ -38,25 +43,25 @@ public class LoginPage extends JFrame{
 		//---액션 설정
 		df.mainIL.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
-				new MainFrame(myUser);
+				new MainFrame(myUser, pList);
 			}
 		});
 		
 		df.login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LoginPage(myUser); //로그인 페이지 전환
+				new LoginPage(myUser, pList); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 		
 		df.my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new MyPage(myUser); //로그인 페이지 전환
+				new MyPage(myUser, pList); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 		
 		df.cart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Cart(myUser); //로그인 페이지 전환
+				new Cart(myUser, pList); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 						
@@ -118,7 +123,7 @@ public class LoginPage extends JFrame{
 				//myUser.setId("test"); myUser.setPassword("1234");
 				if (myUser.getId().equals(id.getText()) && myUser.getPassword().equals(pw.getText())){
 					//로그인하기 버튼을 없애고 MY페이지로 변환할 필요 있음.
-					new MainFrame(myUser);
+					new MainFrame(myUser, pList);
 					dispose();
 				}
 				else {

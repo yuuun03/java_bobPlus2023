@@ -2,10 +2,12 @@ package main;
 
 import javax.swing.*;
 
+import admin.Product;
 import user.UserInfoDetail;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
 
 public class Cart extends JFrame {
 	
@@ -17,7 +19,7 @@ public class Cart extends JFrame {
 	}
 	
 	public Cart() {}
-	public Cart(UserInfoDetail myUser) {
+	public Cart(UserInfoDetail myUser, Vector<Product> pList) {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
 		mainPanel.setSize(1920, 1080);
@@ -38,25 +40,25 @@ public class Cart extends JFrame {
 		//---액션 설정
 		df.mainIL.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
-				new MainFrame(myUser);
+				new MainFrame(myUser, pList);
 			}
 		});
 		
 		df.login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LoginPage(myUser); //로그인 페이지 전환
+				new LoginPage(myUser, pList); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 		
 		df.my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new MyPage(myUser); //로그인 페이지 전환
+				new MyPage(myUser, pList); //마이 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 			
 		df.cart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Cart(myUser); //로그인 페이지 전환
+				new Cart(myUser, pList); //장바구니 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 						
@@ -82,17 +84,6 @@ public class Cart extends JFrame {
 			
 			//버튼 종류마다 이벤트 다르게 지정
 			switch(bRefer.getText()) {
-			
-			case "로그인": 
-				new LoginPage(); //로그인 페이지 전환
-				setVisible(false); //기존 페이지 안보이게 변경
-				break;
-				
-			case "MY": 
-				new MyPage();
-				setVisible(false);
-				break;
-					
 			case "지금 뜨는 상품" : case "금주의 TOP 10" :
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나

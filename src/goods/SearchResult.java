@@ -17,10 +17,54 @@ public class SearchResult extends JFrame{
 	//화면에 표시할 8개의 상품 패널
 	
 	public SearchResult() {}
-	public SearchResult(UserInfoDetail myUser, String pName) {
-		//공통 패널 추가 요망.
+	public SearchResult(UserInfoDetail myUser, Vector<Product> pList, String pName) {
+		//공통 패널
+		JPanel mainPanel = new JPanel();
+		setTitle("밥심+"); //제목 설정
 		
-		MasterGoods mg = new MasterGoods();
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Image img = kit.getImage("src/graphics/images/iconOnly.png");
+		setIconImage(img);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setLayout(null);
+		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
+		
+		//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가 -> MainFrame.java 복붙
+		CommonPanel df = new CommonPanel(); //패널 객체 생성
+		add(df.commonPanel); //패널 추가
+				
+		//---액션 설정
+		df.mainIL.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent e) {
+				new MainFrame(myUser, pList);
+			}
+		});
+		df.login.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginPage(myUser, pList); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
+		df.my.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MyPage(myUser, pList); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
+		df.cart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Cart(myUser, pList); //로그인 페이지 전환
+				dispose(); //기존 페이지 안보이게 변경
+			}});
+		
+		df.newHotGoods.addActionListener(new MainActionListener());
+		df.weekTop10Goods.addActionListener(new MainActionListener());
+		df.checkAttendance.addActionListener(new MainActionListener());
+		df.couponPoint.addActionListener(new MainActionListener());
+		df.communityU.addActionListener(new MainActionListener());
+		df.newMonthGoods.addActionListener(new MainActionListener());
+		
+		//검색 부분
 		Search search = new Search();
 		String searchName = search.getSearch();
 		
@@ -33,6 +77,7 @@ public class SearchResult extends JFrame{
 		product7 = new JPanel();
 		product8 = new JPanel();
 		
+		/*
 		displayProduct(product1, mg.getProductAtIndex(0), searchName); //product가 null로 떠서 오류가 생김
 		displayProduct(product2, mg.getProductAtIndex(1), searchName);
 		displayProduct(product3, mg.getProductAtIndex(2), searchName);
@@ -41,9 +86,11 @@ public class SearchResult extends JFrame{
 		displayProduct(product6, mg.getProductAtIndex(5), searchName);
 		displayProduct(product7, mg.getProductAtIndex(6), searchName);
 		displayProduct(product8, mg.getProductAtIndex(7), searchName);
+		*/
 		
 		ShowSearchFilter filter = new ShowSearchFilter();
 		
+		/*
 		for(int i=0;i<8;i++) {
 			for(String CU:filter.getFilterCU()) { //조리도구 필터링
 				if (mg.getProductAtIndex(i).getCookingUtensils().contains(CU)) { //조리도구가 일치하면
@@ -55,13 +102,14 @@ public class SearchResult extends JFrame{
 			}
 		}
 		
+		
 		for(int i=0;i<8;i++) {
 			for(String CU:filter.getFilterAl()) { //알러지 정보 필터링
 				if(mg.getProductAtIndex(i).getContainAllergy().contains(CU)) {
 					hideProductionAtIndex(i); //일치하면 숨기기
 				}
 			}
-		}
+		}*/
 	}
 	
 	public void hideProductionAtIndex(int index) { //index 번째 상품 숨기기
@@ -153,50 +201,7 @@ public class SearchResult extends JFrame{
 	
 	public SearchResult(UserInfoDetail myUser) {
 		
-		JPanel mainPanel = new JPanel();
-		setTitle("밥심+"); //제목 설정
 		
-		Toolkit kit = Toolkit.getDefaultToolkit();
-		Image img = kit.getImage("src/graphics/images/iconOnly.png");
-		setIconImage(img);
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		setLayout(null);
-		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
-		
-		//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가 -> MainFrame.java 복붙
-		CommonPanel df = new CommonPanel(); //패널 객체 생성
-		add(df.commonPanel); //패널 추가
-				
-		//---액션 설정
-		df.mainIL.addMouseListener(new MouseAdapter() {
-			public void mouseReleased(MouseEvent e) {
-				new MainFrame(myUser);
-			}
-		});
-		df.login.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new LoginPage(myUser); //로그인 페이지 전환
-				dispose(); //기존 페이지 안보이게 변경
-			}});
-		df.my.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new MyPage(myUser); //로그인 페이지 전환
-				dispose(); //기존 페이지 안보이게 변경
-			}});
-		df.cart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new Cart(myUser); //로그인 페이지 전환
-				dispose(); //기존 페이지 안보이게 변경
-			}});
-		
-		df.newHotGoods.addActionListener(new MainActionListener());
-		df.weekTop10Goods.addActionListener(new MainActionListener());
-		df.checkAttendance.addActionListener(new MainActionListener());
-		df.couponPoint.addActionListener(new MainActionListener());
-		df.communityU.addActionListener(new MainActionListener());
-		df.newMonthGoods.addActionListener(new MainActionListener());
 		
 	}
 	//이벤트 처리 클래스들

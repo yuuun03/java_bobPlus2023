@@ -2,7 +2,9 @@ package main;
 
 import javax.swing.*;
 
+import admin.MakeProducts;
 import admin.MasterGoods;
+import admin.Product;
 import goods.SearchResult;
 
 import java.awt.*;
@@ -19,7 +21,9 @@ public class MainFrame extends JFrame{
 	// !!! 실행되는 부분 !!!
 	public static void main(String[] args) {
 		//상품 시작 전 미리 설정
+		MakeProducts mk = new MakeProducts();
 		MasterGoods mg = new MasterGoods();
+		
 		/*
 		 * mg.productAdd(String name, String image, double productStar,
 			int serving, int productCount, int price,
@@ -30,15 +34,19 @@ public class MainFrame extends JFrame{
 			pList 요소들은 product 클래스의 getter을 이용해서 정보를 읽어올 수 있음.
 			pList.isEmpty();역시 사용 가능
 		 * */
+		
+		mg.setPList(mk.make());
+		
+		Vector<Product> pList = mg.getPList();
 				
 		UserInfoDetail myUser = new UserInfoDetail(); //사용자 객체 미리 생성.
-		MainFrame m = new MainFrame(myUser);
+		MainFrame m = new MainFrame(myUser, pList);
 	}
 	
 	
 	//메인 페이지 프레임 구현 내용
 	public MainFrame() {}
-	public MainFrame(UserInfoDetail myUser) {
+	public MainFrame(UserInfoDetail myUser, Vector<Product> pList) {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
 		//---아이콘 설정
@@ -58,25 +66,25 @@ public class MainFrame extends JFrame{
 		//---액션 설정
 		df.mainIL.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
-				new MainFrame(myUser);
+				new MainFrame(myUser, pList);
 			}
 		});
 		
 		df.login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LoginPage(myUser); //로그인 페이지 전환
+				new LoginPage(myUser, pList); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 		
 		df.my.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new MyPage(myUser); //로그인 페이지 전환
+				new MyPage(myUser, pList); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 			
 		df.cart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Cart(myUser); //로그인 페이지 전환
+				new Cart(myUser, pList); //로그인 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 		
@@ -84,7 +92,7 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String pName = e.getActionCommand();
 				//상품 객체까지 매개변수로 받아와야하나 지금 일시적으로 미지정함.
-				new SearchResult(myUser, pName);
+				new SearchResult(myUser, pList, pName);
 				dispose();
 			}
 		});
