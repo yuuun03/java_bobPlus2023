@@ -176,8 +176,12 @@ public class SearchResult extends JFrame{
 			resultPanel.add(onePriceLabel);
 			resultPanel.add(disrateLabel);
 			
-			
-			
+			if(searchName != null && !searchName.isEmpty() && product.getName().contains(searchName)) {
+				//검색어가 빈칸이 아니고, 검색어가 상품명에 속해있으면
+				resultPanel.setVisible(true); //상품 보이기
+			} else {
+				resultPanel.setVisible(false); //아니면 상품을 보이지 않음
+			}
 		} else {
 			System.out.println("Product is null"); //디버깅 목적
 		}
@@ -191,13 +195,6 @@ public class SearchResult extends JFrame{
 		searchResultPanel.add(product6);
 		searchResultPanel.add(product7);
 		searchResultPanel.add(product8);
-		
-		if(searchName != null && !searchName.isEmpty() && product.getName().contains(searchName)) {
-			//검색어가 빈칸이 아니고, 검색어가 상품명에 속해있으면
-			resultPanel.setVisible(true); //상품 보이기
-		} else {
-			resultPanel.setVisible(false); //아니면 상품을 보이지 않음
-		}
 		
 		setTitle("Search Result");
 		setSize(1920, 1080); // 적절한 크기로 설정
