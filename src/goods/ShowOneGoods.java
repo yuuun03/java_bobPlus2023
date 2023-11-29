@@ -26,25 +26,26 @@ public class ShowOneGoods {
 		MasterGoods mg = new MasterGoods();
 		UserInfoDetail user = new UserInfoDetail();
 		
-		int productNum = 0;
-		//index가 몇 번째인지 아는 함수 필요?? 아니면 SearchResult에서 패널 클릭 시 이벤트처리로 상품 정보 받아오기
+		Product oneProduct = new Product();
+		//oneProduct = SearchResult의 이름 클릭으로부터 받아온 Product 정보
 		
 		for(String CU:user.getAllergy()) { //알러지 정보 필터링
-			if(mg.getProductAtIndex(productNum).getContainAllergy().contains(CU)) {
+			if(oneProduct.getContainAllergy().contains(CU)) {
 				Image warn = new ImageIcon("src/graphics/images/warning.png").getImage();
 				warn = warn.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 				ImageIcon iconWarn = new ImageIcon(warn);
 				JLabel warnAl = new JLabel(iconWarn);
-				warnAl.setSize(30,30);
+				warnAl.setSize(30,30); //사이즈 다시 잡아야함
 				warnAl.setLocation(20, 20); //위치 다시 잡아야함
-				oneGoodsPannel.add(warnAl); //진동하는거 추가...? (교재 참고)
+				oneGoodsPannel.add(warnAl);
+				//진동하는거 추가...? (교재 참고)
 			}
 		}
+		displayOneProduct(oneGoodsPannel, oneProduct);
 	}
-	private void displayOneProduct(JPanel resultPanel, Product product, String searchName) { //상품 패널을 표시하는 함수
+	
+	private void displayOneProduct(JPanel oneGoodsPannel, Product product) { //상품 패널을 표시하는 함수
 		if(product != null) { //상품 정보가 null이 아니면
-			resultPanel.setLayout(null);
-				
 			JLabel nameLabel = new JLabel(product.getName());
 				
 			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞는지...?
