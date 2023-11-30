@@ -23,7 +23,7 @@ public class MakeProducts{
 		Vector<String> sdbAl = new Vector<>();
 		sdbAl.add("가금류");
 				
-		mg.productAdd("순두부 찌개",sdbImg,5.0,2,5,15000,20.0, sdbCU, sdbAl);
+		mg.productAdd("순두부 찌개",sdbImg,5.0,2,5,15000,20.0, sdbCU, sdbAl); //'순두부 찌개' 상품 추가
 		
 		
 		Vector<String> bdCU = new Vector<>();
@@ -33,7 +33,7 @@ public class MakeProducts{
 		bdAl.add("대두");
 		bdAl.add("돼지고기");
 				
-		mg.productAdd("부대 찌개",bdImg,5.0,2,5,16000,15.0, bdCU, bdAl);
+		mg.productAdd("부대 찌개",bdImg,5.0,2,5,16000,15.0, bdCU, bdAl); //'부대 찌개' 상품 추가
 		
 		
 		Vector<String> kchCU = new Vector<>();
@@ -42,7 +42,7 @@ public class MakeProducts{
 		kchAl.add("돼지고기");
 		kchAl.add("대두");
 				
-		mg.productAdd("김치 찌개", kchImg,4.0,3,5,15000,12.0, kchCU, kchAl);
+		mg.productAdd("김치 찌개", kchImg,4.0,3,5,15000,12.0, kchCU, kchAl); //'김치 찌개' 상품 추가
 		
 		return mg.getPList();
 	}
