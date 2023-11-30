@@ -14,8 +14,7 @@ import user.*;
 
 public class ShowOneGoods extends JFrame {
 	JPanel oneGoodsPannel = new JPanel();
-	private Thread th; //진동하는 스레드 구현 위함
-	
+
 	public ShowOneGoods() {}
 	public ShowOneGoods(UserInfoDetail myUser, Vector<Product> pList, Product p) {
 		//화면 기본 설정 - Start
@@ -125,12 +124,19 @@ public class ShowOneGoods extends JFrame {
 		oneGoodsPannel.add(inCart);
 		oneGoodsPannel.add(goBuy);
 		
-		/*
-		df.productDetail.addActionListener(new OneProductActionListener());
-		df.showReview.addActionListener(new OneProductActionListener());
-		df.inCart.addActionListener(new OneProductActionListener());
-		df.goBuy.addActionListener(new OneProductActionListener());
-		*/
+		
+		productDetail.addActionListener(new OneProductActionListener());
+		showReview.addActionListener(new OneProductActionListener());
+		goBuy.addActionListener(new OneProductActionListener());
+		
+		inCart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기				
+				myUser.cartList.add(bRefer.getText()); //장바구니에 담기
+				
+				JOptionPane.showMessageDialog(null, "장바구니에 담겼습니다."); //안내 메시지
+			}
+		});
 		
 		oneGoodsPannel.setLayout(null);
 		
@@ -298,115 +304,14 @@ public class ShowOneGoods extends JFrame {
 			case "리뷰": 
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
-					
-			case "장바구니": 
-				JOptionPane.showMessageDialog(null, "장바구니에 담겼습니다.");
-				//장바구니 기능 추가하는 경우 추가적인 코드 필요 (상품 객체 넘기는 코드 필요)
-				break;
 						
 			case "구매": 
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
-			}
-		}
-	}
-	
-	/* //SearchResult 때랑 똑같이 빨간 줄 뜨는데 해결 어떻게 하는지 모르겠어서 주석처리 했어...
-	public ShowOneGoods(UserInfoDetail myUser) {
-		JPanel mainPanel = new JPanel();
-		setTitle("밥심+"); //제목 설정
-		
-		Toolkit kit = Toolkit.getDefaultToolkit();
-		Image img = kit.getImage("src/graphics/images/iconOnly.png");
-		setIconImage(img);
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		setLayout(null);
-		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
-		
-		//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가 -> MainFrame.java 복붙
-		CommonPanel df = new CommonPanel(); //패널 객체 생성
-		add(df.commonPanel); //패널 추가
-				
-		//---액션 설정
-		df.mainIL.addMouseListener(new MouseAdapter() {
-			public void mouseReleased(MouseEvent e) {
-				new MainFrame(myUser);
-			}
-		});
-		df.login.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new LoginPage(myUser); //로그인 페이지 전환
-				dispose(); //기존 페이지 안보이게 변경
-			}});
-		df.my.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new MyPage(myUser); //로그인 페이지 전환
-				dispose(); //기존 페이지 안보이게 변경
-			}});
-		df.cart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new Cart(myUser); //로그인 페이지 전환
-				dispose(); //기존 페이지 안보이게 변경
-			}});
-		
-		df.newHotGoods.addActionListener(new MainActionListener());
-		df.weekTop10Goods.addActionListener(new MainActionListener());
-		df.checkAttendance.addActionListener(new MainActionListener());
-		df.couponPoint.addActionListener(new MainActionListener());
-		df.communityU.addActionListener(new MainActionListener());
-		df.newMonthGoods.addActionListener(new MainActionListener());
-		
-	}
-	//이벤트 처리 클래스들
-	class MainActionListener implements ActionListener{
-		//Action : 버튼 클릭 
-		public void actionPerformed(ActionEvent e) {
-			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
 			
-			//버튼 종류마다 이벤트 다르게 지정
-			switch(bRefer.getText()) {
-						
-			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
-						/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
-						지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
-						이는 추후 구현 예정 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-					
-			case "출석 체크": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-					
-			case "쿠폰/포인트": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-						
-			case "커뮤니티": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-					
-			case "이달의 신상품": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-					
-			case "오늘 뭐 먹지?": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-
-			case "지금 할인 중": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-
-			case "인기 급상승": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-					
-			default : //장바구니 클릭 시 
+			default :
 				break;
 			}
 		}
 	}
-	*/
 }
