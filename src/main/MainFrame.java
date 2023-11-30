@@ -24,17 +24,6 @@ public class MainFrame extends JFrame{
 		MakeProducts mk = new MakeProducts();
 		MasterGoods mg = new MasterGoods();
 		
-		/*
-		 * mg.productAdd(String name, String image, double productStar,
-			int serving, int productCount, int price,
-			double productDisRate, Vector<String> cookingUtensils,
-			Vector<String> containAllergy) 메소드 이용해서 상품 여러개 추가함.
-			
-			pList = mg.getPList();로 받아오고 pList를 생성자의 매개변수로 전달해주면
-			pList 요소들은 product 클래스의 getter을 이용해서 정보를 읽어올 수 있음.
-			pList.isEmpty();역시 사용 가능
-		 * */
-		
 		mg.setPList(mk.make());
 		
 		Vector<Product> pList = mg.getPList();

@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Vector;
 
 import admin.*;
@@ -12,8 +13,9 @@ import main.*;
 import goods.*;
 import user.*;
 
-public class ShowOneGoods extends JFrame {
+public class ShowOneGoods extends JFrame implements Runnable {
 	JPanel oneGoodsPannel = new JPanel();
+	private Thread th;
 
 	public ShowOneGoods() {}
 	public ShowOneGoods(UserInfoDetail myUser, Vector<Product> pList, Product p) {
@@ -84,7 +86,16 @@ public class ShowOneGoods extends JFrame {
 				warnAl.setSize(100,100); //사이즈 다시 잡아야함
 				warnAl.setLocation(1370, 333); //위치 다시 잡아야함
 				oneGoodsPannel.add(warnAl);
-				//진동하는거 추가...? (교재 참고)
+				
+				this.addMouseListener(new MouseAdapter() {
+					public void mousePressed(MouseEvent e) {
+						if(!th.isAlive()) {return;}
+						else {th.interrupt();}
+					}				
+				});
+				
+				th = new Thread(this);
+				th.start();
 			}
 		}
 		
@@ -240,55 +251,75 @@ public class ShowOneGoods extends JFrame {
 	}
 	
 	//이벤트 처리 클래스들
-		class MainActionListener implements ActionListener{
-			//Action : 버튼 클릭 
-			public void actionPerformed(ActionEvent e) {
-				JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
+	@Override
+	//--- 진동하는 스레드 : 알러지 있는 경우
+	public void run() { 
+		Random r = new Random();
+		while(true) {
+			try {
+				Thread.sleep(20); //20ms 잠자기
+			}
+			catch(InterruptedException e) {
+				return; //인터럽 들어오면 진동 종료
+			}
+			
+			int x = getX() + r.nextInt() % 5;
+			int y = getY() + r.nextInt() % 5;
+ 			setLocation(x, y);
+		}
+	}
+	
+	//--- 공통패널 버튼 액션 지정
+	class MainActionListener implements ActionListener{
+		//Action : 버튼 클릭 
+		public void actionPerformed(ActionEvent e) {
+			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
+			
+			//버튼 종류마다 이벤트 다르게 지정
+			switch(bRefer.getText()) {
 				
-				//버튼 종류마다 이벤트 다르게 지정
-				switch(bRefer.getText()) {
+			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
+				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
+				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
+				이는 추후 구현 예정*/
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
+				
+			case "출석 체크": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
+				
+			case "쿠폰/포인트": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 					
-				case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
-					/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
-					지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
-					이는 추후 구현 예정*/
-					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-					break;
+			case "커뮤니티": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 				
-				case "출석 체크": 
-					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-					break;
+			case "이달의 신상품": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 				
-				case "쿠폰/포인트": 
-					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-					break;
-					
-				case "커뮤니티": 
-					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-					break;
-				
-				case "이달의 신상품": 
-					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-					break;
-				
-				case "오늘 뭐 먹지?": 
-					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-					break;
+			case "오늘 뭐 먹지?": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 
-				case "지금 할인 중": 
-					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-					break;
+			case "지금 할인 중": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 
-				case "인기 급상승": 
-					JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-					break;
+			case "인기 급상승": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				break;
 				
-				default : //장바구니 클릭 시 
-					break;
-				}
+			default : //장바구니 클릭 시 
+				break;
 			}
 		}
+	}
 	
+	//--- 상품 페이지 내 버튼들
 	class OneProductActionListener implements ActionListener{
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
