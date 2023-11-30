@@ -182,10 +182,10 @@ public class SearchResult extends JFrame{
 			);
 		}
 		
-		searchResultPanel.setBackground(Color.white);
-		searchResultPanel.setLayout(new GridLayout(2,4)); //8개 상품 패널 띄우기
+		searchResultPanel.setBackground(Color.white); //배경 흰색으로 설정
+		searchResultPanel.setLayout(new GridLayout(2,4)); //8개 상품을 그리드 배치
 		
-		searchResultPanel.add(product1);
+		searchResultPanel.add(product1); //화면 패널에 상품 1~8 추가
 		searchResultPanel.add(product2);
 		searchResultPanel.add(product3);
 		searchResultPanel.add(product4);
@@ -194,16 +194,16 @@ public class SearchResult extends JFrame{
 		searchResultPanel.add(product7);
 		searchResultPanel.add(product8);
 		
-		searchResultPanel.setBounds(240, 240, 1260, 700);
+		searchResultPanel.setBounds(240, 240, 1260, 700); //사이즈, 위치 설정
 				
-		mainPanel.add(searchResultPanel);
+		mainPanel.add(searchResultPanel); //메인 패널에 상품 패널 추가
 		
 		setSize(1920, 1080); // 적절한 크기로 설정
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true); // 프레임을 보이도록 설정
 	}
 	
-	public void hideProductionAtIndex(int index) { //index 번째 상품 숨기기
+	public void hideProductionAtIndex(int index) { //index 번째 상품 숨기는 함수
 		if(index>=0 && index < 8) {
 			switch (index) {
 	        case 0:
@@ -242,7 +242,7 @@ public class SearchResult extends JFrame{
 			//이미지 설정
 			Image img = new ImageIcon(product.getImage()).getImage();
 			img = img.getScaledInstance(400, 150, Image.SCALE_SMOOTH);
-			ImageIcon productIcon = new ImageIcon(img); //사진 이렇게 불러오는 게 맞는지...?
+			ImageIcon productIcon = new ImageIcon(img);
 			JLabel proImg = new JLabel(productIcon);
 			
 			proImg.setBounds(0, 0, 400, 150); //사진 사이즈 설정
@@ -250,10 +250,10 @@ public class SearchResult extends JFrame{
 			//라벨 설정
 			JLabel nameLabel = new JLabel(product.getName());
 			
-			nameLabel.setBounds(0, 155, 315, 50);
-			nameLabel.setFont(new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 40));
+			nameLabel.setBounds(0, 155, 315, 50); //크기, 위치 설정
+			nameLabel.setFont(new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 40)); //폰트 설정
 			nameLabel.addMouseListener(new MouseAdapter() {
-				public void mouseReleased(MouseEvent e) {
+				public void mouseReleased(MouseEvent e) { //마우스 클릭 이벤트 설정
 					new ShowOneGoods(myUser, pList, product);
 					dispose();
 				}
@@ -262,8 +262,8 @@ public class SearchResult extends JFrame{
 			//별점 설정
 			double star = product.getProductStar();
 			JLabel starLabel = new JLabel ("별점:" + Double.toString(star));
-			starLabel.setBounds(0, 195, 315, 50);
-			starLabel.setFont(new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20));
+			starLabel.setBounds(0, 195, 315, 50); //크기, 위치 설정
+			starLabel.setFont(new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20)); //폰트 설정
 			
 			//가격, 할인율 설정(가격은 할인율 적용하여 출력)
 			int price = product.getPrice();
@@ -284,14 +284,14 @@ public class SearchResult extends JFrame{
 			
 			
 			
-			resultPanel.add(proImg);
+			resultPanel.add(proImg); //상품 패널에 각 항목 추가(이미지, 이름 등)
 			resultPanel.add(nameLabel);
 			resultPanel.add(starLabel);
 			resultPanel.add(priceLabel);
 			resultPanel.add(onePriceLabel);
 			resultPanel.add(disrateLabel);
 			
-			resultPanel.setBackground(Color.white);
+			resultPanel.setBackground(Color.white); //패널 배경색 흰색으로 설정
 			
 			
 			if(searchName != null && !(searchName.isEmpty()) && product.getName().contains(searchName)) {
@@ -300,7 +300,7 @@ public class SearchResult extends JFrame{
 			}
 		}
 		else {
-			resultPanel.setSize(50, 50);
+			resultPanel.setSize(50, 50); //패널 사이즈 설정
 			resultPanel.setBackground(Color.white);
 			
 			searchResultPanel.add(resultPanel);
