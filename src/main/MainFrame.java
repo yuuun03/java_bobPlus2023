@@ -23,6 +23,7 @@ public class MainFrame extends JFrame{
 		//상품 시작 전 미리 설정
 		MakeProducts mk = new MakeProducts(); //상품 추가를 위한 객체 생성
 		MasterGoods mg = new MasterGoods(); //상품 관리를 위한 객체 생성
+		Cart cart = new Cart(); // 장바구니 관리를 위한 객체 생성
 		
 		mg.setPList(mk.make()); //관리되는 상품 목록에 새 상품 추가
 		Vector<Product> pList = mg.getPList(); //전달받을 상품 목록 객체 생성
@@ -32,6 +33,7 @@ public class MainFrame extends JFrame{
 		
 		//메인 프레임 생성 및 호출
 		MainFrame m = new MainFrame(myUser, pList);
+		
 	}
 	
 	

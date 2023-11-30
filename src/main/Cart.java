@@ -16,14 +16,13 @@ public class Cart extends JFrame {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		
 	}
 	
 	public Cart() {}
 	public Cart(UserInfoDetail myUser, Vector<Product> pList) {
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
-		mainPanel.setSize(1920, 1080);
 		
 		//---아이콘 설정
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -78,8 +77,14 @@ public class Cart extends JFrame {
 		df.communityU.addActionListener(new MainActionListener());
 		df.newMonthGoods.addActionListener(new MainActionListener());
 		
+		JLabel myCart = new JLabel("나의 장바구니");
+		myCart.setBackground(new Color(151, 192, 48));
+		myCart.setBounds(30, 400, 250, 30);
+		mainPanel.add(myCart);
+		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
+		mainPanel.setBounds(0,0, 1920,1080);
 		mainPanel.setBackground(Color.white);
 		add(mainPanel);
 		setVisible(true); // 프레임 출력
