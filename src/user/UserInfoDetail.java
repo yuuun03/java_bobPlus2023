@@ -24,9 +24,9 @@ public class UserInfoDetail {
 	protected String address = "";
 	
 	//---목록: 장바구니, 찜, 구매
-	protected Vector<String> cartList;
-	protected Vector<String> likeList;
-	protected Vector<String> buyList;
+	public Vector<String> cartList = new Vector<String>();
+	protected Vector<String> likeList = new Vector<String>();
+	protected Vector<String> buyList = new Vector<String>();
 	
 	// 로그인 확인
 	private boolean logCheck = false;

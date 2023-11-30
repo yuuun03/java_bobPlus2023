@@ -10,8 +10,8 @@ import java.util.Vector;
 public class ShowSearchFilter extends JFrame{
 	public JPanel filterPanel = new JPanel();
 	
-	public Vector<String> filterCU = new Vector<>();
-    public Vector<String> filterAl = new Vector<>();
+	public Vector<String> filterCU = new Vector<String>();
+    public Vector<String> filterAl = new Vector<String>();
     
     public JCheckBox cookUtensils[] = new JCheckBox[5];
     public JCheckBox infoAllergy[] = new JCheckBox[22];

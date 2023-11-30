@@ -3,6 +3,7 @@ package goods;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 import java.util.Arrays;
 import java.util.Vector;
@@ -85,58 +86,6 @@ public class SearchResult extends JFrame{
 		
 		mainPanel.add(filter.filterPanel);
 		
-		// --- 액션 추가
-		for(int i=0; i< filter.cookUtensils.length;i++) {
-			filter.cookUtensils[i].addItemListener(new ItemListener(){
-				public void itemStateChanged(ItemEvent e) {
-					Object source = e.getItemSelectable();
-					if (source instanceof JCheckBox) {
-						JCheckBox checkBox = (JCheckBox) source;
-						
-				    // 선택 상태에 따라 해당하는 Vector를 업데이트
-					if (checkBox.isSelected()) {
-						if (Arrays.asList(filter.cookUtensils).contains(checkBox)) {
-							filter.filterCU.add(checkBox.getText());
-				            } else if (Arrays.asList(filter.infoAllergy).contains(checkBox)) {
-				            	filter.filterAl.add(checkBox.getText());
-				            }
-				        } else {
-				            if (Arrays.asList(filter.cookUtensils).contains(checkBox)) {
-				            	filter.filterCU.remove(checkBox.getText());
-				            } else if (Arrays.asList(filter.infoAllergy).contains(checkBox)) {
-				            	filter.filterAl.remove(checkBox.getText());
-				            }
-				        }
-					}
-				}
-			});
-		}
-		for(int i=0;i<filter.alName.length;i++) {
-			filter.infoAllergy[i].addItemListener(new ItemListener(){
-				public void itemStateChanged(ItemEvent e) {
-					Object source = e.getItemSelectable();
-					if (source instanceof JCheckBox) {
-						JCheckBox checkBox = (JCheckBox) source;
-						
-				    // 선택 상태에 따라 해당하는 Vector를 업데이트
-					if (checkBox.isSelected()) {
-						if (Arrays.asList(filter.cookUtensils).contains(checkBox)) {
-							filter.filterCU.add(checkBox.getText());
-				            } else if (Arrays.asList(filter.infoAllergy).contains(checkBox)) {
-				            	filter.filterAl.add(checkBox.getText());
-				            }
-				        } else {
-				            if (Arrays.asList(filter.cookUtensils).contains(checkBox)) {
-				            	filter.filterCU.remove(checkBox.getText());
-				            } else if (Arrays.asList(filter.infoAllergy).contains(checkBox)) {
-				            	filter.filterAl.remove(checkBox.getText());
-				            }
-				        }
-					}
-				}
-			});
-		}
-		
 		//검색 결과 출력 부분
 		product1 = new JPanel();
 		product2 = new JPanel();
@@ -152,33 +101,85 @@ public class SearchResult extends JFrame{
 		int emptyCnt = 0;
 		for(int i = 0; i < pBundle.length; i++) {
 			if(i < pList.size()) {
-				displayProduct(pBundle[i], pList.get(i), searchName);
+				displayProduct(pBundle[i], pList.get(i), searchName, myUser,  pList);
 			}
 			else {
 				emptyCnt++;
 			}
 		}
 		for(int i = 0; i < emptyCnt; i++) {
-			displayProduct(pBundle[8-emptyCnt + i], null, searchName);
+			displayProduct(pBundle[8-emptyCnt + i], null, searchName, myUser,  pList);
 		}
 		
-		for(int i=0;i<8;i++) {
-			for(String CU:filter.getFilterCU()) { //조리도구 필터링
-				if (pList.get(i).getCookingUtensils().contains(CU)) { //조리도구가 일치하면
-					continue;
+		
+		//필터 패널 액션 추가(필터링)
+		//--- 조리기구
+		Vector<Integer> hiddenIdxCU = new Vector<Integer>();
+		for(int i=0; i< filter.cookUtensils.length;i++) {
+			filter.cookUtensils[i].addItemListener(new ItemListener(){
+				public void itemStateChanged(ItemEvent e) {
+					Object source = e.getItemSelectable();
+					if (source instanceof JCheckBox) {
+						JCheckBox checkBox = (JCheckBox) source;
+						
+				    // 선택 상태에 따라 해당하는 Vector를 업데이트
+					if (checkBox.isSelected()) {
+						if (Arrays.asList(filter.cookUtensils).contains(checkBox)) {
+							filter.filterCU.add(checkBox.getText());
+							for(int i=0;i<8;i++) {
+								if (pList.get(i).getCookingUtensils().contains(checkBox.getText())) { //조리도구가 일치하면
+									continue;
+								}
+								else {
+									hideProductionAtIndex(i); //일치하지 않으면 숨기기
+									hiddenIdxCU.add(i);
+								}
+								}
+							}
+				            }
+					else {
+						filter.filterCU.remove(checkBox.getText());
+				        for(int i:hiddenIdxCU) {
+				        	pBundle[i].setVisible(true);
+				            }
+				        }
+					}
 				}
-				else {
-					hideProductionAtIndex(i); //일치하지 않으면 숨기기
-				}
-			}
+			});
 		}
 		
-		for(int i=0;i<8;i++) {
-			for(String CU:filter.getFilterAl()) { //알러지 정보 필터링
-				if(pList.get(i).getContainAllergy().contains(CU)) {
-					hideProductionAtIndex(i); //일치하면 숨기기
+		//--- 알러지
+		Vector<Integer> hiddenIdxAL = new Vector<Integer>();
+		for(int i=0;i<filter.alName.length;i++) {
+			filter.infoAllergy[i].addItemListener(new ItemListener(){
+				public void itemStateChanged(ItemEvent e) {
+					Object source = e.getItemSelectable();
+					if (source instanceof JCheckBox) {
+						JCheckBox checkBox = (JCheckBox) source;
+						
+				    // 선택 상태에 따라 해당하는 Vector를 업데이트
+					if (checkBox.isSelected()) {
+						if (Arrays.asList(filter.infoAllergy).contains(checkBox)) {
+				            	filter.filterAl.add(checkBox.getText());
+				            	for(int i=0;i<8;i++) {
+			        				if(pList.get(i).getContainAllergy().contains(checkBox.getText())) {
+			        					hideProductionAtIndex(i); //일치하면 숨기기
+			        					hiddenIdxAL.add(i);
+			        				}
+				        		}
+				        	}
+				         }
+				    
+					else {
+				          filter.filterAl.remove(checkBox.getText());
+				          for(int i:hiddenIdxAL) {
+					           	pBundle[i].setVisible(true);
+					           }
+				            }
+				        }
+					}
 				}
-			}
+			);
 		}
 		
 		searchResultPanel.setBackground(Color.white);
@@ -197,7 +198,6 @@ public class SearchResult extends JFrame{
 				
 		mainPanel.add(searchResultPanel);
 		
-		setTitle("Search Result");
 		setSize(1920, 1080); // 적절한 크기로 설정
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true); // 프레임을 보이도록 설정
@@ -234,43 +234,54 @@ public class SearchResult extends JFrame{
 		}
 	}
 	
-	private void displayProduct(JPanel resultPanel, Product product, String searchName) { //상품 패널을 표시하는 함수
+	//상품 패널을 표시하는 함수
+	private void displayProduct(JPanel resultPanel, Product product, String searchName, UserInfoDetail myUser, Vector<Product> pList) { 
 		if(product != null) { //상품 정보가 null이 아니면
-			resultPanel.setLayout(null);
+			resultPanel.setLayout(null);			
 			
+			//이미지 설정
+			Image img = new ImageIcon(product.getImage()).getImage();
+			img = img.getScaledInstance(400, 150, Image.SCALE_SMOOTH);
+			ImageIcon productIcon = new ImageIcon(img); //사진 이렇게 불러오는 게 맞는지...?
+			JLabel proImg = new JLabel(productIcon);
+			
+			proImg.setBounds(0, 0, 400, 150); //사진 사이즈 설정
+			
+			//라벨 설정
 			JLabel nameLabel = new JLabel(product.getName());
 			
-			Image productImg = new ImageIcon(product.getImage()).getImage(); //사진 이렇게 불러오는 게 맞는지...?
-			ImageIcon productIcon = new ImageIcon(productImg);
-			JLabel proImg = new JLabel(productIcon);
-			proImg.setBounds(10, 10, 100, 100); //사진 사이즈 설정
+			nameLabel.setBounds(0, 155, 315, 50);
+			nameLabel.setFont(new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 40));
+			nameLabel.addMouseListener(new MouseAdapter() {
+				public void mouseReleased(MouseEvent e) {
+					new ShowOneGoods(myUser, pList, product);
+					dispose();
+				}
+			});
 			
-			/*
-			//폰트 설정
-			//--- 로그인, 배송 조회 버튼
-			Font buttonFont = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 25);
-			//--- 로그인, 주문 조회 타이틀
-			Font miniTitle = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 23);
-			//--- 일반 라벨
-			Font basic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 17);
-			//--- 회원가입 버튼 전용
-			Font sFont = new Font("G마켓 산스 TTF Light", Font.PLAIN, 15);
-			*/
-			
+			//별점 설정
 			double star = product.getProductStar();
 			JLabel starLabel = new JLabel ("별점:" + Double.toString(star));
+			starLabel.setBounds(0, 195, 315, 50);
+			starLabel.setFont(new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20));
 			
+			//가격, 할인율 설정(가격은 할인율 적용하여 출력)
 			int price = product.getPrice();
-			JLabel priceLabel = new JLabel(Integer.toString(price));
+			double disrate = product.getProductDisRate();
 			
+			JLabel priceLabel = new JLabel(Double.toString(price *((100-disrate)/100))+" 원");
+			priceLabel.setBounds(0, 235, 315, 50);
+			priceLabel.setFont(new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20));
+			
+			JLabel disrateLabel = new JLabel("할인율 : " + Double.toString(disrate)+"%");
+			disrateLabel.setBounds(0, 300, 315, 50);
+			disrateLabel.setFont(new Font("G마켓 산스 TTF Light", Font.PLAIN, 15));
+	
 			double onePrice = product.getOnePersonPrice();
 			JLabel onePriceLabel = new JLabel ("1인분당 " + Double.toString(onePrice)+"원");
+			onePriceLabel.setBounds(0, 275, 315, 50);
+			onePriceLabel.setFont(new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20));
 			
-			double disrate = product.getProductDisRate();
-			JLabel disrateLabel = new JLabel(Double.toHexString(disrate)+"%");
-			
-			nameLabel.setBounds(0, 0, 50, 50);
-			nameLabel.setFont(new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 25));
 			
 			
 			resultPanel.add(proImg);
@@ -280,7 +291,7 @@ public class SearchResult extends JFrame{
 			resultPanel.add(onePriceLabel);
 			resultPanel.add(disrateLabel);
 			
-			resultPanel.setBackground(new Color(200, 228, 137));
+			resultPanel.setBackground(Color.white);
 			
 			
 			if(searchName != null && !(searchName.isEmpty()) && product.getName().contains(searchName)) {

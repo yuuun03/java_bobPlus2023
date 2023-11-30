@@ -30,7 +30,7 @@ public class MakeProducts{
 		bdCU.add("가스레인지");
 		Vector<String> bdAl = new Vector<>();
 		bdAl.add("가금류");
-		bdAl.add("콩");
+		bdAl.add("대두");
 		bdAl.add("돼지고기");
 				
 		mg.productAdd("부대 찌개",bdImg,5.0,2,5,16000,15.0, bdCU, bdAl);
@@ -40,7 +40,7 @@ public class MakeProducts{
 		kchCU.add("가스레인지");
 		Vector<String> kchAl = new Vector<>();
 		kchAl.add("돼지고기");
-		bdAl.add("콩");
+		kchAl.add("대두");
 				
 		mg.productAdd("김치 찌개", kchImg,4.0,3,5,15000,12.0, kchCU, kchAl);
 		
