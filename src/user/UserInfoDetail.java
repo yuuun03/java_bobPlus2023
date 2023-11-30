@@ -2,6 +2,8 @@ package user;
 
 import java.util.Vector;
 
+import admin.Product;
+
 public class UserInfoDetail {
 	//---멤버 변수
 	//---회원 이름
@@ -24,9 +26,9 @@ public class UserInfoDetail {
 	protected String address = "";
 	
 	//---목록: 장바구니, 찜, 구매
-	public Vector<String> cartList = new Vector<String>();
-	protected Vector<String> likeList = new Vector<String>();
-	protected Vector<String> buyList = new Vector<String>();
+	public Vector<Product> cartList = new Vector<Product>();
+	protected Vector<Product> likeList = new Vector<Product>();
+	protected Vector<Product> buyList = new Vector<Product>();
 	
 	// 로그인 확인
 	private boolean logCheck = false;
@@ -58,11 +60,6 @@ public class UserInfoDetail {
 		//---배송지 주소
 		this.address = address;
 		
-		//---목록: 장바구니, 찜, 구매
-		this.cartList = new Vector<String>();
-		this.likeList = new Vector<String>();
-		this.buyList = new Vector<String>();
-		
 		//--- 로그인 확인
 		this.logCheck = logCheck;
 		
@@ -87,9 +84,9 @@ public class UserInfoDetail {
 	
 	public boolean getLogCheck() {return this.logCheck;}
 	
-	public Vector<String> getCartList() {return this.cartList;}
-	public Vector<String> getLiketList() {return this.likeList;}
-	public Vector<String> getBuytList() {return this.buyList;}
+	public Vector<Product> getCartList() {return this.cartList;}
+	public Vector<Product> getLiketList() {return this.likeList;}
+	public Vector<Product> getBuytList() {return this.buyList;}
 
 	// 설정자
 	protected void setName(String name) {this.name = name;}
@@ -109,7 +106,7 @@ public class UserInfoDetail {
 	
 	public void setLogCheck(boolean logCheck) {this.logCheck = logCheck;}
 
-	protected void setCartList(Vector<String> cartList) {this.cartList = cartList;}
-	protected void setLikeList(Vector<String> likeList) {this.likeList = likeList;}
-	protected void setBuyList(Vector<String> buyList) {this.buyList = buyList;}
+	protected void setCartList(Vector<Product> cartList) {this.cartList = cartList;}
+	protected void setLikeList(Vector<Product> likeList) {this.likeList = likeList;}
+	protected void setBuyList(Vector<Product> buyList) {this.buyList = buyList;}
 }

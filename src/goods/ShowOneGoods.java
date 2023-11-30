@@ -123,7 +123,7 @@ public class ShowOneGoods extends JFrame implements Runnable {
 		inCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기				
-				myUser.cartList.add(p.getName()); //장바구니에 담기
+				myUser.cartList.add(p); //장바구니에 담기
 				
 				JOptionPane.showMessageDialog(null, "장바구니에 담겼습니다."); //안내 메시지
 			}

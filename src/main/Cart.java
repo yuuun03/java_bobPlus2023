@@ -19,7 +19,7 @@ public class Cart extends JFrame {
 	
 	public Cart() {}
 	public Cart(UserInfoDetail myUser, Vector<Product> pList) {
-		Vector<String> cartList = myUser.getCartList();
+		Vector<Product> cartList = myUser.getCartList();
 		System.out.println("carList: " + cartList);
 		
 		//화면 기본 설정 - Start
@@ -251,74 +251,105 @@ public class Cart extends JFrame {
 		buy.setBorderPainted(false); // 외각선 제거
 		mainPanel.add(buy);
 		
-		// 장바구니 담은 상품 정보 출력
-		// 체크박스
-		JCheckBox cartCheckProduct = new JCheckBox();
-		cartCheckProduct.setBounds(10 ,0, 20, 20);
-		cartCheckProduct.setContentAreaFilled(false); // 배경색 제거
-		productInfoPanel.add(cartCheckProduct);
-		
-		// 상품 이미지
-		String productImage = pList.get(0).getImage();
-		Image product = new ImageIcon(productImage).getImage();
-		product = product.getScaledInstance(180, 180, Image.SCALE_SMOOTH);
-		ImageIcon iconProduct = new ImageIcon(product);
-		JLabel checkProductImage = new JLabel(iconProduct);
-		checkProductImage.setBounds(35, 0, 180, 180);
-		productInfoPanel.add(checkProductImage);
-		
-		// 상품 이름
-		String productName = pList.get(0).getName();
-		JLabel pName = new JLabel(productName);
-		pName.setFont(buttonFont);
-		pName.setBounds(230, 60, 300, 40);
-		productInfoPanel.add(pName);
-		
-		// 알러지 정보 표시
-		JLabel allergy = new JLabel("알레르기 유발 식재료: ");
-		allergy.setBounds(230, 100, 300, 40);
-		allergy.setFont(new Font("G마켓 산스 TTF Light", Font.CENTER_BASELINE, 15));
-		productInfoPanel.add(allergy);
-		
-		int w = 0; int v = 0; //세부 위치 조정 위한 변수
-		Vector<String> containAllergy = pList.get(0).getContainAllergy();
-		JLabel allergyInfo[] = new JLabel[containAllergy.size()];
-		for(int i = 0; i < containAllergy.size(); i++) {
-			allergyInfo[i] = new JLabel(containAllergy.get(i));
-			allergyInfo[i].setFont(new Font("G마켓 산스 TTF Light", Font.CENTER_BASELINE, 15));
-			productInfoPanel.add(allergyInfo[i]);
-			// 위치 조정
-			allergyInfo[i].setSize(230 + 4 * containAllergy.size(), 40);
-			allergyInfo[i].setLocation( 390 + 4 * w, 100 + 4 * v);
+		if (!cartList.isEmpty()) { // 장바구니에 상품을 담았다면 실행
+			// 장바구니 담은 상품 정보 출력
+			int index = -1;
+			for (int i = 0; i < cartList.size(); i++) {
+				index = pList.indexOf(cartList.get(i)); 
+			}
 			
-			w++;
-			if (w == 3) {w = 0; v++;}
+			// 체크박스
+			JCheckBox cartCheckProduct = new JCheckBox();
+			cartCheckProduct.setBounds(10 ,0, 20, 20);
+			cartCheckProduct.setContentAreaFilled(false); // 배경색 제거
+			productInfoPanel.add(cartCheckProduct);
+			
+			// 상품 이미지
+			String productImage = pList.get(index).getImage();
+			Image product = new ImageIcon(productImage).getImage();
+			product = product.getScaledInstance(180, 180, Image.SCALE_SMOOTH);
+			ImageIcon iconProduct = new ImageIcon(product);
+			
+			JLabel checkProductImage = new JLabel(iconProduct);
+			checkProductImage.setBounds(35, 0, 180, 180);
+			productInfoPanel.add(checkProductImage);
+			
+			// 상품 이름
+			String productName = pList.get(index).getName();
+			JLabel pName = new JLabel(productName);
+			pName.setFont(buttonFont);
+			pName.setBounds(230, 60, 300, 40);
+			productInfoPanel.add(pName);
+			
+			// 알러지 정보 표시
+			JLabel allergy = new JLabel("알레르기 유발 식재료: ");
+			allergy.setBounds(230, 100, 300, 40);
+			allergy.setFont(new Font("G마켓 산스 TTF Light", Font.CENTER_BASELINE, 15));
+			productInfoPanel.add(allergy);
+			
+			int w = 0; int v = 0; //세부 위치 조정 위한 변수
+			Vector<String> containAllergy = pList.get(index).getContainAllergy();
+			JLabel allergyInfo[] = new JLabel[containAllergy.size()];
+			for(int i = 0; i < containAllergy.size(); i++) {
+				allergyInfo[i] = new JLabel(containAllergy.get(i));
+				allergyInfo[i].setFont(new Font("G마켓 산스 TTF Light", Font.CENTER_BASELINE, 15));
+				productInfoPanel.add(allergyInfo[i]);
+				// 위치 조정
+				allergyInfo[i].setSize(230 + 4 * containAllergy.get(i).length(), 40);
+				allergyInfo[i].setLocation( 390 + 50 * w, 100 + 4 * v);
+				
+				w++;
+				if (w == 3) {w = 0; v++;}
+			}
+			
+			
+			// 1개당 가격 표시
+			JLabel oneProduct = new JLabel("1개당");
+			oneProduct.setFont(labelFont);
+			oneProduct.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
+			oneProduct.setBounds(570, 35, 100, 50);
+			productInfoPanel.add(oneProduct);
+			
+			JLabel oneProductRealPrice = new JLabel(pList.get(index).getPrice() + " 원");
+			oneProductRealPrice.setFont(new Font("G마켓 산스 TTF Light", Font.CENTER_BASELINE, 15));
+			oneProductRealPrice.setForeground(Color.gray);
+			oneProductRealPrice.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
+			oneProductRealPrice.setBounds(570, 55, 100, 50);
+			productInfoPanel.add(oneProductRealPrice);
+			
+			// 할인 된 가격
+			double disRatePrice = pList.get(index).getPrice()*(pList.get(index).getProductDisRate()/100);
+			JLabel oneProductDisRate = new JLabel(pList.get(index).getPrice()-(int)disRatePrice + " 원");
+			oneProductDisRate.setFont(labelFont);
+			oneProductDisRate.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
+			oneProductDisRate.setBounds(570, 90, 100, 50);
+			productInfoPanel.add(oneProductDisRate);
+			
+			// 수량
+			JLabel count = new JLabel("수량:");
+			count.setFont(labelFont);
+			count.setBounds(700, 60, 100, 50);
+			productInfoPanel.add(count);
+			
+			String [] nowProductCount = new String[pList.get(index).getProductCount()];
+			for (int i = 0; i < pList.get(index).getProductCount(); i++) {
+				nowProductCount[i] = Integer.toString(i + 1);
+			}
+			SpinnerListModel SpinnerListModel = new SpinnerListModel(nowProductCount);
+			JSpinner countNum = new JSpinner(SpinnerListModel);
+			countNum.setFont(labelFont);
+			countNum.setBounds(750, 72, 70, 25);
+			productInfoPanel.add(countNum);
+			
+			// 쿠폰 적용
+			JButton coupon = new JButton("쿠폰 적용");
+			coupon.setFont(labelFont);
+			coupon.setBounds(700, 99, 120, 28);
+			productInfoPanel.add(coupon);
+			
+			// 주문 가격
+			
 		}
-		
-		
-		// 1개당 가격 표시
-		JLabel oneProduct = new JLabel("1개당");
-		oneProduct.setFont(labelFont);
-		oneProduct.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
-		oneProduct.setBounds(550, 50, 100, 50);
-		productInfoPanel.add(oneProduct);
-		
-		JLabel oneProductRealPrice = new JLabel(pList.get(0).getPrice() + " 원");
-		oneProductRealPrice.setFont(new Font("G마켓 산스 TTF Light", Font.CENTER_BASELINE, 15));
-		oneProductRealPrice.setForeground(Color.gray);
-		oneProductRealPrice.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
-		oneProductRealPrice.setBounds(550, 70, 100, 50);
-		productInfoPanel.add(oneProductRealPrice);
-		
-		// 할인 된 가격
-		double disRatePrice = pList.get(0).getPrice()*(pList.get(0).getProductDisRate()/100);
-		JLabel oneProductDisRate = new JLabel(pList.get(0).getPrice()-(int)disRatePrice + " 원");
-		oneProductDisRate.setFont(labelFont);
-		oneProductDisRate.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
-		oneProductDisRate.setBounds(550, 110, 100, 50);
-		productInfoPanel.add(oneProductDisRate);
-		
-		System.out.println(pList.get(0));
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
