@@ -38,6 +38,7 @@ public class ShowOneGoods extends JFrame implements Runnable {
 		df.mainIL.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				new MainFrame(myUser, pList);
+				dispose();
 			}
 		});
 				
