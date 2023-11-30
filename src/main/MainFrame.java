@@ -140,8 +140,8 @@ public class MainFrame extends JFrame{
 		JButton[] downLabel = {popularGoods, todaySPick, sale, hit, communityD}; //공통 패널 하단에 위치할 버튼들 모음
 		
 		//버튼 설정
-		Font dLabelFont = new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 20);
-		for(int j = 0; j < 5; j++) {
+		Font dLabelFont = new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 20); //버튼 내 폰트 설정
+		for(int j = 0; j < 5; j++) { //모든 하단 버튼들에 대해서 ...
 			//폰트 위치 설정
 			downLabel[j].setVerticalTextPosition(JButton.BOTTOM); //수직 설정
 			downLabel[j].setHorizontalTextPosition(JButton.CENTER);//수평 설정
@@ -150,69 +150,69 @@ public class MainFrame extends JFrame{
 			downLabel[j].setBorderPainted(false); //외곽선 없앰
 			downLabel[j].setContentAreaFilled(false); //배경색 없앰	
 			downLabel[j].setSize(200, 200); //사이즈 설정
-			downLabel[j].setFont(dLabelFont);
+			downLabel[j].setFont(dLabelFont); //폰트 지정
 			
 			//버튼 위치 설정
 			downLabel[j].setLocation(150 + 260 * j, 550); //위치 설정
-			mainPanel.add(downLabel[j]);
-			downLabel[j].addActionListener(new MainActionListener());
+			mainPanel.add(downLabel[j]); //메인 패널에 하단 버튼 추가
+			downLabel[j].addActionListener(new MainActionListener()); //기능 미구현에 대한 액션 추가
 		}
 		
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
 		add(mainPanel); //프레임에 패널 추가
-		mainPanel.setBackground(Color.white);
-		setBackground(Color.white);
+		mainPanel.setBackground(Color.white); //메인 패널 배경색 지정
+		setBackground(Color.white); //프레임 자체 배경색 지정
 		setVisible(true); // 프레임 출력
 	}
 
 	
 	//이벤트 처리 클래스들
+	// --- 기능 미구현 버튼들에 대한 액션
 	class MainActionListener implements ActionListener{
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
 			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
 			
-			//버튼 종류마다 이벤트 다르게 지정
+			//버튼 종류마다 이벤트 다르게 지정			
 			switch(bRefer.getText()) {
-				
-			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10" :
+			case "인기 상품": case "지금 뜨는 상품" : case "금주의 TOP 10":
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
-				이는 추후 구현 예정*/
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-			
-			case "출석 체크": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-			
-			case "쿠폰/포인트": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				이는 추후 구현 예정*/ 	
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
 				
+			case "출석 체크":
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				break;
+				
+			case "쿠폰/포인트": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				break;
+					
 			case "커뮤니티": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
-			
+				
 			case "이달의 신상품": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
-			
+				
 			case "오늘 뭐 먹지?": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-
-			case "지금 할인 중": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
-				break;
-
-			case "인기 급상승": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
 			
-			default : //장바구니 클릭 시 
+			case "지금 할인 중": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				break;
+			
+			case "인기 급상승": 
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				break;
+
+			default : 
 				break;
 			}
 		}
