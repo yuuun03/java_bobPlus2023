@@ -38,6 +38,7 @@ public class ShowOneGoods extends JFrame implements Runnable {
 		df.mainIL.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				new MainFrame(myUser, pList);
+				dispose();
 			}
 		});
 				
@@ -119,7 +120,14 @@ public class ShowOneGoods extends JFrame implements Runnable {
 		showReview.setBackground(new Color(255, 206, 90));
 		
 		JButton inCart = new JButton("장바구니");
-		inCart.addActionListener(new OneProductActionListener());
+		inCart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기				
+				myUser.cartList.add(bRefer.getText()); //장바구니에 담기
+				
+				JOptionPane.showMessageDialog(null, "장바구니에 담겼습니다."); //안내 메시지
+			}
+		});
 		inCart.setBounds(1070, 453, 220, 90);
 		inCart.setFont(bFont);
 		inCart.setBackground(new Color(200, 228, 137));
@@ -136,18 +144,6 @@ public class ShowOneGoods extends JFrame implements Runnable {
 		oneGoodsPannel.add(goBuy);
 		
 		
-		productDetail.addActionListener(new OneProductActionListener());
-		showReview.addActionListener(new OneProductActionListener());
-		goBuy.addActionListener(new OneProductActionListener());
-		
-		inCart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기				
-				myUser.cartList.add(bRefer.getText()); //장바구니에 담기
-				
-				JOptionPane.showMessageDialog(null, "장바구니에 담겼습니다."); //안내 메시지
-			}
-		});
 		
 		oneGoodsPannel.setLayout(null);
 		
@@ -155,7 +151,6 @@ public class ShowOneGoods extends JFrame implements Runnable {
 		oneGoodsPannel.setBounds(0, 203, 1920, 877);
 		
 		add(oneGoodsPannel);
-		//setTitle("One Product");
 		setSize(1920, 1080); // 적절한 크기로 설정
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true); // 프레임을 보이도록 설정

@@ -41,6 +41,7 @@ public class SearchResult extends JFrame{
 		df.mainIL.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				new MainFrame(myUser, pList);
+				dispose();
 			}
 		});
 		df.login.addActionListener(new ActionListener() {
