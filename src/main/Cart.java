@@ -1,9 +1,11 @@
 package main;
 
 import javax.swing.*;
+import javax.swing.event.*;
 
 import admin.Product;
 import goods.SearchResult;
+import main.MyPage.MyPageActionListener;
 import user.UserInfoDetail;
 
 import java.awt.*;
@@ -11,6 +13,11 @@ import java.awt.event.*;
 import java.util.Vector;
 
 public class Cart extends JFrame {
+	int productPay = 0;
+	int mProductNum = 0;
+	int mCouponNum = 0;
+	int deliveryPay = 0;
+	int totalPay = productPay - mProductNum - mCouponNum + deliveryPay;
 	
 	JPanel mainPanel = new JPanel();
 	JPanel payPanel = new JPanel();
@@ -139,110 +146,105 @@ public class Cart extends JFrame {
 		
 		// 결제 금액 확인 패널
 		// 주문 금액
-		int productPay = 16000;
 		JLabel orderPay = new JLabel("주문 금액");
 		JLabel orderPayNum = new JLabel(productPay + " 원");
 		
 		orderPayNum.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
-		
+						
 		orderPay.setBounds(20, 0, 90, 50);
 		orderPayNum.setBounds(180, 0, 90, 50);
-		
+						
 		orderPay.setFont(labelFont);
 		orderPayNum.setFont(labelFont);
-		
+						
 		payPanel.add(orderPay);
 		payPanel.add(orderPayNum);
-		
+						
 		// 상품 할인
-		int mProductNum = 2400;
 		JLabel disRateProduct = new JLabel("상품 할인");
 		JLabel disRateProductNum = new JLabel("- "+ mProductNum + " 원");
-		
+						
 		disRateProductNum.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
-		
+						
 		disRateProduct.setBounds(20, 40, 90, 50);
 		disRateProductNum.setBounds(170, 40, 100, 50);
-		
+						
 		disRateProduct.setFont(labelFont);
 		disRateProductNum.setFont(labelFont);
-		
+					
 		payPanel.add(disRateProduct);
 		payPanel.add(disRateProductNum);
-		
+					
 		// 쿠폰 할인
-		int mCouponNum = 1600;
 		JLabel disRateCoupon = new JLabel("쿠폰 할인");
 		JLabel disRateCouponNum = new JLabel("- "+ mCouponNum + " 원");
-		
+						
 		disRateCouponNum.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
-		
+					
 		disRateCoupon.setBounds(20, 80, 90, 50);
 		disRateCouponNum.setBounds(160, 80, 110, 50);
-		
+						
 		disRateCoupon.setFont(labelFont);
 		disRateCouponNum.setFont(labelFont);
-		
+						
 		payPanel.add(disRateCoupon);
 		payPanel.add(disRateCouponNum);
-		
+						
 		// 배송비
-		int deliveryPay = 2500;
 		JLabel deliverycount = new JLabel("배송비");
 		JLabel deliverycountNum = new JLabel("+ "+ deliveryPay + " 원");
-		
+				
 		deliverycountNum.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
 		
 		deliverycount.setBounds(20, 120, 90, 50);
 		deliverycountNum.setBounds(160, 120, 110, 50);
-		
+						
 		deliverycount.setFont(labelFont);
 		deliverycountNum.setFont(labelFont);
-		
+				
 		payPanel.add(deliverycount);
 		payPanel.add(deliverycountNum);
-		
+					
 		// 구분 선2
 		JLabel myCartLine2 = new JLabel();
 		myCartLine2.setBounds(20, 170, 260, 2);
 		myCartLine2.setOpaque(true);
 		myCartLine2.setBackground(Color.black);
 		payPanel.add(myCartLine2);
-		
+						
 		// 결제 예정 금액
-		int totalPay = productPay - mProductNum - mCouponNum + deliveryPay;
 		JLabel priPay = new JLabel("결제예정금액");
 		JLabel priPayNum = new JLabel(totalPay + "원");
-		
+						
 		priPayNum.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
-		
+					
 		priPay.setBounds(20, 175, 200, 50);
 		priPayNum.setBounds(120, 202, 160, 60);
-		
+						
 		priPay.setFont(labelFont);
 		priPayNum.setFont(buttonFont);
-		
+				
 		priPay.setForeground(new Color(56, 87, 36));
 		priPayNum.setForeground(new Color(56, 87, 36));
-		
+					
 		payPanel.add(priPay);
 		payPanel.add(priPayNum);
-		
+						
 		// 배송지 정보 출력
 		String mainAddress = myUser.getAddress();
 		mainAddress = "충남 천안시 동남구 병천면 충절로 1600";
 		JLabel deliveryInfo = new JLabel("배송지 정보");
 		JLabel mainDeliveryInfo = new JLabel(mainAddress);
-		
+						
 		deliveryInfo.setBounds(20, 0, 150, 50);
 		mainDeliveryInfo.setBounds(20, 30, 290, 50);
-		
+						
 		deliveryInfo.setFont(labelFont);
 		mainDeliveryInfo.setFont(miniBasic);
-		
+						
 		deliveryInfoPanel.add(deliveryInfo);
 		deliveryInfoPanel.add(mainDeliveryInfo);
-		
+					
 		// 주문하기
 		JButton buy = new JButton("주문하기");
 		buy.setBounds(1198, 670, 300, 50);
@@ -260,9 +262,20 @@ public class Cart extends JFrame {
 			
 			// 체크박스
 			JCheckBox cartCheckProduct = new JCheckBox();
-			cartCheckProduct.setBounds(10 ,0, 20, 20);
+			cartCheckProduct.setBounds(0 ,0, 20, 20);
 			cartCheckProduct.setContentAreaFilled(false); // 배경색 제거
 			productInfoPanel.add(cartCheckProduct);
+			
+			// 액션
+			allProductCheck.addItemListener(new MainActionListener() {
+				public void itemStateChanged(ItemEvent e) {
+					if(e.getStateChange() == ItemEvent.SELECTED) { // 전체 상품 선택에 체크했을 경우
+						cartCheckProduct.setSelected(true);
+					}
+					else if(e.getStateChange() == ItemEvent.DESELECTED) {
+						cartCheckProduct.setSelected(false);
+					}
+				}});
 			
 			// 상품 이미지
 			String productImage = pList.get(index).getImage();
@@ -307,19 +320,21 @@ public class Cart extends JFrame {
 			JLabel oneProduct = new JLabel("1개당");
 			oneProduct.setFont(labelFont);
 			oneProduct.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
-			oneProduct.setBounds(570, 35, 100, 50);
+			oneProduct.setBounds(570, 40, 100, 50);
 			productInfoPanel.add(oneProduct);
 			
-			JLabel oneProductRealPrice = new JLabel(pList.get(index).getPrice() + " 원");
+			int price = pList.get(index).getPrice();
+			JLabel oneProductRealPrice = new JLabel(price + " 원");
 			oneProductRealPrice.setFont(new Font("G마켓 산스 TTF Light", Font.CENTER_BASELINE, 15));
 			oneProductRealPrice.setForeground(Color.gray);
 			oneProductRealPrice.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
-			oneProductRealPrice.setBounds(570, 55, 100, 50);
+			oneProductRealPrice.setBounds(570, 65, 100, 50);
 			productInfoPanel.add(oneProductRealPrice);
 			
 			// 할인 된 가격
 			double disRatePrice = pList.get(index).getPrice()*(pList.get(index).getProductDisRate()/100);
-			JLabel oneProductDisRate = new JLabel(pList.get(index).getPrice()-(int)disRatePrice + " 원");
+			int dP = pList.get(index).getPrice() - (int)disRatePrice;
+			JLabel oneProductDisRate = new JLabel(dP + " 원");
 			oneProductDisRate.setFont(labelFont);
 			oneProductDisRate.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
 			oneProductDisRate.setBounds(570, 90, 100, 50);
@@ -328,7 +343,7 @@ public class Cart extends JFrame {
 			// 수량
 			JLabel count = new JLabel("수량:");
 			count.setFont(labelFont);
-			count.setBounds(700, 60, 100, 50);
+			count.setBounds(722, 50, 100, 50);
 			productInfoPanel.add(count);
 			
 			String [] nowProductCount = new String[pList.get(index).getProductCount()];
@@ -338,18 +353,61 @@ public class Cart extends JFrame {
 			SpinnerListModel SpinnerListModel = new SpinnerListModel(nowProductCount);
 			JSpinner countNum = new JSpinner(SpinnerListModel);
 			countNum.setFont(labelFont);
-			countNum.setBounds(750, 72, 70, 25);
+			countNum.setBounds(772, 62, 70, 25);
 			productInfoPanel.add(countNum);
 			
 			// 쿠폰 적용
 			JButton coupon = new JButton("쿠폰 적용");
 			coupon.setFont(labelFont);
-			coupon.setBounds(700, 99, 120, 28);
+			coupon.setBounds(725, 99, 120, 28);
 			productInfoPanel.add(coupon);
 			
 			// 주문 가격
+			JLabel orderPrice = new JLabel("주문 가격");
+			JLabel orderPriceNum = new JLabel(pList.get(index).getPrice() - (int)disRatePrice - mCouponNum + " 원");
+
+			orderPrice.setBounds(900, 40, 100, 50);
+			orderPriceNum.setBounds(800, 90, 200, 50);
 			
+			orderPrice.setFont(labelFont);
+			orderPriceNum.setFont(labelFont);
+			
+			orderPrice.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
+			orderPriceNum.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
+			
+			productInfoPanel.add(orderPrice);
+			productInfoPanel.add(orderPriceNum);
+			
+			// 액션
+			// 장바구니에 담은 상품의 체크박스를 선택했을 경우
+			cartCheckProduct.addItemListener(new MainActionListener() {
+				public void itemStateChanged(ItemEvent e) {
+					if(e.getStateChange() == ItemEvent.SELECTED) { // 장바구니에 담은 상품의 체크박스를 선택했을 경우
+						productPay += price;
+						mProductNum += (int)disRatePrice;
+						deliveryPay += 2500;
+					}
+					else if(e.getStateChange() == ItemEvent.DESELECTED) {
+						productPay -= price;
+						mProductNum -= (int)disRatePrice;
+						deliveryPay -= 2500;
+					}
+				}});
+			// 쿠폰 적용 버튼을 눌렀을 경우
+			coupon.addActionListener(new MainActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					mCouponNum = 1600;
+					JButton b = (JButton)e.getSource(); // 사용자가 선택한 버튼 알아내기
+					JLabel orderCoupon = new JLabel("쿠폰 - " + mCouponNum + " 원");
+					orderCoupon.setBounds(700, 65, 300, 50);
+					orderCoupon.setFont(new Font("G마켓 산스 TTF Light", Font.CENTER_BASELINE, 15));
+					orderCoupon.setForeground(Color.gray);
+					orderCoupon.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
+					productInfoPanel.add(orderCoupon);
+				}});
 		}
+		
+		
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
@@ -362,18 +420,19 @@ public class Cart extends JFrame {
 		mainPanel.setBackground(Color.white);
 		payPanel.setBackground(new Color(200, 228, 137));
 		deliveryInfoPanel.setBackground(new Color(255, 206, 89));
-		productInfoPanel.setBackground(new Color(255, 206, 89));
+		productInfoPanel.setBackground(Color.white);
 		
-		add(productInfoPanel);
+		
 		add(deliveryInfoPanel);
 		add(payPanel);
+		add(productInfoPanel);
 		add(mainPanel);
 		
 		setVisible(true); // 프레임 출력
 	}
 	
 	//이벤트 처리 클래스들
-	class MainActionListener implements ActionListener{
+	class MainActionListener implements ActionListener, ItemListener, ListSelectionListener{
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
 			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
@@ -408,5 +467,8 @@ public class Cart extends JFrame {
 				break;
 			}
 		}
+		// 체크박스 선택 시
+		public void itemStateChanged(ItemEvent e) {}
+		public void valueChanged(ListSelectionEvent e) {}
 	}
 }
