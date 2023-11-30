@@ -32,6 +32,7 @@ public class MainFrame extends JFrame{
 		
 		//메인 프레임 생성 및 호출
 		MainFrame m = new MainFrame(myUser, pList);
+		Cart cart = new Cart(myUser, pList);
 	}
 	
 	
