@@ -13,11 +13,7 @@ import java.util.Vector;
 public class Cart extends JFrame {
 	
 	JPanel mainPanel = new JPanel();
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-	}
+	JPanel payPanel = new JPanel();
 	
 	public Cart() {}
 	public Cart(UserInfoDetail myUser, Vector<Product> pList) {
@@ -31,7 +27,9 @@ public class Cart extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		
-		this.setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치
+		setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치
+		mainPanel.setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치
+		payPanel.setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치
 		
 		//로고, 검색창, 위쪽 레이블, 로그인, 장바구니 등 기본 패널 추가
 		CommonPanel df = new CommonPanel(); //패널 객체 생성
@@ -77,15 +75,91 @@ public class Cart extends JFrame {
 		df.communityU.addActionListener(new MainActionListener());
 		df.newMonthGoods.addActionListener(new MainActionListener());
 		
-		JLabel myCart = new JLabel("나의 장바구니");
-		myCart.setBackground(new Color(151, 192, 48));
-		myCart.setBounds(30, 400, 250, 30);
+		// 폰트
+		Font buttonFont = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 30);
+		Font buttonPlain = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 30);
+		Font labelFont = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20);
+		Font basic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 17);
+		Font miniBasic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 15);
+		
+		// 장바구니 구역 표시
+		JLabel myCart = new JLabel(" 나의 장바구니");
+		myCart.setBounds(59 ,220, 1440, 50);
+		myCart.setOpaque(true);
+		myCart.setBackground(new Color(200, 228, 137));
+		myCart.setFont(buttonPlain);
 		mainPanel.add(myCart);
+		
+		JLabel myCartLine1 = new JLabel();
+		myCartLine1.setBounds(60 ,310, 1125, 2);
+		myCartLine1.setOpaque(true);
+		myCartLine1.setBackground(Color.black);
+		mainPanel.add(myCartLine1);
+		
+		// 전체 상품 선택 체크리스트
+		JCheckBox allProductCheck = new JCheckBox("전체 상품 선택");
+		allProductCheck.setBounds(59 ,240, 300, 100);
+		allProductCheck.setFont(basic);
+		allProductCheck.setContentAreaFilled(false); // 배경색 제거
+		mainPanel.add(allProductCheck);
+		
+		// 품정상품 삭제 및 선택 상품 삭제 버튼
+		JLabel soldoutProduct = new JLabel("품절상품 삭제 |");
+		JLabel checkProduct = new JLabel("선택상품 삭제");
+		
+		soldoutProduct.setBounds(969, 275, 120, 30);
+		checkProduct.setBounds(1084, 275, 120, 30);
+		
+		soldoutProduct.setFont(basic);
+		checkProduct.setFont(basic);
+		
+		mainPanel.add(soldoutProduct);
+		mainPanel.add(checkProduct);
+		
+		// 결제 금액 확인 패널
+		// 주문 금액
+		JLabel orderPay = new JLabel("주문 금액");
+		orderPay.setBounds(20, 0, 90, 50);
+		orderPay.setFont(labelFont);
+		payPanel.add(orderPay);
+		
+		// 상품 할인
+		JLabel disRateProduct = new JLabel("상품 할인");
+		disRateProduct.setBounds(20, 40, 90, 50);
+		disRateProduct.setFont(labelFont);
+		payPanel.add(disRateProduct);
+		
+		// 쿠폰 할인
+		JLabel disRateCoupon = new JLabel("상품 할인");
+		disRateCoupon.setBounds(20, 80, 90, 50);
+		disRateCoupon.setFont(labelFont);
+		payPanel.add(disRateCoupon);
+		
+		// 배송비
+		JLabel deliverycount = new JLabel("배송비");
+		deliverycount.setBounds(20, 120, 90, 50);
+		deliverycount.setFont(labelFont);
+		payPanel.add(deliverycount);
+		
+		// 구분 선
+		JLabel myCartLine2 = new JLabel();
+		myCartLine2.setBounds(20, 170, 150, 2);
+		myCartLine2.setOpaque(true);
+		myCartLine2.setBackground(Color.black);
+		payPanel.add(myCartLine2);
+		
+		//
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
+		
 		mainPanel.setBounds(0,0, 1920,1080);
+		payPanel.setBounds(1198, 284, 300,300);
+		
 		mainPanel.setBackground(Color.white);
+		payPanel.setBackground(new Color(200, 228, 137));
+		
+		add(payPanel);
 		add(mainPanel);
 		setVisible(true); // 프레임 출력
 	}
