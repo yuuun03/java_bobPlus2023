@@ -231,10 +231,10 @@ public class Cart extends JFrame {
 		priPayNum.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
 		
 		priPay.setBounds(20, 175, 200, 50);
-		priPayNum.setBounds(142, 202, 130, 60);
+		priPayNum.setBounds(120, 202, 160, 60);
 		
 		priPay.setFont(labelFont);
-		priPayNum.setFont(buttonPlain);
+		priPayNum.setFont(buttonFont);
 		
 		priPay.setForeground(new Color(56, 87, 36));
 		priPayNum.setForeground(new Color(56, 87, 36));
@@ -260,7 +260,7 @@ public class Cart extends JFrame {
 		// 주문하기
 		JButton buy = new JButton("주문하기");
 		buy.setBounds(1198, 670, 300, 50);
-		buy.setFont(labelFont);
+		buy.setFont(buttonFont);
 		buy.setBackground(new Color(241, 133, 115));
 		buy.setBorderPainted(false); // 외각선 제거
 		mainPanel.add(buy);
@@ -271,7 +271,7 @@ public class Cart extends JFrame {
 		mainPanel.setBounds(0,0, 1920, 1080);
 		payPanel.setBounds(1198, 284, 300, 260);
 		deliveryInfoPanel.setBounds(1198, 560, 300,100);
-		productInfoPanel.setBounds(59, 375, 1125, 145);
+		productInfoPanel.setBounds(59, 375, 1125, 180);
 		
 		mainPanel.setBackground(Color.white);
 		payPanel.setBackground(new Color(200, 228, 137));
