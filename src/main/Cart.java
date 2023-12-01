@@ -14,6 +14,7 @@ import java.awt.event.*;
 import java.util.Vector;
 
 public class Cart extends JFrame {
+	boolean couponCheck = false; // 쿠폰 적용 버튼 눌렀는지 확인
 	int productPay = 0;
 	int mProductNum = 0;
 	int mCouponNum = 0;
@@ -164,7 +165,7 @@ public class Cart extends JFrame {
 		orderPayNum.setHorizontalAlignment(JLabel.RIGHT); // 레이블 오른쪽 정렬
 						
 		orderPay.setBounds(20, 0, 90, 50);
-		orderPayNum.setBounds(180, 0, 90, 50);
+		orderPayNum.setBounds(170, 0, 100, 50);
 						
 		orderPay.setFont(labelFont);
 		orderPayNum.setFont(labelFont);
@@ -410,6 +411,9 @@ public class Cart extends JFrame {
 						
 					}
 					else if(e.getStateChange() == ItemEvent.DESELECTED) { // 장바구니에 담은 상품의 체크박스를 선택 해제했을 경우
+						couponCheck = false;
+						orderCoupon.setVisible(false);
+						
 						orderPayNum.setText(productPay + " 원");
 						disRateProductNum .setText(mProductNum + " 원");
 						disRateCouponNum.setText(mCouponNum + " 원");
@@ -420,12 +424,23 @@ public class Cart extends JFrame {
 			// 쿠폰 적용 버튼을 눌렀을 경우
 			coupon.addActionListener(new MainActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					JButton b = (JButton)e.getSource(); // 사용자가 선택한 버튼 알아내기
+					couponCheck = true;
+					orderCoupon.setVisible(true);
 					orderCoupon.setText("쿠폰 -1600 원");
 					disRateCouponNum.setText(mCouponNum - 1600 + " 원");
 					orderPriceNum.setText(price - (int)disRatePrice - mCouponNum - 1600 + " 원");
 					priPayNum.setText(totalPay + price - (int)disRatePrice + 2500 - 1600 + "원"); 
 				}});
+			// JSpinner를 활용하여 상품의 수량을 선택할 경우
+			countNum.addChangeListener(new MainActionListener() {
+				public void stateChanged(ChangeEvent e) {
+					String count = countNum.getValue().toString();
+					if (couponCheck) {orderPriceNum.setText(price*(Integer.valueOf(count)) - (int)disRatePrice - mCouponNum - 1600 + " 원");}
+					else{orderPriceNum.setText(price*(Integer.valueOf(count)) - (int)disRatePrice - mCouponNum + " 원");}
+					orderPayNum.setText(price*(Integer.valueOf(count)) + " 원");
+					priPayNum.setText(totalPay + price*(Integer.valueOf(count)) - (int)disRatePrice + 2500  + "원");
+				}
+			});
 		}
 		
 		
@@ -453,7 +468,7 @@ public class Cart extends JFrame {
 	}
 	
 	//이벤트 처리 클래스들
-	class MainActionListener implements ActionListener, ItemListener{
+	class MainActionListener implements ActionListener, ItemListener, ChangeListener{
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
 			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
@@ -492,5 +507,7 @@ public class Cart extends JFrame {
 		// 체크박스 선택 시
 		public void itemStateChanged(ItemEvent e) {}
 		public void valueChanged(ListSelectionEvent e) {}
+		public void stateChanged(ChangeEvent e) {}
+		
 	}
 }
