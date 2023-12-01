@@ -149,7 +149,7 @@ public class Cart extends JFrame {
 			public void mouseReleased(MouseEvent e) { //마우스를 클릭후 뗄 때
 				productInfoPanel.setVisible(false); // 패널 감추기
 				cartList.remove(0);
-				containProductNum.setText(copNum + " 개");
+				containProductNum.setText(copNum - 1 + " 개");
 				containProductNum.setVisible(true);
 				containProductNum.repaint();
 			}
