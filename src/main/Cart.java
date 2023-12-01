@@ -144,6 +144,17 @@ public class Cart extends JFrame {
 		mainPanel.add(soldoutProductDelete);
 		mainPanel.add(checkProductDelete);
 		
+		// 액션
+		checkProductDelete.addMouseListener(new MouseAdapter() {// 선택 상품 삭제 선택 시
+			public void mouseReleased(MouseEvent e) { //마우스를 클릭후 뗄 때
+				productInfoPanel.setVisible(false); // 패널 감추기
+				cartList.remove(0);
+				containProductNum.setText(copNum + " 개");
+				containProductNum.setVisible(true);
+				containProductNum.repaint();
+			}
+		});
+		
 		
 		
 		if (!cartList.isEmpty()) { // 장바구니에 상품을 담았다면 실행
@@ -399,7 +410,6 @@ public class Cart extends JFrame {
 								
 				// 배송지 정보 출력
 				String mainAddress = myUser.getAddress();
-				mainAddress = "충남 천안시 동남구 병천면 충절로 1600";
 				JLabel deliveryInfo = new JLabel("배송지 정보");
 				JLabel mainDeliveryInfo = new JLabel(mainAddress);
 								
@@ -447,6 +457,7 @@ public class Cart extends JFrame {
 		//Action : 버튼 클릭 
 		public void actionPerformed(ActionEvent e) {
 			JButton bRefer = (JButton)e.getSource(); //사용자가 클릭한 버튼 알아내기
+			
 			
 			//버튼 종류마다 이벤트 다르게 지정
 			switch(bRefer.getText()) {
