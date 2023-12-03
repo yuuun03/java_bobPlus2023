@@ -114,7 +114,7 @@ public class SearchResult extends JFrame{
 			//1. 상품에 대한 인덱스 i가 상품 전체 리스트의 크기를 넘지 않고
 			//2. 상품명에 검색한 내용이 포함되어 있으면 상품 보여줌
 			if(i < pList.size() && pList.get(i).getName().contains(pName)) {
-				displayProduct(pBundle[check], pList.get(i), pName, myUser,  pList);
+				displayProduct(pBundle[check], pList.get(i), myUser,  pList);
 			}
 			else { //아닐 시 비어있는 상품으로 처리
 				emptyCnt++; //비어있는 상품 수 증가
@@ -124,7 +124,7 @@ public class SearchResult extends JFrame{
 		
 		//비어있는 부분을 메꾸기 위한 부분. 흰색으로 패널 부분을 메꿔서 출력
 		for(int i = 0; i < emptyCnt; i++) {
-			displayProduct(pBundle[8-emptyCnt + i], null, pName, myUser,  pList);
+			displayProduct(pBundle[8-emptyCnt + i], null, myUser,  pList);
 		}
 		
 		//필터 패널 액션 추가(필터링)
@@ -251,7 +251,7 @@ public class SearchResult extends JFrame{
 	}
 	
 	//상품 패널을 표시하는 함수 - 표시할 패널과 상품 정보, 검색
-	private void displayProduct(JPanel resultPanel, Product product, String searchName, UserInfoDetail myUser, Vector<Product> pList) { 
+	private void displayProduct(JPanel resultPanel, Product product, UserInfoDetail myUser, Vector<Product> pList) { 
 		if(product != null) { //상품 정보가 null이 아니면
 			resultPanel.setLayout(null); //결과 패널 배치관리자 없음 : 개발자 자유 배치		
 			
