@@ -1,5 +1,12 @@
 package user;
 
+/*
+ * 과목: 자바프로그래밍(04)
+ * 학과: 컴퓨터공학부
+ * 학번: 2022136095
+ * 이름: 이찬비
+ */
+
 import java.util.Vector;
 
 import admin.Product;
@@ -19,7 +26,7 @@ public class UserInfoDetail {
 	private int birth;
 	private int userRank = 5;
 	
-	//---알러지
+	//---알레르기
 	public Vector<String> allergy = new Vector<String> ();
 	
 	//---배송지 주소
@@ -54,7 +61,7 @@ public class UserInfoDetail {
 		this.birth = birth;
 		this.userRank = userRank;
 		
-		//---알러지
+		//---알레르기
 		this.allergy = allergy;
 		
 		//---배송지 주소
@@ -68,44 +75,44 @@ public class UserInfoDetail {
 	}
 	
 	// 접근자
-	public String getName() {return this.name;}
+	public String getName() {return this.name;} // 회원 이름
 	
-	public String getId() {return this.id;}
-	public String getPassword() {return this.password;}
+	public String getId() {return this.id;} // 회원 아이디
+	public String getPassword() {return this.password;} // 회원 비밀번호
 	
-	public String getEmail() {return this.email;}
-	public long getPhoneNum() {return this.phoneNum;}
-	public int getBirth() {return this.birth;}
-	public int getUserRank() {return this.userRank;}
+	public String getEmail() {return this.email;} // 회원 이메일
+	public long getPhoneNum() {return this.phoneNum;} // 회원 전화번호
+	public int getBirth() {return this.birth;} // 회원 생일
+	public int getUserRank() {return this.userRank;} // 회원 등급
 	
-	public Vector<String> getAllergy() {return this.allergy;}
+	public Vector<String> getAllergy() {return this.allergy;} // 회원 알레르기 정보
 	
-	public String getAddress() {return this.address;}
+	public String getAddress() {return this.address;} // 회원 주소
 	
-	public boolean getLogCheck() {return this.logCheck;}
+	public boolean getLogCheck() {return this.logCheck;} // 회원이 로그인 했는지 확인
 	
-	public Vector<Product> getCartList() {return this.cartList;}
-	public Vector<Product> getLiketList() {return this.likeList;}
-	public Vector<Product> getBuyList() {return this.buyList;}
+	public Vector<Product> getCartList() {return this.cartList;} // 회원 장바구니 목록
+	public Vector<Product> getLiketList() {return this.likeList;} // 회원 찜 목록
+	public Vector<Product> getBuyList() {return this.buyList;} // 회원 구매 목록
 
 	// 설정자
-	protected void setName(String name) {this.name = name;}
+	protected void setName(String name) {this.name = name;} // 회원 이름
 	
-	protected void setId(String id) {this.id = id;}
-	protected void setPassword(String password) {this.password = password;}
+	protected void setId(String id) {this.id = id;} // 회원 아이디
+	protected void setPassword(String password) {this.password = password;} // 회원 비밀번호
 	
-	protected void setEmail(String email) {this.email = email;}
-	protected void setPhoneNum(long phoneNum) {this.phoneNum = phoneNum;}
-	protected void setBirth(int birth) {this.birth = birth;}
-	protected void setUserRank(int userRank) {this.userRank = userRank;}
+	protected void setEmail(String email) {this.email = email;} // 회원 이메일
+	protected void setPhoneNum(long phoneNum) {this.phoneNum = phoneNum;} // 회원 전화번호
+	protected void setBirth(int birth) {this.birth = birth;} // 회원 생일
+	protected void setUserRank(int userRank) {this.userRank = userRank;} // 회원 등급
 	
-	public void setAllergy(Vector<String> allergy) {this.allergy = allergy;}
+	public void setAllergy(Vector<String> allergy) {this.allergy = allergy;} // 회원 알르레기 정보
 	
-	protected void setAddress(String address) {this.address = address;}
+	protected void setAddress(String address) {this.address = address;} // 회원 주소
 	
-	public void setLogCheck(boolean logCheck) {this.logCheck = logCheck;}
+	public void setLogCheck(boolean logCheck) {this.logCheck = logCheck;} // 회원이 로그인 했는지 확인
 
-	protected void setCartList(Vector<Product> cartList) {this.cartList = cartList;}
-	protected void setLikeList(Vector<Product> likeList) {this.likeList = likeList;}
-	protected void setBuyList(Vector<Product> buyList) {this.buyList = buyList;}
+	protected void setCartList(Vector<Product> cartList) {this.cartList = cartList;} // 회원 장바구니 목록
+	protected void setLikeList(Vector<Product> likeList) {this.likeList = likeList;} // 회원 찜 목록
+	protected void setBuyList(Vector<Product> buyList) {this.buyList = buyList;} // 회원 구매 목록
 }
