@@ -1,5 +1,12 @@
 package main;
 
+/*
+ * 과목: 자바프로그래밍(04)
+ * 학과: 컴퓨터공학부
+ * 학번: 2022136095
+ * 이름: 이찬비
+ */
+
 import javax.swing.*;
 import javax.swing.event.*;
 
