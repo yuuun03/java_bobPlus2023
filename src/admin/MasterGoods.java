@@ -53,36 +53,6 @@ public class MasterGoods {
 		}
 	}
 	
-	//할인율 조정
-	private void disRate(String name, double disRate) {
-		//등록된 상품 자체가 없을 경우 경고문 출력
-		if (pList.isEmpty()) {System.out.println("등록되어 있는 상품이 없습니다.");} 
-		for(Product i : pList) {
-			//pList의 현재 인덱스에 있는 객체의 이름이 받아온 이름과 같을 경우
-			if (i.getName().equals(name)) {
-				i.setProductDisRate(disRate);; //할인 적용
-				return; //함수 종료
-			};
-		}
-		//입력한 상품명과 일치하는 상품이 없을 경우 경고문 출력
-		System.out.println("찾으시는 상품이 없습니다.");
-	}
-	
-	//재고 수량 변경
-	private void stackChange(String name, int productCount) {
-		//등록된 상품 자체가 없을 경우 경고문 출력
-		if (pList.isEmpty()) {System.out.println("등록되어 있는 상품이 없습니다.");} 
-		for(Product i : pList) {
-			//pList의 현재 인덱스에 있는 객체의 이름이 받아온 이름과 같을 경우
-			if (i.getName().equals(name)) {
-				i.setProductCount(productCount); //수량 변동
-				return; //함수 종료
-			};
-		}
-		//입력한 상품명과 일치하는 상품이 없을 경우 경고문 출력
-		System.out.println("찾으시는 상품이 없습니다.");
-	}
-	
 	//인기 상품 반환 함수
 	public String productPopular() {
 		return "추후 구현 예정";
