@@ -14,7 +14,7 @@ public class MasterGoods {
 	public Vector<Product> getPList(){return this.pList;} //상품 리스트 getter
 	public void setPList(Vector<Product> newList){this.pList = newList;} //상품 리스트 setter
 	
-	//상품 추가(생성자 아님 주의!!!) //test상품 추가를 위해 public으로 변경
+	//상품 추가(생성자 아님 주의!!!) //test 상품 추가를 위해 public으로 변경
 	public void productAdd(String name, String image, double productStar,
 			int serving, int productCount, int price,
 			double productDisRate, Vector<String> cookingUtensils,
