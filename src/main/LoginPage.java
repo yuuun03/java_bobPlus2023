@@ -200,11 +200,12 @@ public class LoginPage extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//마스터 오더에 주문번호 넣을 것...
 				//myUser.getBuyNumList()(주문번호 담는 리스트)를 통해 odNum.getText와 비교합니다.
-				//현재는 기능 미구현 됐으므로 정상적인 컴파일을 위해 임의의 주문번호를 부여합니다.
-				String testBN = "12345678";
+				//현재는 기능 미구현 됐으므로 정상적인 컴파일을 위해 임의의 주문번호와 전화번호를 부여합니다.
+				String testON = "12345678";
+				String testPN = "01012345678";
 				
 				//입력한 주문번호와 전화번호가 상품 주문시 입력한 전화번호와 부여받은 주문번호랑 같을 때
-				if (testBN.equals(odNum.getText()) && Long.toString(myUser.getPhoneNum()).equals(phoneNum.getText())){
+				if (testON.equals(odNum.getText()) && testPN.equals(phoneNum.getText())){
 					//사용자 안내문
 					JOptionPane.showMessageDialog(null, "조회성공.\n현재 기능 구현 중에 있습니다.");
 				}
