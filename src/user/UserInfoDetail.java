@@ -91,7 +91,6 @@ public class UserInfoDetail {
 	// 설정자
 	protected void setName(String name) {this.name = name;}
 	
-	//테스트 위해 아이디와 패스워드만 임의로 퍼블릭 변경(테스트 이후 복구 예정)
 	protected void setId(String id) {this.id = id;}
 	protected void setPassword(String password) {this.password = password;}
 	
