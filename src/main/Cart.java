@@ -19,6 +19,7 @@ public class Cart extends JFrame {
 	int mProductNum = 0;
 	int mCouponNum = 0;
 	int deliveryPay = 0;
+	int intCount = 0;
 	int totalPay = productPay - mProductNum - mCouponNum + deliveryPay;
 	
 	JPanel mainPanel = new JPanel();
@@ -145,17 +146,6 @@ public class Cart extends JFrame {
 		mainPanel.add(soldoutProductDelete);
 		mainPanel.add(checkProductDelete);
 		
-		// 액션
-		checkProductDelete.addMouseListener(new MouseAdapter() {// 선택 상품 삭제 선택 시
-			public void mouseReleased(MouseEvent e) { //마우스를 클릭후 뗄 때
-				productInfoPanel.setVisible(false); // 패널 감추기
-				cartList.remove(0);
-				containProductNum.setText(copNum - 1 + " 개");
-				containProductNum.setVisible(true);
-				containProductNum.repaint();
-			}
-		});
-		
 		
 		// 결제 금액 확인 패널
 		// 주문 금액
@@ -200,7 +190,6 @@ public class Cart extends JFrame {
 		disRateCoupon.setFont(labelFont);
 		disRateCouponNum.setFont(labelFont);	
 		
-		System.out.println(mCouponNum);//////////////////////
 		
 		payPanel.add(disRateCoupon);
 		payPanel.add(disRateCouponNum);
@@ -266,6 +255,11 @@ public class Cart extends JFrame {
 		buy.setBackground(new Color(241, 133, 115));
 		buy.setBorderPainted(false); // 외각선 제거
 		mainPanel.add(buy);
+		
+		buy.addActionListener(new MainActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "결제 진행 중입니다.");
+			}});
 		
 		if (!cartList.isEmpty()) { // 장바구니에 상품을 담았다면 실행
 			// 장바구니 담은 상품 정보 출력
@@ -409,6 +403,20 @@ public class Cart extends JFrame {
 						deliverycountNum.setText(deliveryPay + 2500 + " 원");
 						priPayNum.setText(totalPay + price - (int)disRatePrice + 2500 + "원");
 						
+						checkProductDelete.addMouseListener(new MouseAdapter() {// 선택 상품 삭제 선택 시
+							public void mouseReleased(MouseEvent e) { //마우스를 클릭후 뗄 때
+								productInfoPanel.setVisible(false); // 패널 감추기
+								cartList.remove(0);
+								containProductNum.setText(copNum - 1 + " 개");
+								containProductNum.setVisible(true);
+								containProductNum.repaint();
+								orderPayNum.setText(productPay + " 원");
+								disRateProductNum .setText(mProductNum + " 원");
+								disRateCouponNum.setText(mCouponNum + " 원");
+								deliverycountNum.setText(deliveryPay + " 원");
+								priPayNum.setText(totalPay + "원");
+							}});
+						
 					}
 					else if(e.getStateChange() == ItemEvent.DESELECTED) { // 장바구니에 담은 상품의 체크박스를 선택 해제했을 경우
 						couponCheck = false;
@@ -421,29 +429,34 @@ public class Cart extends JFrame {
 						priPayNum.setText(totalPay + "원");
 					}
 				}});
+			
+			// JSpinner를 활용하여 상품의 수량을 선택할 경우
+			countNum.addChangeListener(new MainActionListener() {
+				public void stateChanged(ChangeEvent e) {
+					String count = countNum.getValue().toString();
+					intCount = Integer.valueOf(count);
+					if (!couponCheck){orderPriceNum.setText(price*(intCount) - (int)disRatePrice*(intCount) - mCouponNum + " 원");}
+					orderPayNum.setText(price*(intCount) + " 원");
+					disRateProductNum.setText(- (int)disRatePrice*(intCount) + " 원");
+					deliverycountNum.setText(deliveryPay + 2500 + " 원");
+					priPayNum.setText(price*(intCount) - (int)disRatePrice*(intCount) + 2500  + "원");
+					
+					
+				}});
 			// 쿠폰 적용 버튼을 눌렀을 경우
 			coupon.addActionListener(new MainActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					couponCheck = true;
 					orderCoupon.setVisible(true);
-					orderCoupon.setText("쿠폰 -1600 원");
-					disRateCouponNum.setText(mCouponNum - 1600 + " 원");
-					orderPriceNum.setText(price - (int)disRatePrice - mCouponNum - 1600 + " 원");
-					priPayNum.setText(totalPay + price - (int)disRatePrice + 2500 - 1600 + "원"); 
+					orderCoupon.setText("쿠폰 -3000 원");
+					disRateCouponNum.setText(- 3000 + " 원");
+					deliverycountNum.setText(deliveryPay + 2500 + " 원");
+					orderPriceNum.setText(price*(intCount) - (int)disRatePrice*(intCount) - 3000 + " 원");
+					priPayNum.setText(price*(intCount) - (int)disRatePrice*(intCount) - 3000 + 2500 + "원"); 
+					System.out.println("주문 가격: " + price*(intCount));
+					System.out.println("상품 할인: " + (int)disRatePrice*(intCount));
 				}});
-			// JSpinner를 활용하여 상품의 수량을 선택할 경우
-			countNum.addChangeListener(new MainActionListener() {
-				public void stateChanged(ChangeEvent e) {
-					String count = countNum.getValue().toString();
-					if (couponCheck) {orderPriceNum.setText(price*(Integer.valueOf(count)) - (int)disRatePrice - mCouponNum - 1600 + " 원");}
-					else{orderPriceNum.setText(price*(Integer.valueOf(count)) - (int)disRatePrice - mCouponNum + " 원");}
-					orderPayNum.setText(price*(Integer.valueOf(count)) + " 원");
-					priPayNum.setText(totalPay + price*(Integer.valueOf(count)) - (int)disRatePrice + 2500  + "원");
-				}
-			});
 		}
-		
-		
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
