@@ -1,5 +1,7 @@
-//컴퓨터공학부 2022136067 양희정 - 조리도구/알러지 필터링, 상품 패널 출력
-// 상품 패널의 세부 사항 추가 - 조윤서
+/*
+ * 컴퓨터공학부 2022136067 양희정 - 조리도구/알러지 필터링, 상품 패널 출력
+ * 컴퓨터공학부 2022136117 조윤서 - 상품 패널의 세부 사항 추가
+ */
 
 package goods;
 
@@ -24,13 +26,15 @@ public class SearchResult extends JFrame{
 	public SearchResult() {} //기본 생성자
 	public SearchResult(UserInfoDetail myUser, Vector<Product> pList, String pName) {
 		JPanel mainPanel = new JPanel(); //공통 패널
+		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
-		
-		Toolkit kit = Toolkit.getDefaultToolkit();
-		Image img = kit.getImage("src/graphics/images/iconOnly.png");
-		setIconImage(img);
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//---아이콘 설정
+		Toolkit kit = Toolkit.getDefaultToolkit(); //이미지 편집 위한 Toolkit 객체 생성
+		Image img = kit.getImage("src/graphics/images/iconOnly.png"); //이미지 받아오기
+		setIconImage(img); //받아온 이미지 아이콘으로 설정
+				
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//종료 설정	 : 가위표 누르면 모든 프레임 종료.
+				
 		
 		setLayout(null);
 		mainPanel.setLayout(null); //배치관리자 없음 : 개발자 자유 배치
@@ -40,42 +44,47 @@ public class SearchResult extends JFrame{
 		add(df.commonPanel); //패널 추가
 				
 		//---액션 설정
-		df.mainIL.addMouseListener(new MouseAdapter() {
-			public void mouseReleased(MouseEvent e) {
-				new MainFrame(myUser, pList);
-				dispose();
+		df.mainIL.addMouseListener(new MouseAdapter() { //아이콘 액션 설정
+			public void mouseReleased(MouseEvent e) { //마우스 클릭하면
+				new MainFrame(myUser, pList); //메인 프레임으로 돌아감
+				dispose(); //이전 프레임은 닫음 
 			}
 		});
-		df.login.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+				
+		df.login.addActionListener(new ActionListener() { //로그인 버튼 액션
+			public void actionPerformed(ActionEvent e) { //버튼 클릭 시
 				new LoginPage(myUser, pList); //로그인 페이지 전환
+				dispose(); //기존 페이지 닫음
+			}});
+				
+		df.my.addActionListener(new ActionListener() { //마이페이지 버튼 액션
+			public void actionPerformed(ActionEvent e) { //버튼 클릭시
+				new MyPage(myUser, pList); //마이 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
-		df.my.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new MyPage(myUser, pList); //로그인 페이지 전환
+					
+		df.cart.addActionListener(new ActionListener() { //장바구니 버튼 액션
+			public void actionPerformed(ActionEvent e) { //버튼 클릭 시
+				new Cart(myUser, pList); //장바구니 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
-		df.cart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new Cart(myUser, pList); //로그인 페이지 전환
+				
+		df.search.addActionListener(new ActionListener() { //검색창 액션
+			public void actionPerformed(ActionEvent e) { //엔터 키 press시
+				String pName = e.getActionCommand(); //text field 내 작성되어있는 텍스트 받아옴
+				new SearchResult(myUser, pList, pName); //검색 결과창 전환
 				dispose(); //기존 페이지 안보이게 변경
-			}});
-		df.search.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String pName = e.getActionCommand();
-				new SearchResult(myUser, pList, pName);
-				dispose();
 			}
 		});
-		
-		df.newHotGoods.addActionListener(new MainActionListener());
-		df.weekTop10Goods.addActionListener(new MainActionListener());
-		df.checkAttendance.addActionListener(new MainActionListener());
-		df.couponPoint.addActionListener(new MainActionListener());
-		df.communityU.addActionListener(new MainActionListener());
-		df.newMonthGoods.addActionListener(new MainActionListener());
-		
+				
+		//--- --- 기능이 미구현된 부분들의 액션 : 하단의 MainActionListener로 액션 지정
+		df.newHotGoods.addActionListener(new MainActionListener()); //지금 뜨는 상품
+		df.weekTop10Goods.addActionListener(new MainActionListener()); //금주의 TOP 10
+		df.checkAttendance.addActionListener(new MainActionListener()); //출석 체크
+		df.couponPoint.addActionListener(new MainActionListener()); //쿠폰/포인트
+		df.communityU.addActionListener(new MainActionListener()); //커뮤니티
+		df.newMonthGoods.addActionListener(new MainActionListener());  //이달의 신상품
+				
 		//검색 부분
 		add(mainPanel);
 		mainPanel.setSize(1920, 1080);
@@ -98,17 +107,22 @@ public class SearchResult extends JFrame{
 
 		JPanel[] pBundle = {product1, product2, product3, product4, product5, product6, product7, product8};
 		
-		int emptyCnt = 0;
+		//상품 출력
+		int emptyCnt = 0; //얼마만큼 상품이 비어있는지 체크.
 		int check = 0; //패널에 대한 인덱스. 상품이 대응하는 패널을 채우지 않으면 그 다음 상품이 이전 패널을 채움.
-		for(int i = 0; i < pBundle.length; i++, check++) {
+		for(int i = 0; i < pBundle.length; i++, check++) { 
+			//1. 상품에 대한 인덱스 i가 상품 전체 리스트의 크기를 넘지 않고
+			//2. 상품명에 검색한 내용이 포함되어 있으면 상품 보여줌
 			if(i < pList.size() && pList.get(i).getName().contains(pName)) {
 				displayProduct(pBundle[check], pList.get(i), pName, myUser,  pList);
 			}
-			else {
-				emptyCnt++;
-				check--;
+			else { //아닐 시 비어있는 상품으로 처리
+				emptyCnt++; //비어있는 상품 수 증가
+				check--; //못 채운 패널은 재사용
 			}
 		}
+		
+		//비어있는 부분을 메꾸기 위한 부분. 흰색으로 패널 부분을 메꿔서 출력
 		for(int i = 0; i < emptyCnt; i++) {
 			displayProduct(pBundle[8-emptyCnt + i], null, pName, myUser,  pList);
 		}
@@ -236,28 +250,28 @@ public class SearchResult extends JFrame{
 		}
 	}
 	
-	//상품 패널을 표시하는 함수
+	//상품 패널을 표시하는 함수 - 표시할 패널과 상품 정보, 검색
 	private void displayProduct(JPanel resultPanel, Product product, String searchName, UserInfoDetail myUser, Vector<Product> pList) { 
 		if(product != null) { //상품 정보가 null이 아니면
-			resultPanel.setLayout(null);			
+			resultPanel.setLayout(null); //결과 패널 배치관리자 없음 : 개발자 자유 배치		
 			
 			//이미지 설정
-			Image img = new ImageIcon(product.getImage()).getImage();
-			img = img.getScaledInstance(400, 150, Image.SCALE_SMOOTH);
+			Image img = new ImageIcon(product.getImage()).getImage(); //상품 사진 가져오기
+			img = img.getScaledInstance(400, 150, Image.SCALE_SMOOTH); //크기 조정 400*150px
 			ImageIcon productIcon = new ImageIcon(img);
-			JLabel proImg = new JLabel(productIcon);
+			JLabel proImg = new JLabel(productIcon); //이미지 라벨로 추가하기
 			
 			proImg.setBounds(0, 0, 400, 150); //사진 사이즈, 위치 설정
 			
 			//라벨 설정
-			JLabel nameLabel = new JLabel(product.getName());
+			JLabel nameLabel = new JLabel(product.getName()); //상품 명 가져오기
 			
 			nameLabel.setBounds(0, 155, 315, 50); //크기, 위치 설정
 			nameLabel.setFont(new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 40)); //폰트 설정
 			nameLabel.addMouseListener(new MouseAdapter() {
 				public void mouseReleased(MouseEvent e) { //마우스 클릭 이벤트 설정
-					new ShowOneGoods(myUser, pList, product);
-					dispose();
+					new ShowOneGoods(myUser, pList, product); //단일 상품 페이지로 넘어감
+					dispose(); //현재 페이지 닫음
 				}
 			});
 			
@@ -271,18 +285,21 @@ public class SearchResult extends JFrame{
 			int price = product.getPrice();
 			double disrate = product.getProductDisRate();
 			
+			//---원가
 			JLabel priceLabel = new JLabel(Double.toString(price *((100-disrate)/100))+" 원");
 			priceLabel.setBounds(0, 235, 315, 50);
-			priceLabel.setFont(new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20));
+			priceLabel.setFont(new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20)); //폰트 설정
 			
+			//--할인가
 			JLabel disrateLabel = new JLabel("할인율 : " + Double.toString(disrate)+"%");
 			disrateLabel.setBounds(0, 300, 315, 50);
-			disrateLabel.setFont(new Font("G마켓 산스 TTF Light", Font.PLAIN, 15));
+			disrateLabel.setFont(new Font("G마켓 산스 TTF Light", Font.PLAIN, 15)); //폰트 설정
 	
+			//---1인분 가격
 			double onePrice = product.getOnePersonPrice();
 			JLabel onePriceLabel = new JLabel ("1인분당 " + Double.toString(onePrice)+"원");
 			onePriceLabel.setBounds(0, 275, 315, 50);
-			onePriceLabel.setFont(new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20));
+			onePriceLabel.setFont(new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20)); //폰트 설정
 			
 			resultPanel.add(proImg); //상품 패널에 각 항목 추가(이미지, 이름 등)
 			resultPanel.add(nameLabel);
@@ -292,19 +309,11 @@ public class SearchResult extends JFrame{
 			resultPanel.add(disrateLabel);
 			
 			resultPanel.setBackground(Color.white); //패널 배경색 흰색으로 설정
-			
-			
-			if(searchName != null && !(searchName.isEmpty()) && product.getName().contains(searchName)) {
-				//검색어가 빈칸이 아니고, 검색어가 상품명에 속해있으면
-				searchResultPanel.add(resultPanel);
-			}
 		}
 		else {
 			resultPanel.setSize(50, 50); //패널 사이즈 설정
-			resultPanel.setBackground(Color.white);
-			
+			resultPanel.setBackground(Color.white); //패널 배경색 흰 색으로 설정
 			searchResultPanel.add(resultPanel);
-			System.out.println("Product is null"); //디버깅 목적
 		}
 	}
 	//이벤트 처리 클래스들
@@ -324,30 +333,37 @@ public class SearchResult extends JFrame{
 				break;
 					
 			case "출석 체크": 
+				//사용자 안내문
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 					
 			case "쿠폰/포인트": 
+				//사용자 안내문
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 						
 			case "커뮤니티": 
+				//사용자 안내문
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 					
 			case "이달의 신상품": 
+				//사용자 안내문
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 					
 			case "오늘 뭐 먹지?": 
+				//사용자 안내문
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 
 			case "지금 할인 중": 
+				//사용자 안내문
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 
 			case "인기 급상승": 
+				//사용자 안내문
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
 				break;
 					
