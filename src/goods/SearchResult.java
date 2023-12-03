@@ -77,9 +77,6 @@ public class SearchResult extends JFrame{
 		add(mainPanel);
 		mainPanel.setSize(1920, 1080);
 		mainPanel.setBackground(Color.white);
-				
-		Search search = new Search();
-		String searchName = search.getSearch();
 		
 		//필터패널
 		ShowSearchFilter filter = new ShowSearchFilter();
@@ -101,16 +98,15 @@ public class SearchResult extends JFrame{
 		int emptyCnt = 0;
 		for(int i = 0; i < pBundle.length; i++) {
 			if(i < pList.size()) {
-				displayProduct(pBundle[i], pList.get(i), searchName, myUser,  pList);
+				displayProduct(pBundle[i], pList.get(i), pName, myUser,  pList);
 			}
 			else {
 				emptyCnt++;
 			}
 		}
 		for(int i = 0; i < emptyCnt; i++) {
-			displayProduct(pBundle[8-emptyCnt + i], null, searchName, myUser,  pList);
+			displayProduct(pBundle[8-emptyCnt + i], null, pName, myUser,  pList);
 		}
-		
 		
 		//필터 패널 액션 추가(필터링)
 		//--- 조리기구
