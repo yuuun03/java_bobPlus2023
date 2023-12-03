@@ -33,7 +33,7 @@ public class MakeProducts{
 		bdAl.add("대두");
 		bdAl.add("돼지고기");
 				
-		mg.productAdd("부대 찌개",bdImg,5.0,2,5,16000,15.0, bdCU, bdAl); //'부대 찌개' 상품 추가
+		mg.productAdd("부대찌개",bdImg,5.0,2,5,16000,15.0, bdCU, bdAl); //'부대 찌개' 상품 추가
 		
 		
 		Vector<String> kchCU = new Vector<>(); //김치찌개 조리도구
@@ -42,7 +42,7 @@ public class MakeProducts{
 		kchAl.add("돼지고기");
 		kchAl.add("대두");
 				
-		mg.productAdd("김치 찌개", kchImg,4.0,3,5,15000,12.0, kchCU, kchAl); //'김치 찌개' 상품 추가
+		mg.productAdd("김치찌개", kchImg,4.0,3,5,15000,12.0, kchCU, kchAl); //'김치 찌개' 상품 추가
 		
 		return mg.getPList();
 	}
