@@ -96,12 +96,14 @@ public class SearchResult extends JFrame{
 		JPanel[] pBundle = {product1, product2, product3, product4, product5, product6, product7, product8};
 		
 		int emptyCnt = 0;
-		for(int i = 0; i < pBundle.length; i++) {
-			if(i < pList.size()) {
-				displayProduct(pBundle[i], pList.get(i), pName, myUser,  pList);
+		int check = 0; //패널에 대한 인덱스. 상품이 대응하는 패널을 채우지 않으면 그 다음 상품이 이전 패널을 채움.
+		for(int i = 0; i < pBundle.length; i++, check++) {
+			if(i < pList.size() && pList.get(i).getName().contains(pName)) {
+				displayProduct(pBundle[check], pList.get(i), pName, myUser,  pList);
 			}
 			else {
 				emptyCnt++;
+				check--;
 			}
 		}
 		for(int i = 0; i < emptyCnt; i++) {
