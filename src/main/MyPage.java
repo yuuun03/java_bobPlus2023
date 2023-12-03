@@ -25,7 +25,7 @@ import java.util.Vector;
 
 public class MyPage extends JFrame{
 	JPanel mainPanel = new JPanel(); // 메인 패널(= 전체 패널)
-	JPanel allergyPanel = new JPanel(); // 알러지 정보 패널
+	JPanel allergyPanel = new JPanel(); // 알레르기 정보 패널
 	JPanel userInfoPanel = new JPanel(); // 회원 정보 패널
 	JPanel line1Panel = new JPanel(); // 회원 정보 구분선 1 패널
 	JPanel line2Panel = new JPanel(); // 회원 정보 구분선 2 패널
@@ -101,11 +101,12 @@ public class MyPage extends JFrame{
 		df.newMonthGoods.addActionListener(new MyPageActionListener());  //이달의 신상품
 
 		// 폰트 설정
-		// --- 회원 이름을 출력하는 버튼, 회원 등급을 출력하는 버튼, "배 송 중"라는 글자가 있는 버튼, 배송 중인 상품의 개수를 출력하는 버튼
+		// --- 회원 이름을 출력하는 버튼, 회원 등급을 출력하는 버튼, "배 송 중"라는 글자가 있는 버튼, 배송 중인 상품의 개수를 출력하는 버튼, 회원이 보유한 쿠폰 출력 버튼, 회원이 보유한 포인트 출력 버튼, 
+		//						"내가 작성한 리뷰"라는 글자가 있는 버튼, 회원이 작성한 리뷰 개수 출력 버튼
 		Font buttonFont = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 30);
 		// --- 
 		Font buttonPlain = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 30);
-		// --- 왼쪽 사이드 각 목록 이름
+		// --- 왼쪽 사이드 각 목록 이름,  각 공인 알레르기 정보의 이름의 체크 박스
 		Font basic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 17);
 		// --- 
 		Font miniBasic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 15);
@@ -184,77 +185,79 @@ public class MyPage extends JFrame{
 		
 		// 쿠폰 및 포인트 정보 출력
 		// 사용자 정보로 쿠폰 및 포인트를  받아오는 것은 추후 구현
-		JButton userCoupon = new JButton("보유 쿠폰:                 0 장");
-		JButton userPoint = new JButton("보유 포인트:              0 P");
+		JButton userCoupon = new JButton("보유 쿠폰:                 0 장"); // 회원이 보유한 쿠폰 출력 버튼
+		JButton userPoint = new JButton("보유 포인트:              0 P"); // 회원이 보유한 포인트 출력 버튼
 		
-		userCoupon.setBounds(645, 10, 493, 79);
-		userPoint.setBounds(645, 70, 493, 79);
+		userCoupon.setBounds(645, 10, 493, 79); // 회원이 보유한 쿠폰 출력 버튼 : 위치 (645, 10), 크기 493*79px
+		userPoint.setBounds(645, 70, 493, 79); // 회원이 보유한 포인트 출력 버튼 : 위치 (645, 70), 크기 493*79px
 		
-		userCoupon.setFont(buttonFont);
-		userPoint.setFont(buttonFont);
+		userCoupon.setFont(buttonFont); // 회원이 보유한 쿠폰 출력 버튼 폰트 설정
+		userPoint.setFont(buttonFont); // 회원이 보유한 포인트 출력 버튼 폰트 설정
 		
-		userCoupon.setBorderPainted(false); userPoint.setBorderPainted(false); // 외각선 제거
-		userCoupon.setContentAreaFilled(false); userPoint.setContentAreaFilled(false); // 배경색 제거
+		userCoupon.setBorderPainted(false); userPoint.setBorderPainted(false); // 회원이 보유한 쿠폰 출력 버튼, 회원이 보유한 버튼 출력 포인트 외각선 제거
+		userCoupon.setContentAreaFilled(false); userPoint.setContentAreaFilled(false); // 회원이 보유한 쿠폰 출력 버튼, 회원이 보유한 포인트 출력 버튼 배경색 제거
 		
-		userInfoPanel.add(userCoupon);
-		userInfoPanel.add(userPoint);
+		userInfoPanel.add(userCoupon); // 회원 정보 패널에 회원이 보유한 쿠폰 출력 버튼 추가
+		userInfoPanel.add(userPoint); // 회원 정보 패널에 회원이 보유한 포인트 출력 버튼 추가
 		
 		// 내가 작성한 리뷰 및 개수 출력
 		// 사용자 정보로 쿠폰 및 포인트를  받아오는 것은 추후 구현
-		JButton userReview = new JButton("내가 작성한 리뷰");
-		JButton userReviewNum = new JButton("                  0 개");
+		JButton userReview = new JButton("내가 작성한 리뷰"); // "내가 작성한 리뷰"라는 글자가 있는 버튼
+		JButton userReviewNum = new JButton("                  0 개"); // 회원이 작성한 리뷰 개수 출력 버튼
 		
-		userReview.setBounds(1175, 10, 330, 80);
-		userReviewNum.setBounds(1175, 70, 330, 80);
+		userReview.setBounds(1175, 10, 330, 80); // "내가 작성한 리뷰"라는 글자가 있는 버튼 : 위치 (1175, 10), 크기 330*80px
+		userReviewNum.setBounds(1175, 70, 330, 80); // 회원이 작성한 리뷰 개수 출력 버튼 : 위치 (1175, 70), 크기 330*80px
 		
-		userReview.setFont(buttonFont);
-		userReviewNum.setFont(buttonFont);
+		userReview.setFont(buttonFont); // "내가 작성한 리뷰"라는 글자가 있는 버튼 폰트 설정
+		userReviewNum.setFont(buttonFont); // 회원이 작성한 리뷰 개수 출력 버튼 폰트 설정
 		
-		userReview.setBorderPainted(false); userReviewNum.setBorderPainted(false); // 외각선 제거
-		userReview.setContentAreaFilled(false); userReviewNum.setContentAreaFilled(false); // 배경색 제거
+		userReview.setBorderPainted(false); userReviewNum.setBorderPainted(false); // "내가 작성한 리뷰"라는 글자가 있는 버튼, 회원이 작성한 리뷰 개수 출력 버튼 외각선 제거
+		userReview.setContentAreaFilled(false); userReviewNum.setContentAreaFilled(false); // "내가 작성한 리뷰"라는 글자가 있는 버튼, 회원이 작성한 리뷰 개수 출력 버튼 배경색 제거
 		
-		userInfoPanel.add(userReview);
-		userInfoPanel.add(userReviewNum);
+		userInfoPanel.add(userReview); // 회원 정보 패널에 "내가 작성한 리뷰"라는 글자가 있는 버튼 추가
+		userInfoPanel.add(userReviewNum); // 회원 정보 패널에 회원이 작성한 리뷰 개수 출력 버튼 추가
 		
 		//알러지 정보 출력 
-		Image allergy = new ImageIcon("src/graphics/images/allegy.png").getImage();
-		allergy = allergy.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-		ImageIcon iconAllergy = new ImageIcon(allergy);
+		Image allergy = new ImageIcon("src/graphics/images/allegy.png").getImage(); // 알레르기 아이콘 가져옴
+		allergy = allergy.getScaledInstance(100, 100, Image.SCALE_SMOOTH); // 알레르기 아이콘 사이즈 재조정
+		ImageIcon iconAllergy = new ImageIcon(allergy); 
 		JLabel mainAll = new JLabel(iconAllergy);
-		mainAll.setSize(100,100);
-		mainAll.setLocation(20, 20);
-		allergyPanel.add(mainAll);
+		mainAll.setSize(100,100); // 알레르기 아이콘 크기: 100*100px
+		mainAll.setLocation(20, 20); // 알레르기 아이콘 위치: (20, 20)
+		allergyPanel.add(mainAll); // 알레르기 정보 패널에 알레르기 아이콘 추가
 		
-		JCheckBox infoAllergy[] = new JCheckBox[22];
+		JCheckBox infoAllergy[] = new JCheckBox[22]; // 알레르기 정보 체크할 체크박스
 		String alName[] = {"가금류","게","고등어","굴","닭고기","대두","돼지고기","땅콩","메밀","밀","복숭아","새우","쇠고기",
-				"아황산포함","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};
+				"아황산포함","오징어","우유","잣","전복","조개류","토마토","호두","홍합"};  // 공인 알레르기 정보들 모음
 		
-		Vector<String> userAllergy = myUser.getAllergy(); //사용자가 선택한 알러지
+		Vector<String> userAllergy = myUser.getAllergy(); // 회원이 선택한 알레르기
 		
-		int w = 0; int v = 0; //세부 위치 조정 위한 변수
-		for(int i = 0; i < alName.length; i++) { //알러지 체크 박스 생성
-			boolean isUserAllergy = false;
-			if (userAllergy.isEmpty() == false) {
-				if (userAllergy.contains(alName[i])) {
-					isUserAllergy = true;
+		int w = 0; int v = 0; // 세부 위치 조정 위한 변수
+		for(int i = 0; i < alName.length; i++) { // 공인 알레르기 정보만큼 반복
+			boolean isUserAllergy = false; // 알레르기가 있다고 체크했는지 확인; 체크박스에 체크 표시가 안됨
+			if (!userAllergy.isEmpty()) { // 회원이 선택한 알레르기가 있는 경우
+				if (userAllergy.contains(alName[i])) { // 회원이 선택한 알레르기 중 공인 알레르기가 포함되어 있는 경우 
+					isUserAllergy = true; // 체크 박스에 체크 표시가 됨
 				}
 			}
-			else {isUserAllergy = false;}
-			infoAllergy[i] = (new JCheckBox(alName[i], isUserAllergy));
-			allergyPanel.add(infoAllergy[i]);
-			//위치 조정
+			else {isUserAllergy = false;} // 회원이 선택한 알레르기가 없는 경우 체크박스에 체크 표시가 안됨
+			infoAllergy[i] = (new JCheckBox(alName[i], isUserAllergy)); // 각 공인 알레르기 정보의 이름의 체크 박스 생성
+			allergyPanel.add(infoAllergy[i]); // 알레르기 정보 패널에 공인 알레르기 정보들에서 각 알레르기 이름의 체크 박스 추가
+			
+			//크기 및 위치 조정
 			infoAllergy[i].setSize(40 + 20 * alName[i].length(), 40);
 			infoAllergy[i].setLocation( 140 + 147 * w, 10+ 35 * v);
 			
-			// 배경색 제거 및 폰트 설정
+			// 체크 박스 배경색 제거 및 폰트 설정
 			infoAllergy[i].setContentAreaFilled(false);
 			infoAllergy[i].setFont(basic);
 			
 			w++;
-			if (w == 7) {w = 0; v++;}
+			if (w == 7) {w = 0; v++;} // 7개의 체크박스가 들어가면 줄바꿈
 		}
+		
 		//이벤트 처리
-		for (int i = 0; i < alName.length; i++) {
+		for (int i = 0; i < alName.length; i++) { // 공인 알레르기 정보만큼 반복
 			infoAllergy[i].addItemListener(new MyPageActionListener() {
 				public void itemStateChanged(ItemEvent e) {
 					if(e.getStateChange() == ItemEvent.SELECTED) {
