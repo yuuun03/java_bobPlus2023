@@ -183,7 +183,7 @@ public class LoginPage extends JFrame{
 		odNum.setBounds(150, 50, 300, 45); //주문번호 텍스트 필드 : 위치 (150, 50), 크기 300*45px
 		odNumLabel.setFont(basic); //폰트 설정
 		
-		//---패스워드
+		//---전화번호
 		JLabel phoneNumLabel = new JLabel("전화번호 : "); //전화번호 안내 라벨
 		JTextField phoneNum = new JTextField(11); //전화번호 최대 11자 입력
 		phoneNumLabel.setBounds(50, 80, 100, 100);//아이디 안내 라벨 : 위치 (50, 80), 크기 100*100px
