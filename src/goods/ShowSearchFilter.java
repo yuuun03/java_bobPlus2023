@@ -1,3 +1,5 @@
+//컴퓨터공학부 2022136067 양희정
+
 package goods;
 
 import java.awt.*;
@@ -42,10 +44,10 @@ public class ShowSearchFilter extends JFrame{
 	
 		
 		JLabel blank = new JLabel(""); //한 줄 띄우기
-		UPanel.add(blank);
+		UPanel.add(blank); //패널에 빈칸 설정
 		
 		JLabel titleAl = new JLabel(" < 알러지 필터링 > "); //알러지 필터 제목 추가
-		UPanel.add(titleAl);
+		UPanel.add(titleAl); //패널에 추가 (GridLayOut 사용을 위해 UPanel에 추가)
 		
 		for(int i=0;i<alName.length;i++) {
 			infoAllergy[i] = new JCheckBox(alName[i]);
@@ -53,8 +55,8 @@ public class ShowSearchFilter extends JFrame{
 			infoAllergy[i].setContentAreaFilled(false);
 		}
 		
-		UPanel.setBackground(new Color(200, 228, 137));
-		alPanel.setBackground(new Color(200, 228, 137));
+		UPanel.setBackground(new Color(200, 228, 137)); //조리도구 패널 사이즈, 위치 설정
+		alPanel.setBackground(new Color(200, 228, 137)); //알러지 패널 사이즈, 위치 설정
 		
 		Font customFont = new Font("G마켓 산스 TTF Medium", Font.CENTER_BASELINE, 13); //폰트 설정
 		setFonts(filterPanel, customFont);
@@ -78,7 +80,4 @@ public class ShowSearchFilter extends JFrame{
             }
         }
 	}
-	
-	public Vector<String> getFilterCU() {return this.filterCU;} //getter
-	public Vector<String> getFilterAl() {return this.filterAl;} //getter
 }

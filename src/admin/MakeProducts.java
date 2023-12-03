@@ -1,3 +1,5 @@
+//컴퓨터공학부 2022136067 양희정
+
 package admin;
 
 import java.awt.Image;

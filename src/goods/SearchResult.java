@@ -1,3 +1,6 @@
+//컴퓨터공학부 2022136067 양희정 - 조리도구/알러지 필터링, 상품 패널 출력
+// 상품 패널의 세부 사항 추가 - 조윤서
+
 package goods;
 
 import java.awt.*;
@@ -112,8 +115,8 @@ public class SearchResult extends JFrame{
 		
 		//필터 패널 액션 추가(필터링)
 		//--- 조리기구
-		Vector<Integer> hiddenIdxCU = new Vector<Integer>();
-		for(int i=0; i< filter.cookUtensils.length;i++) {
+		Vector<Integer> hiddenIdxCU = new Vector<Integer>(); //선택한 조리기구 정보를 담을 Vector
+		for(int i=0; i< filter.cookUtensils.length;i++) { //조리기구 필터링을 위한 반복문
 			filter.cookUtensils[i].addItemListener(new ItemListener(){
 				public void itemStateChanged(ItemEvent e) {
 					Object source = e.getItemSelectable();
@@ -147,8 +150,8 @@ public class SearchResult extends JFrame{
 		}
 		
 		//--- 알러지
-		Vector<Integer> hiddenIdxAL = new Vector<Integer>();
-		for(int i=0;i<filter.alName.length;i++) {
+		Vector<Integer> hiddenIdxAL = new Vector<Integer>(); //선택한 알러지 정보를 담을 Vector
+		for(int i=0;i<filter.alName.length;i++) { //알러지 필터링을 위한 반복문
 			filter.infoAllergy[i].addItemListener(new ItemListener(){
 				public void itemStateChanged(ItemEvent e) {
 					Object source = e.getItemSelectable();
@@ -202,10 +205,10 @@ public class SearchResult extends JFrame{
 	}
 	
 	public void hideProductionAtIndex(int index) { //index 번째 상품 숨기는 함수
-		if(index>=0 && index < 8) {
-			switch (index) {
+		if(index>=0 && index < 8) { //페이지에 표시되는 상품이 8개이므로 index는 0~7 값
+			switch (index) { //index번째 상품을 숨기기 위해 switch 문 사용
 	        case 0:
-	            product1.setVisible(false);
+	            product1.setVisible(false); //index가 0이면 첫번째 상품 숨기기
 	            break;
 	        case 1:
 	            product2.setVisible(false);
@@ -243,7 +246,7 @@ public class SearchResult extends JFrame{
 			ImageIcon productIcon = new ImageIcon(img);
 			JLabel proImg = new JLabel(productIcon);
 			
-			proImg.setBounds(0, 0, 400, 150); //사진 사이즈 설정
+			proImg.setBounds(0, 0, 400, 150); //사진 사이즈, 위치 설정
 			
 			//라벨 설정
 			JLabel nameLabel = new JLabel(product.getName());
@@ -279,8 +282,6 @@ public class SearchResult extends JFrame{
 			JLabel onePriceLabel = new JLabel ("1인분당 " + Double.toString(onePrice)+"원");
 			onePriceLabel.setBounds(0, 275, 315, 50);
 			onePriceLabel.setFont(new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20));
-			
-			
 			
 			resultPanel.add(proImg); //상품 패널에 각 항목 추가(이미지, 이름 등)
 			resultPanel.add(nameLabel);
