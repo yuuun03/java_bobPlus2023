@@ -25,7 +25,7 @@ public class MakeProducts{
 		Vector<String> sdbAl = new Vector<>(); //순두부찌개 알러지 정보
 		sdbAl.add("가금류");
 				
-		mg.productAdd("순두부 찌개",sdbImg,5.0,2,5,15000,20.0, sdbCU, sdbAl); //'순두부 찌개' 상품 추가
+		mg.productAdd("순두부 찌개",sdbImg,5.0,2,5,15000,20.0, sdbCU, sdbAl); //'순두부찌개' 상품 추가
 		
 		
 		Vector<String> bdCU = new Vector<>(); //부대찌개 조리도구
@@ -35,7 +35,7 @@ public class MakeProducts{
 		bdAl.add("대두");
 		bdAl.add("돼지고기");
 				
-		mg.productAdd("부대찌개",bdImg,5.0,2,5,16000,15.0, bdCU, bdAl); //'부대 찌개' 상품 추가
+		mg.productAdd("부대찌개",bdImg,5.0,2,5,16000,15.0, bdCU, bdAl); //'부대찌개' 상품 추가
 		
 		
 		Vector<String> kchCU = new Vector<>(); //김치찌개 조리도구
@@ -46,6 +46,6 @@ public class MakeProducts{
 				
 		mg.productAdd("김치찌개", kchImg,4.0,3,5,15000,12.0, kchCU, kchAl); //'김치 찌개' 상품 추가
 		
-		return mg.getPList();
+		return mg.getPList(); //상품 리스트 반환
 	}
 }

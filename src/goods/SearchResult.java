@@ -123,13 +123,14 @@ public class SearchResult extends JFrame{
 					if (source instanceof JCheckBox) {
 						JCheckBox checkBox = (JCheckBox) source;
 						
-				    // 선택 상태에 따라 해당하는 Vector를 업데이트
-					if (checkBox.isSelected()) {
+				    // 선택 상태에 따라 해당하는 조리도구 Vector를 업데이트
+					if (checkBox.isSelected()) { //체크박스가 선택된 경우
 						if (Arrays.asList(filter.cookUtensils).contains(checkBox)) {
-							filter.filterCU.add(checkBox.getText());
-							for(int i=0;i<8;i++) {
-								if (pList.get(i).getCookingUtensils().contains(checkBox.getText())) { //조리도구가 일치하면
-									continue;
+							filter.filterCU.add(checkBox.getText()); //선택된 항목 Vector에 추가
+							for(int i=0;i<8;i++) { //페이지에 표시되는 상품 개수 8개
+								if (pList.get(i).getCookingUtensils().contains(checkBox.getText())) {
+									//조리도구가 상품 정보에 있는 조리도구일 경우
+									continue; //다음 상품 비교로 넘어가기
 								}
 								else {
 									hideProductionAtIndex(i); //일치하지 않으면 숨기기
@@ -138,8 +139,8 @@ public class SearchResult extends JFrame{
 								}
 							}
 				            }
-					else {
-						filter.filterCU.remove(checkBox.getText());
+					else { //체크박스를 선택하지 않은 경우
+						filter.filterCU.remove(checkBox.getText()); //Vector 에서 삭제
 				        for(int i:hiddenIdxCU) {
 				        	pBundle[i].setVisible(true);
 				            }
@@ -158,21 +159,21 @@ public class SearchResult extends JFrame{
 					if (source instanceof JCheckBox) {
 						JCheckBox checkBox = (JCheckBox) source;
 						
-				    // 선택 상태에 따라 해당하는 Vector를 업데이트
-					if (checkBox.isSelected()) {
+				    // 선택 상태에 따라 해당하는 알러지 Vector를 업데이트
+					if (checkBox.isSelected()) { //체크박스가 선택된 경우
 						if (Arrays.asList(filter.infoAllergy).contains(checkBox)) {
-				            	filter.filterAl.add(checkBox.getText());
-				            	for(int i=0;i<8;i++) {
+				            	filter.filterAl.add(checkBox.getText()); //선택된 항목 Vector에 추가
+				            	for(int i=0;i<8;i++) { //페이지에 표시되는 상품 개수 8개
 			        				if(pList.get(i).getContainAllergy().contains(checkBox.getText())) {
-			        					hideProductionAtIndex(i); //일치하면 숨기기
+			        					hideProductionAtIndex(i); //상품이 알러지 항목을 가지고 있으면(일치하면) 숨기기
 			        					hiddenIdxAL.add(i);
 			        				}
 				        		}
 				        	}
 				         }
 				    
-					else {
-				          filter.filterAl.remove(checkBox.getText());
+					else { //체크박스를 선택하지 않은 경우
+				          filter.filterAl.remove(checkBox.getText()); //Vector 에서 삭제
 				          for(int i:hiddenIdxAL) {
 					           	pBundle[i].setVisible(true);
 					           }
