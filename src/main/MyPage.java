@@ -129,7 +129,7 @@ public class MyPage extends JFrame{
 			public void valueChanged(ListSelectionEvent e) {
 				int selectedIndex = strList.getSelectedIndex(); // 선택된 이름의 인덱스 번호
 				String selectedItem = (String)strList.getModel().getElementAt(selectedIndex); // 선택된 인덱의 이름을 불러옴
-				JOptionPane.showMessageDialog(null, selectedItem + " 부분은 현재 기능 구현 중에 있습니다."); // 사용자 안내문
+				JOptionPane.showMessageDialog(null, selectedItem + " 부분은 현재 기능 구현 중에 있습니다."); // 회원 안내문
 			}
 		});
 		
