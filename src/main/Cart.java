@@ -12,6 +12,7 @@ import javax.swing.event.*;
 
 import admin.Product;
 import goods.SearchResult;
+import main.MainFrame.MainActionListener;
 import main.MyPage.MyPageActionListener;
 import user.SignUp;
 import user.UserInfoDetail;
@@ -29,24 +30,25 @@ public class Cart extends JFrame {
 	int intCount = 0;
 	int totalPay = productPay - mProductNum - mCouponNum + deliveryPay;
 	
-	JPanel mainPanel = new JPanel();
-	JPanel payPanel = new JPanel();
-	JPanel deliveryInfoPanel = new JPanel();
-	JPanel productInfoPanel = new JPanel();
+	JPanel mainPanel = new JPanel(); // 메인 패널(= 전체 패널)
+	JPanel payPanel = new JPanel(); // 결제 금액 패널
+	JPanel deliveryInfoPanel = new JPanel(); // 배송지 정보 패널
+	JPanel productInfoPanel = new JPanel(); // 상품 정보 패널
 	
-	public Cart() {}
-	public Cart(UserInfoDetail myUser, Vector<Product> pList) {
-		Vector<Product> cartList = myUser.getCartList();
+	// 장바구니 구현 내용
+	public Cart() {} // 기본 생성자
+	public Cart(UserInfoDetail myUser, Vector<Product> pList) { // 유저 정보와 상품정보를 넘겨받은 마이페이지 생성
+		Vector<Product> cartList = myUser.getCartList(); // 유저 정보에서 장바구니 목록 불러오기
 		
 		//화면 기본 설정 - Start
 		setTitle("밥심+"); //제목 설정
 		
 		//---아이콘 설정
-		Toolkit kit = Toolkit.getDefaultToolkit();
-		Image img = kit.getImage("src/graphics/images/iconOnly.png");
-		setIconImage(img);
+		Toolkit kit = Toolkit.getDefaultToolkit(); //이미지 편집 위한 Toolkit 객체 생성
+		Image img = kit.getImage("src/graphics/images/iconOnly.png"); //이미지 받아오기
+		setIconImage(img); //받아온 이미지 아이콘으로 설정
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//종료 설정	 : 가위표 누르면 모든 프레임 종료.
 		
 		setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치
 		mainPanel.setLayout(null); //프레임 배치관리자 없음 : 개발자 자유 배치
@@ -59,76 +61,83 @@ public class Cart extends JFrame {
 		add(df.commonPanel); //패널 추가
 				
 		//---액션 설정
-		df.mainIL.addMouseListener(new MouseAdapter() {
-			public void mouseReleased(MouseEvent e) {
-				new MainFrame(myUser, pList);
+		df.mainIL.addMouseListener(new MouseAdapter() { //아이콘 액션 설정
+			public void mouseReleased(MouseEvent e) { //마우스 클릭하면
+				new MainFrame(myUser, pList); //메인 프레임으로 돌아감
+				dispose(); //이전 프레임은 닫음 
 			}
 		});
 		
-		df.login.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		df.login.addActionListener(new ActionListener() { //로그인 버튼 액션
+			public void actionPerformed(ActionEvent e) { //버튼 클릭 시
 				new LoginPage(myUser, pList); //로그인 페이지 전환
-				dispose(); //기존 페이지 안보이게 변경
+				dispose(); //기존 페이지 닫음
 			}});
 		
-		df.my.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		df.my.addActionListener(new ActionListener() { //마이페이지 버튼 액션
+			public void actionPerformed(ActionEvent e) { //버튼 클릭시
 				new MyPage(myUser, pList); //마이 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 			
-		df.cart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		df.cart.addActionListener(new ActionListener() { //장바구니 버튼 액션
+			public void actionPerformed(ActionEvent e) { //버튼 클릭 시
 				new Cart(myUser, pList); //장바구니 페이지 전환
 				dispose(); //기존 페이지 안보이게 변경
 			}});
 		
-		df.search.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String pName = e.getActionCommand();
-				new SearchResult(myUser, pList, pName);
-				dispose();
+		df.search.addActionListener(new ActionListener() { //검색창 액션
+			public void actionPerformed(ActionEvent e) { //엔터 키 press시
+				String pName = e.getActionCommand(); //text field 내 작성되어있는 텍스트 받아옴
+				new SearchResult(myUser, pList, pName); //검색 결과창 전환
+				dispose(); //기존 페이지 안보이게 변경
 			}
 		});
-						
-		df.newHotGoods.addActionListener(new MainActionListener());
-		df.weekTop10Goods.addActionListener(new MainActionListener());
-		df.checkAttendance.addActionListener(new MainActionListener());
-		df.couponPoint.addActionListener(new MainActionListener());
-		df.communityU.addActionListener(new MainActionListener());
-		df.newMonthGoods.addActionListener(new MainActionListener());
 		
-		// 폰트
+		//--- --- 기능이 미구현된 부분들의 액션 : 하단의 MainActionListener로 액션 지정
+		df.newHotGoods.addActionListener(new MainActionListener()); //지금 뜨는 상품
+		df.weekTop10Goods.addActionListener(new MainActionListener()); //금주의 TOP 10
+		df.checkAttendance.addActionListener(new MainActionListener()); //출석 체크
+		df.couponPoint.addActionListener(new MainActionListener()); //쿠폰/포인트
+		df.communityU.addActionListener(new MainActionListener()); //커뮤니티
+		df.newMonthGoods.addActionListener(new MainActionListener());  //이달의 신상품
+		
+		// 폰트 설정
+		// --- 
 		Font buttonFont = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 30);
+		// --- " 나의 장바구니" 출력 라벨
 		Font buttonPlain = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 30);
+		// --- 
 		Font labelFont = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 20);
+		// --- 
 		Font basic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 17);
+		// --- 
 		Font miniBasic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 15);
 		
 		// 장바구니 구역 표시
-		JLabel myCart = new JLabel(" 나의 장바구니");
-		myCart.setBounds(59 ,220, 1440, 50);
-		myCart.setOpaque(true);
-		myCart.setBackground(new Color(200, 228, 137));
-		myCart.setFont(buttonPlain);
-		mainPanel.add(myCart);
+		JLabel myCart = new JLabel(" 나의 장바구니"); // " 나의 장바구니" 출력 라벨
+		myCart.setBounds(59 ,220, 1440, 50); // " 나의 장바구니" 출력 라벨 : 위치 (59, 220), 크기 1440*50px
+		myCart.setOpaque(true); // 배경 투명하게 해줌
+		myCart.setBackground(new Color(200, 228, 137)); // 배경 색깔 설정 - 연두
+		myCart.setFont(buttonPlain); // " 나의 장바구니" 출력 라벨 폰트 설정
+		mainPanel.add(myCart); // 메인 패널에 " 나의 장바구니" 출력 라벨 추가
 		
 		// 구분선1
-		JLabel myCartLine1 = new JLabel();
-		myCartLine1.setBounds(60 ,310, 1125, 2);
-		myCartLine1.setOpaque(true);
-		myCartLine1.setBackground(Color.black);
-		mainPanel.add(myCartLine1);
+		JLabel myCartLine1 = new JLabel(); // 구분선1로 출력 라벨
+		myCartLine1.setBounds(60 ,310, 1125, 2); // 구분선1 : 위치 (60, 310), 크기 1125*2px
+		myCartLine1.setOpaque(true); // 배경 투명하게 해줌
+		myCartLine1.setBackground(Color.black); // 배경 색깔 설정 - 검정
+		mainPanel.add(myCartLine1); // 메인 패널에 구분선1 출력 라벨 추가
 		
 		// 담은 상품 개수
-		int copNum = cartList.size();
-		JLabel containProduct = new JLabel("담은 상품 :");
-		JLabel containProductNum = new JLabel(copNum + " 개");
+		int copNum = cartList.size(); // 담은 개수; 장바구니 리스트 크기
+		JLabel containProduct = new JLabel("담은 상품 :"); // "담은 상품" 출력 라벨
+		JLabel containProductNum = new JLabel(copNum + " 개"); // 담은 상품 개수 출력 라벨
 		
-		containProduct.setBounds(60 ,320, 300, 50);
-		containProductNum.setBounds(220 ,320, 200, 50);
-		containProduct.setFont(buttonPlain);
-		containProductNum.setFont(buttonPlain);
+		containProduct.setBounds(60 ,320, 300, 50); // "담은 상품" 출력 라벨 : 위치 (60, 320), 크기 300*50px
+		containProductNum.setBounds(220 ,320, 200, 50); // 담은 상품 개수 출력 라벨 : 위치 (220, 320), 크기 200*50px
+		containProduct.setFont(buttonPlain); // "담은 상품" 출력 라벨 폰트 설정
+		containProductNum.setFont(buttonPlain); // 담은 상품 개수 출력 라벨 폰트 설정
 		
 		mainPanel.add(containProduct);
 		mainPanel.add(containProductNum);
@@ -460,29 +469,27 @@ public class Cart extends JFrame {
 					deliverycountNum.setText(deliveryPay + 2500 + " 원");
 					orderPriceNum.setText(price*(intCount) - (int)disRatePrice*(intCount) - 3000 + " 원");
 					priPayNum.setText(price*(intCount) - (int)disRatePrice*(intCount) - 3000 + 2500 + "원"); 
-					System.out.println("주문 가격: " + price*(intCount));
-					System.out.println("상품 할인: " + (int)disRatePrice*(intCount));
 				}});
 		}
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
 		
-		mainPanel.setBounds(0,0, 1920, 1080);
-		payPanel.setBounds(1198, 284, 300, 260);
-		deliveryInfoPanel.setBounds(1198, 560, 300,100);
-		productInfoPanel.setBounds(59, 375, 1125, 180);
+		mainPanel.setBounds(0,0, 1920, 1080); // 메인 패널 : 위치 (0, 0), 크기 1920*1080px
+		payPanel.setBounds(1198, 284, 300, 260); // 결제 금액 패널 : 위치 (1198, 284), 크기 300*260px
+		deliveryInfoPanel.setBounds(1198, 560, 300,100); // 배송지 정보 패널 : 위치 (1198, 560), 크기 300*100px
+		productInfoPanel.setBounds(59, 375, 1125, 180); // 상품 정보 패널 : 위치 (59, 375), 크기 1125*180px
 		
-		mainPanel.setBackground(Color.white);
-		payPanel.setBackground(new Color(200, 228, 137));
-		deliveryInfoPanel.setBackground(new Color(255, 206, 89));
-		productInfoPanel.setBackground(Color.white);
+		mainPanel.setBackground(Color.white); // 배경 색깔 설정 - 하양
+		payPanel.setBackground(new Color(200, 228, 137)); // 배경 색깔 설정 - 연두
+		deliveryInfoPanel.setBackground(new Color(255, 206, 89)); // 배경 색깔 설정 - 빨강
+		productInfoPanel.setBackground(Color.white); // 배경 색깔 설정 - 하양
 		
 		
-		add(deliveryInfoPanel);
-		add(productInfoPanel);
-		add(payPanel);
-		add(mainPanel);
+		add(deliveryInfoPanel); // 프레임에 배송지 정보 패널 추가 
+		add(productInfoPanel); // 프레임에 상품 정보 패널 추가
+		add(payPanel); // 프레임에 결제 금액 패널 추가
+		add(mainPanel); // 프레임에 메인 패널 추가
 		
 		setVisible(true); // 프레임 출력
 	}
@@ -500,27 +507,27 @@ public class Cart extends JFrame {
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
 				이는 추후 구현 예정*/ 	
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 				
 			case "출석 체크":
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 				
 			case "쿠폰/포인트": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 					
 			case "커뮤니티": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 				
 			case "이달의 신상품": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 				
 			default : //장바구니 클릭 시 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 			}
 		}

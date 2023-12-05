@@ -104,11 +104,11 @@ public class MyPage extends JFrame{
 		// --- 회원 이름을 출력하는 버튼, 회원 등급을 출력하는 버튼, "배 송 중"라는 글자가 있는 버튼, 배송 중인 상품의 개수를 출력하는 버튼, 회원이 보유한 쿠폰 출력 버튼, 회원이 보유한 포인트 출력 버튼, 
 		//						"내가 작성한 리뷰"라는 글자가 있는 버튼, 회원이 작성한 리뷰 개수 출력 버튼
 		Font buttonFont = new Font("G마켓 산스 TTF BOLD", Font.CENTER_BASELINE, 30);
-		// --- 
+		// --- "최근 주문 내역" 출력 라벨
 		Font buttonPlain = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 30);
-		// --- 왼쪽 사이드 각 목록 이름,  각 공인 알레르기 정보의 이름의 체크 박스
+		// --- 왼쪽 사이드 각 목록 이름,  각 공인 알레르기 정보의 이름의 체크 박스, "최근 0건" 출력 라벨
 		Font basic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 17);
-		// --- 
+		// --- "날짜" 출력 라벨, "상품정보" 출력 라벨, "배송 상태" 출력 라벨, "리뷰" 출력 라벨
 		Font miniBasic = new Font("G마켓 산스 TTF Medium", Font.PLAIN, 15);
 		
 		// 왼쪽 사이드 리스트
@@ -327,7 +327,7 @@ public class MyPage extends JFrame{
 		mainPanel.add(newOrderPanel); // 메인 패널에 최근 주문 내역 패널 추가
 		mainPanel.add(userInfoPanel); // 메인 패널에 회원 정보 패널 추가
 		mainPanel.add(allergyPanel); // 메인 패널에 알레르기 정보 패널 추가
-		add(mainPanel); // 메인 패널 추가
+		add(mainPanel); // 프레임에 메인 패널 추가
 		
 		setVisible(true); // 프레임 출력
 			
