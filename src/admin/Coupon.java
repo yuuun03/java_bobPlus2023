@@ -12,12 +12,12 @@ public class Coupon{
 	LocalDate now = LocalDate.now();
 	
 	// 변수 선언 
-	static int couponNum;
-	static double couponDisRate = 0.8;
-	static double couponDue;
-	static double couponDisPrice;
-	static int birth, price;
-	static int monthValue = getMonthValue();
+	public int couponNum;
+	public double couponDisRate = 0.8;
+	public double couponDue;
+	public double couponDisPrice;
+	public int birth, price;
+	public int monthValue = getMonthValue();
 
 	// 접근으로 공유 변수 받아오기
 	public int getBirth() {
