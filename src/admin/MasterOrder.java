@@ -23,7 +23,7 @@ public class MasterOrder {
         // 해당 회원의 주문 목록을 조회하고 출력
         System.out.println(memberID + "님의 주문 목록 " + ":");
         // + 주문 목록 출력
-        System.out.println("주문 번호 : " + orderNumber + ", 판매자 이름 : " + buyerName + ", 총 가격 : " + totalPrice);
+        System.out.println("주문 번호 : " + orderNumber + ", 구매자 이름 : " + buyerName + ", 총 가격 : " + totalPrice);
         // 추가적으로 다른 주문 정보 출력 + 회원의 경우 전화번호와 주소를 UserInfo에 저장해두기 때문에 별도로 출력하지 않음.
     }
 
@@ -33,7 +33,7 @@ public class MasterOrder {
         // 해당 주문 번호에 해당하는 주문 정보를 조회하고 출력
         System.out.println("비회원 주문조회 (주문번호 " + orderNumber + ") " + ":");
         // + 주문 목록 출력 orderList
-        System.out.println("판매자 : " + buyerName + ", 전화번호 : " + phoneNum + ", 주소 : " + address);
+        System.out.println("구매자 : " + buyerName + ", 전화번호 : " + phoneNum + ", 주소 : " + address);
         // 추가적으로 다른 주문 정보 출력
     }
 
