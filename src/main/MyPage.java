@@ -30,7 +30,7 @@ public class MyPage extends JFrame{
 	JPanel line1Panel = new JPanel(); // 회원 정보 구분선 1 패널
 	JPanel line2Panel = new JPanel(); // 회원 정보 구분선 2 패널
 	JPanel line3Panel = new JPanel(); // 회원 정보 구분선 3 패널
-	JPanel newOrderPanel = new JPanel(); // 최근 주문 내열 패널
+	JPanel newOrderPanel = new JPanel(); // 최근 주문 내역 패널
 	
 	// 마이페이지 구현 내용
 	public MyPage() {} // 기본 생성자
@@ -272,62 +272,62 @@ public class MyPage extends JFrame{
 		}
 		
 		// 최근 주문 내역
-		JLabel newOrder = new JLabel("최근 주문내역");
-		JLabel newOrderNum = new JLabel("최근 0건");
-		JLabel newOrderDay = new JLabel("날짜");
-		JLabel newOrderInfo = new JLabel("상품정보");
-		JLabel newOrderDeli = new JLabel("배송 상태");
-		JLabel newOrderReview = new JLabel("리뷰");
+		JLabel newOrder = new JLabel("최근 주문내역"); // "최근 주문 내역" 출력 라벨
+		JLabel newOrderNum = new JLabel("최근 0건"); // 추후 상세 구현
+		JLabel newOrderDay = new JLabel("날짜"); // "날짜" 출력 라벨
+		JLabel newOrderInfo = new JLabel("상품정보"); // "상품정보" 출력 라벨
+		JLabel newOrderDeli = new JLabel("배송 상태"); // "배송 상태" 출력 라벨
+		JLabel newOrderReview = new JLabel("리뷰"); // "리뷰" 출력 라벨
 		
 		
-		newOrder.setBounds(300,580, 300, 70);
-		newOrderNum.setBounds(500,584, 200, 70);
-		newOrderDay.setBounds(385,620, 200, 50);
-		newOrderInfo.setBounds(675,620, 200, 50);
-		newOrderDeli.setBounds(995,620, 200, 50);
-		newOrderReview.setBounds(1300,620, 200, 50);
+		newOrder.setBounds(300,580, 300, 70); // "최근 주문 내역" 출력 라벨 : 위치 (300, 580), 크기 300*70px
+		newOrderNum.setBounds(500,584, 200, 70); // "최근 0건" 출력 라벨 : 위치 (500, 584), 크기 200*70px
+		newOrderDay.setBounds(385,620, 200, 50); // "날짜" 출력 라벨 : 위치 (385, 620), 크기 200*50px
+		newOrderInfo.setBounds(675,620, 200, 50); // "상품정보" 출력 라벨 : 위치 (675, 620), 크기 200*50px
+		newOrderDeli.setBounds(995,620, 200, 50); // "배송 상태" 출력 라벨 : 위치 (995, 620), 크기 200*50px
+		newOrderReview.setBounds(1300,620, 200, 50); // "리뷰" 출력 라벨 : 위치 (1300, 620), 크기 200*50px
 		
-		newOrder.setFont(buttonPlain);
-		newOrderNum.setFont(basic);
-		newOrderDay.setFont(miniBasic);
-		newOrderInfo.setFont(miniBasic);
-		newOrderDeli.setFont(miniBasic);
-		newOrderReview.setFont(miniBasic);
+		newOrder.setFont(buttonPlain); // "최근 주문 내역" 출력 라벨 폰트 설정
+		newOrderNum.setFont(basic); // "최근 0건" 출력 라벨 폰트 설정
+		newOrderDay.setFont(miniBasic); // "날짜" 출력 라벨 폰트 설정
+		newOrderInfo.setFont(miniBasic); // "상품정보" 출력 라벨 폰트 설정
+		newOrderDeli.setFont(miniBasic); // "배송 상태" 출력 라벨 폰트 설정
+		newOrderReview.setFont(miniBasic); // "리뷰" 출력 라벨 폰트 설정
 		
-		mainPanel.add(newOrder);
-		mainPanel.add(newOrderNum);
-		mainPanel.add(newOrderDay);
-		mainPanel.add(newOrderInfo);
-		mainPanel.add(newOrderDeli);
-		mainPanel.add(newOrderReview);
+		mainPanel.add(newOrder); // 메인 패널에 "최근 주문 내역" 출력 라벨 추가
+		mainPanel.add(newOrderNum); // 메인 패널에 "최근 0건" 출력 라벨 추가
+		mainPanel.add(newOrderDay); // 메인 패널에 "날짜" 출력 라벨 추가
+		mainPanel.add(newOrderInfo); // 메인 패널에 "상품정보" 출력 라벨 추가
+		mainPanel.add(newOrderDeli); // 메인 패널에 "배송 상태" 출력 라벨 추가
+		mainPanel.add(newOrderReview); // 메인 패널에 "리뷰" 출력 라벨 추가
 		
 		
 		//화면 기본 설정 - End
 		setSize(1920, 1080); //윈도우 사이즈 1920, 1080 고정.
 		
-		mainPanel.setBounds(0,0, 1920,1080);
-		allergyPanel.setBounds(300 ,420, 1230, 160);
-		userInfoPanel.setBounds(0 ,240, 1920, 160);
-		newOrderPanel.setBounds(300 ,630, 1250, 30);
-		line1Panel.setBounds(360 ,240, 2, 160);
-		line2Panel.setBounds(640 ,240, 2, 160);
-		line3Panel.setBounds(1140 ,240, 2, 160);
+		mainPanel.setBounds(0,0, 1920,1080); // 메인 패널 : 위치 (0, 0), 크기 1920*1080px
+		allergyPanel.setBounds(300 ,420, 1230, 160); // 알레르기 정보 패널 : 위치 (300, 420), 크기 1230*160px
+		userInfoPanel.setBounds(0 ,240, 1920, 160); // 회원 정보 패널 : 위치 (0, 240), 크기 1920*160px
+		newOrderPanel.setBounds(300 ,630, 1250, 30); // 최근 주문 내역 패널 : 위치 (300, 630), 크기 1250*30px
+		line1Panel.setBounds(360 ,240, 2, 160); // 회원 정보 구분선 1 패널 : 위치 (360, 240), 크기 2*160px
+		line2Panel.setBounds(640 ,240, 2, 160); // 회원 정보 구분선 2 패널 : 위치 (640, 240), 크기 2*160px
+		line3Panel.setBounds(1140 ,240, 2, 160); // 회원 정보 구분선 3 : 위치 (1140, 240), 크기 2*160px
 		
-		mainPanel.setBackground(Color.white);
-		allergyPanel.setBackground(new Color(200, 228, 137));
-		userInfoPanel.setBackground(new Color(200, 228, 137));
-		newOrderPanel.setBackground(new Color(200, 228, 137));
-		line1Panel.setBackground(new Color(151, 192, 48));
-		line2Panel.setBackground(new Color(151, 192, 48));
-		line3Panel.setBackground(new Color(151, 192, 48));
+		mainPanel.setBackground(Color.white); // 배경 색깔 설정 - 하양
+		allergyPanel.setBackground(new Color(200, 228, 137)); // 배경 색깔 설정 - 연두
+		userInfoPanel.setBackground(new Color(200, 228, 137)); // 배경 색깔 설정 - 연두
+		newOrderPanel.setBackground(new Color(200, 228, 137)); // 배경 색깔 설정 - 연두
+		line1Panel.setBackground(new Color(151, 192, 48)); // 배경 색깔 설정 - 초록
+		line2Panel.setBackground(new Color(151, 192, 48)); // 배경 색깔 설정 - 초록
+		line3Panel.setBackground(new Color(151, 192, 48)); // 배경 색깔 설정 - 초록
 		
-		mainPanel.add(line1Panel);
-		mainPanel.add(line2Panel);
-		mainPanel.add(line3Panel);
-		mainPanel.add(newOrderPanel);
-		mainPanel.add(userInfoPanel);
-		mainPanel.add(allergyPanel);
-		add(mainPanel);
+		mainPanel.add(line1Panel); // 메인 패널에 회원 정보 구분선 1 패널 추가
+		mainPanel.add(line2Panel); // 메인 패널에 회원 정보 구분선 2 패널 추가
+		mainPanel.add(line3Panel); // 메인 패널에회원 정보 구분선 3 패널 추가
+		mainPanel.add(newOrderPanel); // 메인 패널에 최근 주문 내역 패널 추가
+		mainPanel.add(userInfoPanel); // 메인 패널에 회원 정보 패널 추가
+		mainPanel.add(allergyPanel); // 메인 패널에 알레르기 정보 패널 추가
+		add(mainPanel); // 메인 패널 추가
 		
 		setVisible(true); // 프레임 출력
 			
@@ -346,35 +346,35 @@ public class MyPage extends JFrame{
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
 				이는 추후 구현 예정*/
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 					
 			case "출석 체크": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 					
 			case "쿠폰/포인트": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 						
 			case "커뮤니티": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 					
 			case "이달의 신상품": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 					
 			case "오늘 뭐 먹지?": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 
 			case "지금 할인 중": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 
 			case "인기 급상승": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 					
 			default : //장바구니 클릭 시 
