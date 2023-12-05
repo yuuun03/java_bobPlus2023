@@ -103,6 +103,8 @@ public class ShowOneGoods extends JFrame implements Runnable {
 				
 				th = new Thread(this); //프레임에 진동 기능 추가
 				th.start(); //진동 시작
+				
+				break; //반복문 탈출
 			}
 		}
 		
