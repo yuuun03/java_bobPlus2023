@@ -92,7 +92,7 @@ public class UserInfoDetail {
 	public boolean getLogCheck() {return this.logCheck;} // 회원이 로그인 했는지 확인
 	
 	public Vector<Product> getCartList() {return this.cartList;} // 회원 장바구니 목록
-	public Vector<Product> getLiketList() {return this.likeList;} // 회원 찜 목록
+	public Vector<Product> getLikeList() {return this.likeList;} // 회원 찜 목록
 	public Vector<Product> getBuyList() {return this.buyList;} // 회원 구매 목록
 
 	// 설정자
