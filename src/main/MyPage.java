@@ -133,8 +133,6 @@ public class MyPage extends JFrame{
 			}
 		});
 		
-		
-		
 		// 사용자 이름 및 등급 출력
 		String[] rankList = {"전설밥알", "영웅밥알", "고급밥알", "중급밥알", "초급밥알", "입문밥알"}; // 회원 등급은 총 6개로 나뉨
 		String name = "O O O"; // 로그인 전 O O O으로 이름 초기화
@@ -258,17 +256,17 @@ public class MyPage extends JFrame{
 		
 		//이벤트 처리
 		for (int i = 0; i < alName.length; i++) { // 공인 알레르기 정보만큼 반복
-			infoAllergy[i].addItemListener(new MyPageActionListener() {
+			infoAllergy[i].addItemListener(new MyPageActionListener() { // 회원이 클릭한 버튼 알아내기
 				public void itemStateChanged(ItemEvent e) {
-					if(e.getStateChange() == ItemEvent.SELECTED) {
-						JCheckBox now = (JCheckBox)(e.getSource());
-						userAllergy.add(now.getText());			
+					if(e.getStateChange() == ItemEvent.SELECTED) { // 회원이 체크 박스에 체크 표시했다면
+						JCheckBox now = (JCheckBox)(e.getSource()); // 현재 체크 박스에 표시된 알레르기 이름 불러오기
+						userAllergy.add(now.getText()); // 회원이 선택한 알레르기 정보에 추가하기 
 					}
-					else if(e.getStateChange() == ItemEvent.DESELECTED) {
-						JCheckBox now = (JCheckBox)(e.getSource());
-						userAllergy.remove(now.getText());
+					else if(e.getStateChange() == ItemEvent.DESELECTED) { // 회원이 체크 박스에 체크를 해제했다면
+						JCheckBox now = (JCheckBox)(e.getSource()); // 현재 체크 박스에 체크가 해제된 알레르기 이름 불러오기
+						userAllergy.remove(now.getText()); // 회원이 선택한 알레르기 정보에서 삭제하기
 					}
-					myUser.setAllergy(userAllergy);
+					myUser.setAllergy(userAllergy); // 회원 정보에서 알레르기 정보 수정하기
 				}
 			});
 		}
@@ -348,35 +346,35 @@ public class MyPage extends JFrame{
 				/*인기상품, 지금뜨는 상품, 금주의 TOP10 클릭시
 				지금뜨는 상품과 금주의 TOP10은 인기 상품에 속해있는 원소긴 하나
 				이는 추후 구현 예정*/
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
 					
 			case "출석 체크": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
 					
 			case "쿠폰/포인트": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
 						
 			case "커뮤니티": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
 					
 			case "이달의 신상품": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
 					
 			case "오늘 뭐 먹지?": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
 
 			case "지금 할인 중": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
 
 			case "인기 급상승": 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다.");
+				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); //사용자 알림
 				break;
 					
 			default : //장바구니 클릭 시 
