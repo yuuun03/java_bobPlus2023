@@ -38,7 +38,7 @@ public class UserInfoDetail {
 	protected Vector<Product> buyList = new Vector<Product>();
 	
 	// 로그인 확인
-	private boolean logCheck = false;
+	private boolean isLogin = false;
 	
 	//---생일 쿠폰
 	protected int birthCoupon = 0;
@@ -47,7 +47,7 @@ public class UserInfoDetail {
 	// 생성자
 	public UserInfoDetail() {}
 	public UserInfoDetail(String name, String id, String email, String password, long phoneNum, 
-			int birth, int userRank, Vector<String> allergy, String address, boolean logCheck, int birthCoupon) {
+			int birth, int userRank, Vector<String> allergy, String address, boolean isLogin, int birthCoupon) {
 		//---회원 이름
 		this.name = name;
 		
@@ -68,7 +68,7 @@ public class UserInfoDetail {
 		this.address = address;
 		
 		//--- 로그인 확인
-		this.logCheck = logCheck;
+		this.isLogin = isLogin;
 		
 		//---생일 쿠폰
 		this.birthCoupon = birthCoupon;
@@ -89,7 +89,7 @@ public class UserInfoDetail {
 	
 	public String getAddress() {return this.address;} // 회원 주소
 	
-	public boolean getLogCheck() {return this.logCheck;} // 회원이 로그인 했는지 확인
+	public boolean getIsLogin() {return this.isLogin;} // 회원이 로그인 했는지 확인
 	
 	public Vector<Product> getCartList() {return this.cartList;} // 회원 장바구니 목록
 	public Vector<Product> getLikeList() {return this.likeList;} // 회원 찜 목록
@@ -110,7 +110,7 @@ public class UserInfoDetail {
 	
 	protected void setAddress(String address) {this.address = address;} // 회원 주소
 	
-	public void setLogCheck(boolean logCheck) {this.logCheck = logCheck;} // 회원이 로그인 했는지 확인
+	public void setIsLogin(boolean isLogin) {this.isLogin = isLogin;} // 회원이 로그인 했는지 확인
 
 	protected void setCartList(Vector<Product> cartList) {this.cartList = cartList;} // 회원 장바구니 목록
 	protected void setLikeList(Vector<Product> likeList) {this.likeList = likeList;} // 회원 찜 목록
