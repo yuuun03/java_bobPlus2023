@@ -36,7 +36,7 @@ public class MasterOrder {
     private void stateOrderChange(long orderNumber, int newDeliveryState) {
         // orderNumber에 해당하는 주문의 배송 상태를 newDeliveryState로 변경
         // 데이터베이스에서 해당 주문을 찾아 배송 상태를 업데이트해야 함
-        System.out.println("Changing delivery state for Order Number " + orderNumber + " to " + newDeliveryState);
+        System.out.println("주문번호 " + orderNumber + "의 배송 상태 변경 " + newDeliveryState);
         this.deliveryState = newDeliveryState;
         // 상태 변경 완료 메시지 출력 및 사이트 내에 기재된 정보 수정
     }
@@ -45,8 +45,8 @@ public class MasterOrder {
     private void stateOrderPrint(long orderNumber) {
         // orderNumber에 해당하는 주문의 상태를 출력
         // 데이터베이스에서 해당 주문 정보를 조회하고 출력해야 함
-        System.out.println("Order State for Order Number " + orderNumber + ":");
-        System.out.println("Buyer: " + buyerName + ", Delivery State: " + deliveryState);
+        System.out.println("주문 번호 " + orderNumber + "의 배송 상태 :");
+        System.out.println("구매자 : " + buyerName + ", 배송 상태 : " + deliveryState);
         // 추가적으로 다른 주문 정보 출력
     }
 
