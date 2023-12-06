@@ -136,7 +136,7 @@ public class LoginPage extends JFrame{
 			public void actionPerformed(ActionEvent e) { //버튼 클릭시
 				//입력한 아이디와 비밀번호가 회원가입 당시 가입한 아이디와 비밀번호랑 일치하면 로그인
 				if (myUser.getId().equals(id.getText()) && myUser.getPassword().equals(pw.getText())){
-					myUser.setLogCheck(true); //로그인 여부 true로 전환
+					myUser.setIsLogin(true); //로그인 여부 true로 전환
 					new MainFrame(myUser, pList); //메인프레임으로 돌아가기
 					dispose(); //이전 프레임 닫기
 				}
