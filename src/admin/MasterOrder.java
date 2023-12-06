@@ -4,11 +4,6 @@
 
 package admin;
 
-import admin.*;
-import main.*;
-import goods.*;
-import user.*;
-
 public class MasterOrder {
     private String memberID;
     private long orderNumber;
