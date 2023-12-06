@@ -528,8 +528,7 @@ public class Cart extends JFrame {
 				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
 				break;
 				
-			default : //장바구니 클릭 시 
-				JOptionPane.showMessageDialog(null, "현재 기능 구현 중에 있습니다."); // 회원 알림
+			default : 
 				break;
 			}
 		}
